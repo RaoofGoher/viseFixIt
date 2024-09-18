@@ -1,11 +1,28 @@
-import ViseFixit from './assets/viseFixit.png'
-
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  useParams
+} from 'react-router-dom';
+import PrimaryLayout from './layouts/PrimaryLayout';
 function App() {
+
+  
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<PrimaryLayout />}>
+        
+        </Route>
+      </>
+    )
+  );
 
 
   return (
     <>
-     <img src={ViseFixit} alt={"vise fix it"} />
+     <RouterProvider router={router} />
     </>
   )
 }
