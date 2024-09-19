@@ -4,6 +4,7 @@ import PrimaryHero from '../components/PrimaryHero';
 import ChangingText from '../components/ChangingText';
 import ServicesGrid from '../components/ServiceGrid';
 import TestimonialSlider from '../components/TestimonialSlider';
+import ContactUS from '../components/ContactUs';
 const Loader = () => {
   return <div className="loader">Loading...</div>; // Customize this loader style
 };
@@ -36,7 +37,9 @@ const PrimaryLayout = () => {
       {isTextLoading ? <Loader /> : <ChangingText />}
       {isServicesLoading ? <Loader /> : <ServicesGrid />}
       {isTestimonialLoading ? <Loader /> : <TestimonialSlider />}
-
+    
+      {isContactUsLoading ? <Loader /> : <ContactUS />}
+    
 
     </div>
   );
