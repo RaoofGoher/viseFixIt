@@ -1,10 +1,15 @@
 import React from 'react'
 import HeroImage from '../assets/viseFixitHero.png'
+import SearchBarWithLabel from './SearchBar'
+import Stack from './Stack'
 const PrimaryHero = () => {
   return (
     <div className="bg-cover bg-center w-[98vw] h-[35vh] flex justify-center items-center "  style={{ backgroundImage: `url(${HeroImage})` }}>
-        <div className='text-primaryColor text-2xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, magni.</div>
-      
+       <Stack>
+        <SearchBarWithLabel buttonText={'Search'} labelText={"Zip Code"}/>
+        
+       </Stack>
+
     </div>
   )
 }
