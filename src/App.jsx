@@ -6,6 +6,8 @@ import {
   useParams
 } from 'react-router-dom';
 import PrimaryLayout from './layouts/PrimaryLayout';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function App() {
 
   

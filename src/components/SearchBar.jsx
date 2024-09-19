@@ -32,7 +32,7 @@ const SearchComponent = () => {
       </div>
       <button
         onClick={handleSearch}
-        className="bg-primaryColor text-white p-2 rounded"
+        className="border-2 bg-primaryColor text-white p-2 rounded hover:bg-lightColor1 hover:border-2 hover:border-primaryColor hover:text-primaryColor"
       >
         Search
       </button>

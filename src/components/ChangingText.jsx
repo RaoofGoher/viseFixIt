@@ -13,7 +13,7 @@ const ChangingText = () => {
   }, [texts.length]);
 
   return (
-    <div className='flex justify-center items-center space-x-4'>
+    <div className='flex justify-center items-center space-x-4 m-8'>
     <h2 className="text-2xl font-bold text-center text-black my-4">Our great services are </h2>
     <h1 className="text-4xl font-bold text-center text-primaryColor my-4">
       {texts[currentIndex]}
