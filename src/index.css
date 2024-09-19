@@ -2,3 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Apply transition when hovering out */
+.service-card-content {
+    transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+  }
+  
+  .group:hover .service-card-content {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .group:not(:hover) .service-card-content {
+    opacity: 0;
+    transform: translateX(1rem); /* Adjust based on your needs */
+  }
+  
