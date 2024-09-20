@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 // Import GlobalProvider from your GlobalContext file
 import { GlobalProvider } from './context/GlobalContext';
-import Home from './pages/home';
+import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 
 function App() {
