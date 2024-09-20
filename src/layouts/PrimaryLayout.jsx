@@ -5,6 +5,10 @@ import ChangingText from '../components/ChangingText';
 import ServicesGrid from '../components/ServiceGrid';
 import TestimonialSlider from '../components/TestimonialSlider';
 import ContactUS from '../components/ContactUs';
+import TeamCard from '../components/TeamCard';
+import TeamSlider from '../components/teamSlider';
+import FAQ from '../components/FaqSection';
+import Footer from '../components/Footer';
 const Loader = () => {
   return <div className="loader">Loading...</div>; // Customize this loader style
 };
@@ -40,7 +44,9 @@ const PrimaryLayout = () => {
     
       {isContactUsLoading ? <Loader /> : <ContactUS />}
     
-
+        <TeamSlider/>
+        <FAQ/>
+        <Footer/>
     </div>
   );
 };

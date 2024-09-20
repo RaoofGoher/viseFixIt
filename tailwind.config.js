@@ -11,7 +11,10 @@ export default {
         'secondaryColor':'#BB9AB1',
         'lightColor1':'#EECEB9', 
         'lightColor2':'#FEFBD8', 
-      }
+      },
+      boxShadow: {
+        'custom-green': '0 4px 105px #EECEB9', // Adjust color and values
+      },
     },
   },
   plugins: [],
