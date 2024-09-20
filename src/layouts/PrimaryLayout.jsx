@@ -33,7 +33,7 @@ const PrimaryLayout = () => {
   }, []);
 
   return (
-    <div className='px-8'>
+    <div className='px-8 bg-gray-200'>
       {isNavbarLoading ? <Loader /> : <PrimaryNavbar />}
       <div className='flex justify-center items-center'>
         {isHeroLoading ? <Loader /> : <PrimaryHero />}
