@@ -1,15 +1,13 @@
 import Slider from "react-slick";
 import TestimonialCard from './TestimonialCard'
-import Img1 from "../assets/p1.jpg"
-import Img2 from "../assets/p2.jpg"
+
 import Img3 from "../assets/p3.jpg"
 import Img4 from "../assets/p4.jpg"
 import Img5 from "../assets/p5.jpg"
 import Img6 from "../assets/p6.jpg"
 import Img7 from "../assets/p7.jpg"
 import Img8 from "../assets/p8.jpg"
-import Img9 from "../assets/p9.jpg"
-import Img10 from "../assets/p10.jpg"
+
 const TestimonialSlider = () => {
     const testimonials = [
         {
