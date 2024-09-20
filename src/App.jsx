@@ -22,7 +22,7 @@ function App() {
   );
 
   return (
-    // Wrap your RouterProvider with GlobalProvider
+    
     <GlobalProvider>
       <RouterProvider router={router} />
     </GlobalProvider>
