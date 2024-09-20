@@ -7,6 +7,7 @@ import TestimonialSlider from '../components/TestimonialSlider';
 import ContactUS from '../components/ContactUs';
 import FAQ from '../components/FaqSection';
 import Footer from '../components/Footer';
+import TeamSlider from "../components/TeamSlider1"
 const Loader = () => {
   return <div className="loader">Loading...</div>; // Customize this loader style
 };
