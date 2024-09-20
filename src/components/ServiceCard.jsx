@@ -1,6 +1,5 @@
 import React from 'react';
 import ExploreButton from './ExploreButton';
-import ImageUrl from '../assets/p1.jpg';
 
 const ServiceCard = ({ title, description, icon, image }) => {
   return (
