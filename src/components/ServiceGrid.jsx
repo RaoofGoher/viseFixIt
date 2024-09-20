@@ -23,7 +23,7 @@ import Electrical from "../assets/Electrical.jpg"
 import Painting from "../assets/Painting.jpg"
 import Flooring from "../assets/Flooring.jpg"
 import HVAC from "../assets/HVAC.jpg"
-import PestControl from "../assets/Pest COntrol.jpg"
+import PestControl from "../assets/Pest Control.jpg"
 
 
 // Sample array of service data
