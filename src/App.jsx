@@ -14,7 +14,8 @@ import { GlobalProvider } from './context/GlobalContext';
 import Home from './pages/Home';
 import LoginComponent from './pages/Login';
 import CustomerForm from './pages/CustomerSignUp';
-
+import ProtectedRoute from './components/ProtectedUser';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   const router = createBrowserRouter(
@@ -23,7 +24,16 @@ function App() {
         <Route path="/" element={<PrimaryLayout />} >
           <Route index element={<Home />} />
           <Route path='/login' element={<LoginComponent />} />
-          <Route path="/customersignup" element={<CustomerForm/>}/> 
+          <Route path="/customersignup" element={<CustomerForm />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
         </Route>
 
       </>

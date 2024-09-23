@@ -2,12 +2,15 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-
+import { useGlobalContext } from '../context/GlobalContext';
+import { useNavigate } from 'react-router-dom';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-
 const CustomerForm = () => {
+    const { loginUser } = useGlobalContext();
+    const navigate = useNavigate();
+
     const initialValues = {
         first_name: '',
         last_name: '',
@@ -33,7 +36,13 @@ const CustomerForm = () => {
         try {
             const response = await axios.post(`${apiUrl}/customer/register/`, values);
             console.log(response.data); // Handle successful response
-            alert('Registration successful!'); // Provide user feedback
+
+            // Assuming your API returns user data
+            const userData = response.data; // Adjust this based on your actual API response
+
+            // Log the user in
+            loginUser(userData);
+            navigate('/dashboard'); // Redirect to the dashboard
         } catch (error) {
             console.error('There was an error registering the user:', error);
             alert('Registration failed! Please try again.'); // Provide user feedback
