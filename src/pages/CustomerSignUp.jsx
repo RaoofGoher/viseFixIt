@@ -3,6 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
+
 const CustomerForm = () => {
     const initialValues = {
         first_name: '',
@@ -27,7 +31,7 @@ const CustomerForm = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post('http://51.21.129.246:8000/customer/register/', values);
+            const response = await axios.post(`${apiUrl}/customer/register/`, values);
             console.log(response.data); // Handle successful response
             alert('Registration successful!'); // Provide user feedback
         } catch (error) {
