@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const CustomerForm = () => {
-    const { loginUser } = useGlobalContext();
+    const { loginUser, setCsrfToken } = useGlobalContext();
     const navigate = useNavigate();
 
     const initialValues = {
@@ -43,6 +43,11 @@ const CustomerForm = () => {
             // Log the user in
             loginUser(userData);
             navigate(`/dashboard/${userData.data.username}`); // Redirect to the dashboard
+
+            const csrfToken = userData.data.csrf_token;
+            console.log(csrfToken);
+            // Store the CSRF token in the context
+            setCsrfToken(csrfToken);
         } catch (error) {
             console.error('There was an error registering the user:', error);
             alert('Registration failed! Please try again.'); // Provide user feedback

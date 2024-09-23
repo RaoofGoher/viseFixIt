@@ -15,6 +15,7 @@ export const GlobalProvider = ({ children }) => {
     // Authentication state
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null); // Store user information
+    const [csrfToken, setCsrfToken] = useState('');
 
     // Modal functions
     const openRegistrationModal = () => setRegistrationModalOpen(true);
@@ -47,6 +48,8 @@ export const GlobalProvider = ({ children }) => {
                 user,
                 loginUser,
                 logoutUser,
+                csrfToken,
+                setCsrfToken
             }}
         >
             {children}

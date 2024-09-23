@@ -19,7 +19,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginComponent = () => {
-    const { loginUser } = useGlobalContext(); // Access global context
+    const { loginUser, setCsrfToken } = useGlobalContext(); // Access global context
     const navigate = useNavigate(); // For navigation
 
     const handleLogin = async (values) => {
@@ -27,6 +27,10 @@ const LoginComponent = () => {
             const response = await axios.post(`${apiUrl}/service_provider/login/`, values);
             const userData = response.data; // Assuming this includes the user data (like username)
             loginUser(userData); // Store user data in global context
+            const csrfToken = userData.data.csrf_token;
+            console.log(csrfToken);
+            // Store the CSRF token in the context
+            setCsrfToken(csrfToken);
             navigate(`/dashboard/${userData.data.username}`); // Redirect to dashboard
         } catch (error) {
             console.error('Login error:', error);

@@ -25,13 +25,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/login' element={<LoginComponent />} />
           <Route path="/customersignup" element={<CustomerForm />} />
-          <Route
-            path="/dashboard/:username"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
+          <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
           />
 
         </Route>
