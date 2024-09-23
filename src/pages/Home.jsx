@@ -44,7 +44,7 @@ const Home = () => {
     
       {isContactUsLoading ? <Loader /> : <ContactUS />}
     
-        <TeamSlider/>
+        {/* <TeamSlider/> */}
         <FAQ/>
     </div>
   )

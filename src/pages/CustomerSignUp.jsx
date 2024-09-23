@@ -56,15 +56,15 @@ const CustomerForm = () => {
             onSubmit={handleSubmit}
         >
             {() => (
-                <Form className="max-w-md mx-auto p-4 border rounded shadow-lg">
-                    <h2 className="text-lg font-bold mb-4">Customer Registration</h2>
+                <Form className="max-w-md mx-auto p-4 border rounded shadow-lg bg-white my-6">
+                    <h2 className="text-lg font-bold mb-4 text-primaryColor">Customer Registration</h2>
 
                     <div className="mb-4">
                         <label className="block text-sm font-medium mb-1">First Name</label>
                         <Field
                             type="text"
                             name="first_name"
-                            className="border rounded p-2 w-full"
+                            className="border rounded p-2 w-full border-primaryColor"
                         />
                         <ErrorMessage name="first_name" component="div" className="text-red-500 text-sm" />
                     </div>
@@ -74,7 +74,7 @@ const CustomerForm = () => {
                         <Field
                             type="text"
                             name="last_name"
-                            className="border rounded p-2 w-full"
+                            className="border rounded p-2 w-full border-primaryColor"
                         />
                         <ErrorMessage name="last_name" component="div" className="text-red-500 text-sm" />
                     </div>
@@ -84,7 +84,7 @@ const CustomerForm = () => {
                         <Field
                             type="email"
                             name="email"
-                            className="border rounded p-2 w-full"
+                            className="border rounded p-2 w-full border-primaryColor"
                         />
                         <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
                     </div>
@@ -94,7 +94,7 @@ const CustomerForm = () => {
                         <Field
                             type="password"
                             name="password"
-                            className="border rounded p-2 w-full"
+                            className="border rounded p-2 w-full border-primaryColor"
                         />
                         <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
                     </div>
@@ -104,7 +104,7 @@ const CustomerForm = () => {
                         <Field
                             type="tel"
                             name="phone_number"
-                            className="border rounded p-2 w-full"
+                            className="border rounded p-2 w-full border-primaryColor"
                         />
                         <ErrorMessage name="phone_number" component="div" className="text-red-500 text-sm" />
                     </div>
@@ -114,7 +114,7 @@ const CustomerForm = () => {
                         <Field
                             type="text"
                             name="address"
-                            className="border rounded p-2 w-full"
+                            className="border rounded p-2 w-full border-primaryColor"
                         />
                         <ErrorMessage name="address" component="div" className="text-red-500 text-sm" />
                     </div>
@@ -124,12 +124,12 @@ const CustomerForm = () => {
                         <Field
                             type="text"
                             name="zip_code"
-                            className="border rounded p-2 w-full"
+                            className="border rounded p-2 w-full border-primaryColor"
                         />
                         <ErrorMessage name="zip_code" component="div" className="text-red-500 text-sm" />
                     </div>
 
-                    <button type="submit" className="bg-blue-500 text-white rounded p-2 w-full">
+                    <button type="submit" className="bg-primaryColor text-white rounded p-2 w-full hover:bg-lightColor1 hover:text-black">
                         Register
                     </button>
                 </Form>
