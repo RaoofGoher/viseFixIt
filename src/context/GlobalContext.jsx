@@ -1,36 +1,33 @@
 // GlobalContext.js
 import { createContext, useContext, useState } from 'react';
 
-// Create Global Context
 const GlobalContext = createContext();
 
 export const useGlobalContext = () => useContext(GlobalContext);
 
 export const GlobalProvider = ({ children }) => {
-  // Modal state
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  // Add more global states here
-  const [globalMessage, setGlobalMessage] = useState('Welcome to the App!');
+  // State for Registration Modal
+  const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
+  
+  // State for Simple Modal
+  const [isServiceModalOpen, setServiceModalOpen] = useState(false);
 
   // Modal functions
-  const openModal = () => {
-    console.log("Modal is opening");
-    setModalOpen(true);
-  };
-  const closeModal = () => setModalOpen(false);
-
-  // Any other global actions can be added here
-  const updateMessage = (message) => setGlobalMessage(message);
+  const openRegistrationModal = () => setRegistrationModalOpen(true);
+  const closeRegistrationModal = () => setRegistrationModalOpen(false);
+  
+  const openServiceModal = () => setServiceModalOpen(true);
+  const closeServiceModal = () => setServiceModalOpen(false);
 
   return (
     <GlobalContext.Provider
       value={{
-        isModalOpen,
-        openModal,
-        closeModal,
-        globalMessage,
-        updateMessage,
+        isRegistrationModalOpen,
+        openRegistrationModal,
+        closeRegistrationModal,
+        isServiceModalOpen,
+        openServiceModal,
+        closeServiceModal,
       }}
     >
       {children}
