@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { GlobalProvider } from './context/GlobalContext';
 import Home from './pages/Home';
 import LoginComponent from './pages/Login';
-import CustomerForm from './pages/CustomerSIgnUP';
+import CustomerForm from './pages/CustomerSignUp';
 
 
 function App() {
