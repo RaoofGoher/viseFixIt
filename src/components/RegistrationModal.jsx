@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
+import { Link } from 'react-router-dom';
 
 const RegistrationModal = () => {
   const { isRegistrationModalOpen, closeRegistrationModal } = useGlobalContext();
@@ -12,12 +13,13 @@ const RegistrationModal = () => {
             <h2 className="text-2xl mb-4 text-center">Register</h2>
 
             <div className="flex justify-between mb-4">
-              <button 
+              <Link to="/customersignup"><button 
                 className="bg-green-500 text-white px-4 py-2 rounded-lg w-40"
                 onClick={closeRegistrationModal}
               >
                 Register as Customer
               </button>
+              </Link>
               <button 
                 className="bg-purple-500 text-white px-4 py-2 rounded-lg w-40"
                 onClick={closeRegistrationModal}

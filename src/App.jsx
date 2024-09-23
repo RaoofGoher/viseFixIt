@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { GlobalProvider } from './context/GlobalContext';
 import Home from './pages/Home';
 import LoginComponent from './pages/Login';
+import CustomerForm from './pages/CustomerSIgnUP';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<PrimaryLayout />} >
           <Route index element={<Home />} />
           <Route path='/login' element={<LoginComponent />} />
+          <Route path="/customersignup" element={<CustomerForm/>}/> 
         </Route>
 
       </>
