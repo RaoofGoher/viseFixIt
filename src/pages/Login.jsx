@@ -24,11 +24,10 @@ const LoginComponent = () => {
 
     const handleLogin = async (values) => {
         try {
-            const response = await axios.post(`${apiUrl}/customer/get/all/`, values);
+            const response = await axios.post(`${apiUrl}/service_provider/login/`, values);
             const userData = response.data; // Assuming this includes the user data (like username)
-            
             loginUser(userData); // Store user data in global context
-            navigate('/dashboard'); // Redirect to dashboard
+            navigate(`/dashboard/${userData.data.username}`); // Redirect to dashboard
         } catch (error) {
             console.error('Login error:', error);
             alert('Login failed! Please check your credentials and try again.');
