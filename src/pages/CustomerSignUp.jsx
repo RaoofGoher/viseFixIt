@@ -42,7 +42,7 @@ const CustomerForm = () => {
 
             // Log the user in
             loginUser(userData);
-            navigate('/dashboard'); // Redirect to the dashboard
+            navigate(`/dashboard/${userData.data.username}`); // Redirect to the dashboard
         } catch (error) {
             console.error('There was an error registering the user:', error);
             alert('Registration failed! Please try again.'); // Provide user feedback
