@@ -20,12 +20,13 @@ const RegistrationModal = () => {
                 Register as Customer
               </button>
               </Link>
-              <button 
+              <Link to={"/prosignup"}><button 
                 className="bg-lightColor1 text-black px-4 py-2 rounded-lg w-40 hover:bg-primaryColor hover:border hover:border-lightcolor1 hover:text-lightColor2"
                 onClick={closeRegistrationModal}
               >
                 Register as Professional
               </button>
+              </Link>
             </div>
 
             <button 

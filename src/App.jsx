@@ -16,6 +16,7 @@ import LoginComponent from './pages/Login';
 import CustomerForm from './pages/CustomerSignUp';
 import ProtectedRoute from './components/ProtectedUser';
 import Dashboard from './pages/Dashboard';
+import SignupForm from './pages/ProSignUp';
 
 function App() {
   const router = createBrowserRouter(
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<PrimaryLayout />} >
           <Route index element={<Home />} />
           <Route path='/login' element={<LoginComponent />} />
+          <Route path='/prosignup' element={<SignupForm />} />
           <Route path="/customersignup" element={<CustomerForm />} />
           <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
           />
