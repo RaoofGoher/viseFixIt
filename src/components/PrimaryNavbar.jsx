@@ -8,7 +8,7 @@ import RegistrationModal from '../components/RegistrationModal';
 
 const PrimaryNavbar = () => {
   // Access the modal state and open functions from the global context
-  const { openRegistrationModal, openServiceModal, isServiceModalOpen, isRegistrationModalOpen, isAuthenticated, user } = useGlobalContext();
+  const { openRegistrationModal, openServiceModal, isServiceModalOpen, isRegistrationModalOpen, isAuthenticated, user,logoutUser } = useGlobalContext();
 
   return (
     <div className="flex items-center justify-between text-black px-10 py-2">
@@ -34,6 +34,9 @@ const PrimaryNavbar = () => {
           <>
             <Link to={`/dashboard/${user?.data?.username}`}>
               <h1 className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4">Dashboard</h1>
+            </Link>
+            <Link to={"/"}>
+              <h1 className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" onClick={logoutUser}>Logout</h1>
             </Link>
           </>
         )}
