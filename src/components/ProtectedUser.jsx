@@ -1,15 +1,15 @@
-// ProtectedRoute.js
 import { Navigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/GlobalContext';
 
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated } = useGlobalContext();
+    const { token, isAuthenticated } = useGlobalContext();
 
-    if (!isAuthenticated) {
+    // Check if token exists
+    if (!token && !isAuthenticated) {
         return <Navigate to="/login" />;
     }
 
-    return children; 
+    return children;
 };
 
 export default ProtectedRoute;
