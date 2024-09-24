@@ -39,7 +39,7 @@ const Dashboard = () => {
             <h1 className="text-2xl font-bold">Welcome, {username}!</h1>
             {userInfo ? (
                 <div>
-                    <h2 className="text-xl">User Informatio:</h2>
+                    <h2 className="text-xl">User Information:</h2>
                     <p>ID: {userInfo?.data?.customer?.id}</p>
                     <p>Name: {userInfo?.data?.customer?.username}</p>
                     {/* Add other user info fields as needed */}
