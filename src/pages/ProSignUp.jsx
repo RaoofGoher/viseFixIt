@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { useGlobalContext } from '../context/GlobalContext';
+import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const ServiceProviderForm = () => {
-    const { loginUser, setCsrfToken } = useGlobalContext();
+    const { proData, setProData, csrfToken, setCsrfToken} = useProContext();
     const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [categories, setCategories] = useState([]);
+    const [subcategories, setSubcategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     const initialValues = {
         first_name: '',
@@ -19,11 +23,11 @@ const ServiceProviderForm = () => {
         phone_number: '',
         address: '',
         zip_code: '',
-        isServiceProvider: true, // Set to true by default
-        category: '', // Selected category
-        subcategory: '', // Selected subcategory
-        number_of_people: '', // Number of people
-        status: 'pending', // Default status
+        isServiceProvider: true,
+        category: '',
+        subcategory: '',
+        number_of_people: '',
+        status: 'pending',
     };
 
     const validationSchema = Yup.object().shape({
@@ -39,53 +43,68 @@ const ServiceProviderForm = () => {
         number_of_people: Yup.number().required('Number of people is required').positive().integer(),
     });
 
-    const handleSubmit = async (values) => {
+    const fetchCategories = async () => {
         try {
-            const response = await axios.post(`${apiUrl}/service-provider/register/`, values);
-            console.log(response.data); // Handle successful response
-
-            const userData = response.data; // Adjust this based on your actual API response
-
-            // Log the user in
-            loginUser(userData);
-            navigate(`/dashboard/${userData.data.username}`); // Redirect to the dashboard
-
-            const csrfToken = userData.data.csrf_token;
-            console.log(csrfToken);
-            // Store the CSRF token in the context
-            setCsrfToken(csrfToken);
+            const response = await axios.get(`${apiUrl}/categories/all`);
+            setCategories(response?.data?.data?.categories);
+           
         } catch (error) {
-            console.error('There was an error registering the user:', error);
-            alert('Registration failed! Please try again.'); // Provide user feedback
+            console.error('Error fetching categories:', error);
+            alert('Failed to load categories. Please try again.');
         }
     };
 
-    // Sample categories and subcategories
-    const categories = [
-        { value: '', label: 'Select Category' },
-        { value: 'cleaning', label: 'Cleaning' },
-        { value: 'roofing', label: 'Roofing' },
-        { value: 'interior_design', label: 'Interior Design' },
-    ];
-
-    const subcategories = {
-        cleaning: [
-            { value: '', label: 'Select Subcategory' },
-            { value: 'house_cleaning', label: 'House Cleaning' },
-            { value: 'office_cleaning', label: 'Office Cleaning' },
-            { value: 'carpet_cleaning', label: 'Carpet Cleaning' },
-        ],
-        roofing: [
-            { value: '', label: 'Select Subcategory' },
-            { value: 'roof_repair', label: 'Roof Repair' },
-            { value: 'roof_installation', label: 'Roof Installation' },
-        ],
-        interior_design: [
-            { value: '', label: 'Select Subcategory' },
-            { value: 'space_planning', label: 'Space Planning' },
-            { value: 'color_consultation', label: 'Color Consultation' },
-        ],
+    const fetchSubcategories = async (categoryId) => {
+        try {
+            const response = await axios.get(`http://51.21.129.246:8000/categories/subcategories/${categoryId}`); 
+        
+            setSubcategories(response.data.data.subcategories);
+          
+        } catch (error) {
+            console.error('Error fetching subcategories:', error);
+            alert('Failed to load subcategories. Please try again.');
+        }
     };
+
+    const handleCategoryChange = (event, setFieldValue) => {
+        const category = event.target.value;
+        // Log the selected category for debugging purposes
+        setSelectedCategory(category);
+        setFieldValue('category', category);
+        setFieldValue('subcategory', ''); // Reset subcategory when category changes
+        if (category) {
+            fetchSubcategories(category); // Pass the selected category ID
+        } else {
+            setSubcategories([]);
+        }
+    };
+
+
+
+    const handleSubmit = async (values) => {
+        setIsSubmitting(true);
+        try {
+            const response = await axios.post(`${apiUrl}/service_provider/register/`, values);
+             // Log success response if needed
+            setProData(response.data.data);
+            setCsrfToken(response.data.data.csrf_token); // Store the CSRF token in the context
+            navigate('/'); // Redirect to a success page or dashboard
+        } catch (error) {
+            if (error.response) {
+                console.error('Error details:', error.response.data); // Log the error response data
+                alert(error.response.data.message || 'Registration failed! Please try again.');
+            } else {
+                console.error('There was an error registering the user:', error);
+                alert('Registration failed! Please try again.');
+            }
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
 
     return (
         <Formik
@@ -93,7 +112,7 @@ const ServiceProviderForm = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
         >
-            {({ values, handleChange }) => (
+            {({ values, setFieldValue }) => (
                 <Form className="max-w-md mx-auto p-4 border rounded shadow-lg bg-white my-6">
                     <h2 className="text-lg font-bold mb-4 text-primaryColor bg-lightColor1 py-6 px-2">Pro Registration</h2>
 
@@ -169,10 +188,11 @@ const ServiceProviderForm = () => {
 
                     <div className="mb-4">
                         <label className="block text-sm font-medium mb-1">Category</label>
-                        <Field as="select" name="category" className="border rounded p-2 w-full border-primaryColor" onChange={handleChange}>
+                        <Field as="select" name="category" className="border rounded p-2 w-full border-primaryColor" onChange={(e) => handleCategoryChange(e, setFieldValue)}>
+                            <option value="">Select Category</option>
                             {categories.map((cat) => (
-                                <option key={cat.value} value={cat.value}>
-                                    {cat.label}
+                                <option key={cat.id} value={cat.id}>
+                                    {cat.name}
                                 </option>
                             ))}
                         </Field>
@@ -182,9 +202,10 @@ const ServiceProviderForm = () => {
                     <div className="mb-4">
                         <label className="block text-sm font-medium mb-1">Subcategory</label>
                         <Field as="select" name="subcategory" className="border rounded p-2 w-full border-primaryColor">
-                            {(subcategories[values.category] || []).map((subcat) => (
-                                <option key={subcat.value} value={subcat.value}>
-                                    {subcat.label}
+                            <option value="">Select Subcategory</option>
+                            {subcategories.map((subcat) => (
+                                <option key={subcat.id} value={subcat.id}>
+                                    {subcat.name}
                                 </option>
                             ))}
                         </Field>
@@ -201,8 +222,8 @@ const ServiceProviderForm = () => {
                         <ErrorMessage name="number_of_people" component="div" className="text-red-500 text-sm" />
                     </div>
 
-                    <button type="submit" className="bg-primaryColor text-white rounded p-2 w-full hover:bg-lightColor1 hover:text-black">
-                        Register
+                    <button type="submit" className="bg-primaryColor text-white rounded p-2 w-full hover:bg-darkColor" disabled={isSubmitting}>
+                        {isSubmitting ? 'Submitting...' : 'Register'}
                     </button>
                 </Form>
             )}

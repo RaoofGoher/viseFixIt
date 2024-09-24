@@ -17,6 +17,7 @@ import CustomerForm from './pages/CustomerSignUp';
 import ProtectedRoute from './components/ProtectedUser';
 import Dashboard from './pages/Dashboard';
 import SignupForm from './pages/ProSignUp';
+import { ProProvider } from './context/ProContext';
 
 function App() {
   const router = createBrowserRouter(
@@ -39,7 +40,9 @@ function App() {
   return (
 
     <GlobalProvider>
+      <ProProvider>
       <RouterProvider router={router} />
+      </ProProvider>
     </GlobalProvider>
   );
 }
