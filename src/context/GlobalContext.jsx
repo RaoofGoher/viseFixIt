@@ -9,6 +9,10 @@ export const GlobalProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [csrfToken, setCsrfToken] = useState('');
     const [token, setToken] = useState(localStorage.getItem('token')); // Initialize token from localStorage
+    
+    // Modal states
+    const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
+    const [isServiceModalOpen, setServiceModalOpen] = useState(false);
 
     // Logout function to clear token and user info
     const logoutUser = () => {
@@ -56,10 +60,17 @@ export const GlobalProvider = ({ children }) => {
         localStorage.setItem('token', authToken); // Save token in localStorage
 
         // Set token expiry to 1 hour from now
-        const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour in milliseconds
+        const expiryTime = new Date().getTime() + 60 * 60 * 1000;
         localStorage.setItem('tokenExpiry', expiryTime);
         setIsAuthenticated(true);
     };
+
+    // Modal functions
+    const openRegistrationModal = () => setRegistrationModalOpen(true);
+    const closeRegistrationModal = () => setRegistrationModalOpen(false);
+    
+    const openServiceModal = () => setServiceModalOpen(true);
+    const closeServiceModal = () => setServiceModalOpen(false);
 
     return (
         <GlobalContext.Provider
@@ -70,7 +81,14 @@ export const GlobalProvider = ({ children }) => {
                 logoutUser,
                 token,
                 csrfToken,
-                setCsrfToken
+                setCsrfToken,
+                // Modal state and functions
+                isRegistrationModalOpen,
+                openRegistrationModal,
+                closeRegistrationModal,
+                isServiceModalOpen,
+                openServiceModal,
+                closeServiceModal,
             }}
         >
             {children}
