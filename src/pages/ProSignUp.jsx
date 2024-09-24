@@ -95,7 +95,7 @@ const ServiceProviderForm = () => {
         >
             {({ values, handleChange }) => (
                 <Form className="max-w-md mx-auto p-4 border rounded shadow-lg bg-white my-6">
-                    <h2 className="text-lg font-bold mb-4 text-primaryColor">Service Provider Registration</h2>
+                    <h2 className="text-lg font-bold mb-4 text-primaryColor bg-lightColor1 py-6 px-2">Pro Registration</h2>
 
                     <div className="mb-4">
                         <label className="block text-sm font-medium mb-1">First Name</label>
