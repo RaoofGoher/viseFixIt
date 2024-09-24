@@ -61,7 +61,7 @@ const CustomerForm = () => {
             onSubmit={handleSubmit}
         >
             {() => (
-                <Form className="max-w-md mx-auto p-4 border rounded shadow-lg bg-lightColor1 my-6">
+                <Form className="max-w-md mx-auto p-4 border rounded shadow-lg bg-white my-6">
                     <h2 className="text-lg font-bold mb-4 text-primaryColor">Customer Registration</h2>
 
                     <div className="mb-4">
