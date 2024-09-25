@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const ServiceProviderForm = () => {
-    const { proData, setProData, csrfToken, setCsrfToken} = useProContext();
+    const { proData, setProData, csrfTokenPro, setCsrfTokenPro, handleProLogin } = useProContext(); // Added handleLogin
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [categories, setCategories] = useState([]);
@@ -47,7 +47,6 @@ const ServiceProviderForm = () => {
         try {
             const response = await axios.get(`${apiUrl}/categories/all`);
             setCategories(response?.data?.data?.categories);
-           
         } catch (error) {
             console.error('Error fetching categories:', error);
             alert('Failed to load categories. Please try again.');
@@ -56,10 +55,8 @@ const ServiceProviderForm = () => {
 
     const fetchSubcategories = async (categoryId) => {
         try {
-            const response = await axios.get(`http://51.21.129.246:8000/categories/subcategories/${categoryId}`); 
-        
+            const response = await axios.get(`${apiUrl}/categories/subcategories/${categoryId}`);
             setSubcategories(response.data.data.subcategories);
-          
         } catch (error) {
             console.error('Error fetching subcategories:', error);
             alert('Failed to load subcategories. Please try again.');
@@ -68,7 +65,6 @@ const ServiceProviderForm = () => {
 
     const handleCategoryChange = (event, setFieldValue) => {
         const category = event.target.value;
-        // Log the selected category for debugging purposes
         setSelectedCategory(category);
         setFieldValue('category', category);
         setFieldValue('subcategory', ''); // Reset subcategory when category changes
@@ -79,19 +75,17 @@ const ServiceProviderForm = () => {
         }
     };
 
-
-
     const handleSubmit = async (values) => {
         setIsSubmitting(true);
         try {
             const response = await axios.post(`${apiUrl}/service_provider/register/`, values);
-             // Log success response if needed
             setProData(response.data.data);
-            setCsrfToken(response.data.data.csrf_token); // Store the CSRF token in the context
+            handleProLogin(response.data.data.csrf_token); // Use handleLogin to store token and set expiry
+
             navigate('/'); // Redirect to a success page or dashboard
         } catch (error) {
             if (error.response) {
-                console.error('Error details:', error.response.data); // Log the error response data
+                console.error('Error details:', error.response.data);
                 alert(error.response.data.message || 'Registration failed! Please try again.');
             } else {
                 console.error('There was an error registering the user:', error);
