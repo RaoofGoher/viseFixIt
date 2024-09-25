@@ -19,9 +19,8 @@ const PrimaryNavbar = () => {
     logoutUser 
   } = useGlobalContext();
 
-  const { isProAuthenticated, logoutPro } = useProContext();
+  const { isProAuthenticated, logoutPro , proData} = useProContext();
 
- 
 
   return (
     <div className="flex items-center justify-between text-black px-10 py-2">
@@ -62,9 +61,9 @@ const PrimaryNavbar = () => {
           <>
             {isProAuthenticated ? (
               <>
-                <Link to={`/pro-dashboard`}>
+                <Link to={`/dashboard/prodashboard/${proData?.username}`}>
                   <h1 className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4">
-                    Pro Dashboard
+                    Dashboard
                   </h1>
                 </Link>
                 <Link to={'/'}>
@@ -72,7 +71,7 @@ const PrimaryNavbar = () => {
                     className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" 
                     onClick={logoutPro}
                   >
-                    proLogout
+                    Logout
                   </h1>
                 </Link>
               </>

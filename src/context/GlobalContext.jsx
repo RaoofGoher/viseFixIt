@@ -8,64 +8,55 @@ export const GlobalProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const [csrfToken, setCsrfToken] = useState('');
-    const [token, setToken] = useState(localStorage.getItem('token')); // Initialize token from localStorage
-    
-    // Modal states
+    const [token, setToken] = useState(localStorage.getItem('token'));
+
     const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [isServiceModalOpen, setServiceModalOpen] = useState(false);
 
-    // Logout function to clear token and user info
     const logoutUser = () => {
         setUser(null);
         setToken(null);
-        localStorage.removeItem('token'); // Remove token from localStorage
-        localStorage.removeItem('tokenExpiry'); // Remove token expiry time
+        localStorage.removeItem('token');
+        localStorage.removeItem('tokenExpiry');
         setIsAuthenticated(false);
     };
 
-    // Handle token expiration
     useEffect(() => {
         const tokenExpiryTime = localStorage.getItem('tokenExpiry');
 
-        const checkTokenExpiry = () => {
-            const currentTime = new Date().getTime();
-            if (tokenExpiryTime && currentTime > tokenExpiryTime) {
-                logoutUser();  // Logout if token is expired
+        if (tokenExpiryTime) {
+            const expiryTimeout = parseInt(tokenExpiryTime, 10) - new Date().getTime();
+            if (expiryTimeout > 0) {
+                const timerId = setTimeout(logoutUser, expiryTimeout);
+                return () => clearTimeout(timerId);
+            } else {
+                logoutUser();
             }
-        };
+        }
+    }, [token]); // Trigger effect when token changes
 
-        // Set interval to check token expiry every minute
-        const intervalId = setInterval(checkTokenExpiry, 60000); // 60000ms = 1 minute
-
-        return () => clearInterval(intervalId); // Cleanup on component unmount
-    }, []);
-
-    // Handle tab close event
     useEffect(() => {
         const handleTabClose = () => {
-            localStorage.removeItem('token'); // Remove token on tab close
+            localStorage.removeItem('token');
         };
 
         window.addEventListener('beforeunload', handleTabClose);
 
         return () => {
-            window.removeEventListener('beforeunload', handleTabClose); // Cleanup on component unmount
+            window.removeEventListener('beforeunload', handleTabClose);
         };
     }, []);
 
-    // Login function to set user and token
     const loginUser = (userData, authToken) => {
         setUser(userData);
         setToken(authToken);
-        localStorage.setItem('token', authToken); // Save token in localStorage
+        localStorage.setItem('token', authToken);
 
-        // Set token expiry to 1 hour from now
-        const expiryTime = new Date().getTime() + 60 * 60 * 1000;
+        const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour
         localStorage.setItem('tokenExpiry', expiryTime);
         setIsAuthenticated(true);
     };
 
-    // Modal functions
     const openRegistrationModal = () => setRegistrationModalOpen(true);
     const closeRegistrationModal = () => setRegistrationModalOpen(false);
     
@@ -82,7 +73,6 @@ export const GlobalProvider = ({ children }) => {
                 token,
                 csrfToken,
                 setCsrfToken,
-                // Modal state and functions
                 isRegistrationModalOpen,
                 openRegistrationModal,
                 closeRegistrationModal,

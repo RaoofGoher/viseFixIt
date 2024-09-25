@@ -15,7 +15,9 @@ import Home from './pages/Home';
 import LoginComponent from './pages/Login';
 import CustomerForm from './pages/CustomerSignUp';
 import ProtectedRoute from './components/ProtectedUser';
+import ProtectedPro from './components/ProtectedPro';
 import Dashboard from './pages/Dashboard';
+import ProDashboard from './pages/ProDashboard';
 import SignupForm from './pages/ProSignUp';
 import { ProProvider } from './context/ProContext';
 
@@ -28,7 +30,8 @@ function App() {
           <Route path='/login' element={<LoginComponent />} />
           <Route path='/prosignup' element={<SignupForm />} />
           <Route path="/customersignup" element={<CustomerForm />} />
-          <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
+          <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+          <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>}
           />
 
         </Route>

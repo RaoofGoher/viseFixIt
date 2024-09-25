@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import img from '../assets/mainImg.png';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
+import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -20,18 +21,29 @@ const LoginSchema = Yup.object().shape({
 
 const LoginComponent = () => {
     const { loginUser, setCsrfToken } = useGlobalContext(); // Access global context
+    const { handleProLogin } = useProContext(); // Access pro context
     const navigate = useNavigate(); // For navigation
 
     const handleLogin = async (values) => {
         try {
             const response = await axios.post(`${apiUrl}/service_provider/login/`, values);
             const userData = response.data; // Assuming this includes the user data (like username)
-            loginUser(userData); // Store user data in global context
-            const csrfToken = userData.data.csrf_token;
-            console.log(csrfToken);
-            // Store the CSRF token in the context
-            setCsrfToken(csrfToken);
-            navigate(`/dashboard/${userData.data.username}`); // Redirect to dashboard
+
+            // Check if the user is a pro or customer
+            if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
+                const csrfToken = userData.data.csrf_token;
+                console.log(csrfToken);
+                
+                // Store the CSRF token in the context and set pro data
+                setCsrfToken(csrfToken);
+                handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
+                
+                // Redirect to pro dashboard
+                navigate(`/dashboard/prodashboard/${userData.data.username}`);
+            } else {
+                loginUser(userData); // Store user data in global context
+                navigate(`/dashboard/${userData.data.username}`); // Redirect to customer dashboard
+            }
         } catch (error) {
             console.error('Login error:', error);
             alert('Login failed! Please check your credentials and try again.');

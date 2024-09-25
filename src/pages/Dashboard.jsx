@@ -33,7 +33,6 @@ const Dashboard = () => {
         }
     }, [userId, csrfToken]); // Dependencies: run effect when userId or csrfToken changes
 
-    console.log("hello user" ,userInfo)
     return (
         <div className="p-4">
             <h1 className="text-2xl font-bold">Welcome, {username}!</h1>
