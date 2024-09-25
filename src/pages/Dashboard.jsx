@@ -1,53 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const Dashboard = () => {
-    const { username } = useParams();
-    const { user, csrfToken } = useGlobalContext();
-    const [userInfo, setUserInfo] = useState(null); // State to store user info
-    const userId = user?.data?.id; // Assuming user object has an id property
+    
+    const { user} = useGlobalContext();
 
 
-    useEffect(() => {
-        const fetchUserInfo = async () => {
-            try {
-                const response = await axios.get(`${apiUrl}/customer/get/${userId}`, {
-                    headers: {
-                        // 'Contetnt-Type': 'application/json',
-                        'X-CSRFToken': csrfToken,  // Include CSRF token in headers
-                        // "Accept": 'application/json',
-                    },
-                });
-                setUserInfo(response.data); // Set the fetched user info
-               console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching user info:', error);
-            }
-        };
+    console.log("here is user from userContext",user.data)
 
-        if (userId) {
-            fetchUserInfo();
-        }
-    }, [userId, csrfToken]); // Dependencies: run effect when userId or csrfToken changes
+    const userInfo1 = Object.entries(user.data).filter(([key]) => key !== 'csrf_token'); // Exclude csrf_token
 
     return (
-        <div className="p-4">
-            <h1 className="text-2xl font-bold">Welcome, {username}!</h1>
-            {userInfo ? (
-                <div>
-                    <h2 className="text-xl">User Information:</h2>
-                    <p>ID: {userInfo?.data?.customer?.id}</p>
-                    <p>Name: {userInfo?.data?.customer?.username}</p>
-                    {/* Add other user info fields as needed */}
-                </div>
-            ) : (
-                <p>Loading user informationnn...</p>
-            )}
+      <div className="max-w-2xl mx-auto p-5 bg-white shadow-md rounded-lg my-6">
+        <h1 className="text-2xl font-bold mb-4">User Dashboard</h1>
+        <div className="grid grid-cols-1 gap-4">
+          {userInfo1.map(([key, value]) => (
+            <div key={key} className="flex justify-between bg-gray-100 p-3 rounded-lg">
+              <span className="font-semibold capitalize">{key.replace('_', ' ')}</span>
+              <span className="text-gray-700">{value.toString()}</span>
+            </div>
+          ))}
         </div>
-    );
+      </div>
+    )
 };
 
 export default Dashboard;
