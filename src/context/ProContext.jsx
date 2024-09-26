@@ -28,7 +28,22 @@ export const ProProvider = ({ children }) => {
             if (timeLeft > 0) {
                 setCsrfTokenPro(storedToken);
                 setIsProAuthenticated(true);
-                setProData(JSON.parse(localStorage.getItem('proData'))); // Retrieve proData from local storage
+
+                const storedProData = localStorage.getItem('proData');
+                console.log("Stored proData:", storedProData); // Check what is stored
+
+                if (storedProData) {
+                    try {
+                        const parsedProData = JSON.parse(storedProData);
+                        console.log("Parsed proData:", parsedProData); // Log parsed data
+                        setProData(parsedProData); // Safely parse proData
+                    } catch (error) {
+                        console.error('Error parsing proData:', error);
+                        setProData(null); // Set null on error
+                    }
+                } else {
+                    setProData(null); // Set to null if no proData in localStorage
+                }
 
                 const timerId = setTimeout(() => {
                     console.log("Token expired, logging out...");
@@ -46,12 +61,15 @@ export const ProProvider = ({ children }) => {
         const expiryTime = Date.now() + 10 * 60 * 1000; // Adjusted to 10 minutes
         localStorage.setItem('csrfToken', token);
         localStorage.setItem('tokenExpiry', String(expiryTime));
-        localStorage.setItem('proData', JSON.stringify(proData)); // Store proData in local storage
+
+        if (proData) {
+            localStorage.setItem('proData', JSON.stringify(proData)); // Store proData in local storage
+            console.log("Storing proData:", proData); // Log what's being stored
+        }
 
         setCsrfTokenPro(token);
         setIsProAuthenticated(true);
         setProData(proData); // Set proData in context
-        // console.log("here is pro data",proData)
         // Automatically log out after 10 minutes
         setTimeout(() => {
             console.log("Token expired, logging out...");

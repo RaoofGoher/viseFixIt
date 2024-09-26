@@ -74,15 +74,18 @@ const ServiceProviderForm = () => {
             setSubcategories([]);
         }
     };
-
     const handleSubmit = async (values) => {
         setIsSubmitting(true);
         try {
             const response = await axios.post(`${apiUrl}/service_provider/register/`, values);
-            setProData(response.data.data);
-            handleProLogin(response.data.data.csrf_token); // Use handleLogin to store token and set expiry
-
-            navigate('/'); // Redirect to a success page or dashboard
+    
+            const proData = response.data.data; // Extract the proData from the response
+            const csrfToken = proData.csrf_token; // Extract the CSRF token
+    
+            // Call handleProLogin with both token and proData
+            handleProLogin(csrfToken, proData); 
+    
+            navigate(`/dashboard/prodashboard/${proData?.username}`); // Redirect to a success page or dashboard
         } catch (error) {
             if (error.response) {
                 console.error('Error details:', error.response.data);
