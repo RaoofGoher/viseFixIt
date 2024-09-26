@@ -7,8 +7,7 @@ const Dashboard = () => {
     const { user} = useGlobalContext();
 
 
-    console.log("here is user from userContext",user.data)
-
+console.log("hello user",user)
     const userInfo1 = Object.entries(user.data).filter(([key]) => key !== 'csrf_token'); // Exclude csrf_token
 
     return (

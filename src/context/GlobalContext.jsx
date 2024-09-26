@@ -5,8 +5,12 @@ const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
 
 export const GlobalProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState(null);
+    // Initialize states directly from localStorage
+    const [isAuthenticated, setIsAuthenticated] = useState(() => localStorage.getItem('isAuthenticated') === 'true');
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
     const [csrfToken, setCsrfToken] = useState('');
     const [token, setToken] = useState(localStorage.getItem('token'));
 
@@ -19,6 +23,8 @@ export const GlobalProvider = ({ children }) => {
         localStorage.removeItem('token');
         localStorage.removeItem('tokenExpiry');
         setIsAuthenticated(false);
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('user'); // Remove stored user data as well
     };
 
     useEffect(() => {
@@ -35,31 +41,20 @@ export const GlobalProvider = ({ children }) => {
         }
     }, [token]); // Trigger effect when token changes
 
-    useEffect(() => {
-        const handleTabClose = () => {
-            localStorage.removeItem('token');
-        };
-
-        window.addEventListener('beforeunload', handleTabClose);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleTabClose);
-        };
-    }, []);
-
     const loginUser = (userData, authToken) => {
         setUser(userData);
         setToken(authToken);
         localStorage.setItem('token', authToken);
-
+        localStorage.setItem('user', JSON.stringify(userData)); // Store user data
+        setIsAuthenticated(true);
+        localStorage.setItem('isAuthenticated', 'true');
         const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour
         localStorage.setItem('tokenExpiry', expiryTime);
-        setIsAuthenticated(true);
     };
 
     const openRegistrationModal = () => setRegistrationModalOpen(true);
     const closeRegistrationModal = () => setRegistrationModalOpen(false);
-    
+
     const openServiceModal = () => setServiceModalOpen(true);
     const closeServiceModal = () => setServiceModalOpen(false);
 

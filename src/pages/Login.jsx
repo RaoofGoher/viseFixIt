@@ -32,7 +32,6 @@ const LoginComponent = () => {
             // Check if the user is a pro or customer
             if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
                 const csrfToken = userData.data.csrf_token;
-                console.log(csrfToken);
                 
                 // Store the CSRF token in the context and set pro data
                 setCsrfToken(csrfToken);

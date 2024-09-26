@@ -3,9 +3,13 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const ProContext = createContext();
 
 export const ProProvider = ({ children }) => {
-    const [proData, setProData] = useState(null);
-    const [csrfTokenPro, setCsrfTokenPro] = useState('');
-    const [isProAuthenticated, setIsProAuthenticated] = useState(false);
+    // Initialize directly from localStorage to avoid the race condition
+    const [proData, setProData] = useState(() => {
+        const storedProData = localStorage.getItem('proData');
+        return storedProData ? JSON.parse(storedProData) : null;
+    });
+    const [csrfTokenPro, setCsrfTokenPro] = useState(localStorage.getItem('csrfToken') || '');
+    const [isProAuthenticated, setIsProAuthenticated] = useState(() => localStorage.getItem('isProAuthenticated') === 'true');
     const [zipProSearch, setZipProSearch] = useState([]);
 
     const logoutPro = () => {
@@ -15,7 +19,8 @@ export const ProProvider = ({ children }) => {
         setIsProAuthenticated(false);
         localStorage.removeItem('csrfToken');
         localStorage.removeItem('tokenExpiry');
-        localStorage.removeItem('proData'); // Also clear proData from local storage
+        localStorage.removeItem('proData');
+        localStorage.removeItem('isProAuthenticated');
     };
 
     useEffect(() => {
@@ -30,31 +35,13 @@ export const ProProvider = ({ children }) => {
                 setCsrfTokenPro(storedToken);
                 setIsProAuthenticated(true);
 
-                const storedProData = localStorage.getItem('proData');
-                console.log("Stored proData:", storedProData); // Check what is stored
-
-                if (storedProData) {
-                    try {
-                        const parsedProData = JSON.parse(storedProData);
-                        console.log("Parsed proData:", parsedProData); // Log parsed data
-                        setProData(parsedProData); // Safely parse proData
-                    } catch (error) {
-                        console.error('Error parsing proData:', error);
-                        setProData(null); // Set null on error
-                    }
-                } else {
-                    setProData(null); // Set to null if no proData in localStorage
-                }
-
-                const timerId = setTimeout(() => {
-                    console.log("Token expired, logging out...");
-                    logoutPro();
-                }, timeLeft);
-
+                const timerId = setTimeout(logoutPro, timeLeft);
                 return () => clearTimeout(timerId);
             } else {
                 logoutPro();
             }
+        } else {
+            logoutPro();
         }
     }, []);
 
@@ -64,37 +51,34 @@ export const ProProvider = ({ children }) => {
         localStorage.setItem('tokenExpiry', String(expiryTime));
 
         if (proData) {
-            localStorage.setItem('proData', JSON.stringify(proData)); // Store proData in local storage
-            console.log("Storing proData:", proData); // Log what's being stored
+            localStorage.setItem('proData', JSON.stringify(proData));
         }
 
         setCsrfTokenPro(token);
         setIsProAuthenticated(true);
-        setProData(proData); // Set proData in context
-        // Automatically log out after 10 minutes
-        setTimeout(() => {
-            console.log("Token expired, logging out...");
-            logoutPro();
-        }, 10 * 60 * 1000);
+        setProData(proData);
+
+        setTimeout(logoutPro, 10 * 60 * 1000); // Auto-logout after 10 minutes
+        localStorage.setItem('isProAuthenticated', 'true');
     };
 
     return (
-        <ProContext.Provider value={{ 
-            proData, 
-            setProData, 
-            csrfTokenPro, 
-            setCsrfTokenPro, 
-            isProAuthenticated, 
-            logoutPro, 
-            handleProLogin,
-            zipProSearch, 
-            setZipProSearch 
-        }}>
+        <ProContext.Provider
+            value={{
+                proData,
+                setProData,
+                csrfTokenPro,
+                setCsrfTokenPro,
+                isProAuthenticated,
+                logoutPro,
+                handleProLogin,
+                zipProSearch,
+                setZipProSearch,
+            }}
+        >
             {children}
         </ProContext.Provider>
     );
 };
 
-export const useProContext = () => {
-    return useContext(ProContext);
-};
+export const useProContext = () => useContext(ProContext);
