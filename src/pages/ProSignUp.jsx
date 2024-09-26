@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const ServiceProviderForm = () => {
-    const { proData, setProData, csrfTokenPro, setCsrfTokenPro, handleProLogin } = useProContext(); // Added handleLogin
+    const { handleProLogin } = useProContext(); // Added handleLogin
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [categories, setCategories] = useState([]);

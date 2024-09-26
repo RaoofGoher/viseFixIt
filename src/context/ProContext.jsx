@@ -6,6 +6,7 @@ export const ProProvider = ({ children }) => {
     const [proData, setProData] = useState(null);
     const [csrfTokenPro, setCsrfTokenPro] = useState('');
     const [isProAuthenticated, setIsProAuthenticated] = useState(false);
+    const [zipProSearch, setZipProSearch] = useState([]);
 
     const logoutPro = () => {
         console.log("Logging out...");
@@ -85,7 +86,9 @@ export const ProProvider = ({ children }) => {
             setCsrfTokenPro, 
             isProAuthenticated, 
             logoutPro, 
-            handleProLogin 
+            handleProLogin,
+            zipProSearch, 
+            setZipProSearch 
         }}>
             {children}
         </ProContext.Provider>
