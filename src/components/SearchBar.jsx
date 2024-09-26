@@ -64,14 +64,7 @@ const SearchComponent = () => {
      setZipProSearch(serviceProviders)
      navigate('/search-results');
       if (serviceProviders.length > 0) {
-        serviceProviders.forEach(provider => {
-          console.log({
-            categoryId: selectedCategory.id,
-            categoryName: selectedCategory.name,
-            serviceProviderId: provider.id,
-            serviceProviderName: provider.username,
-          });
-        });
+        
       } else {
         console.log('No service providers found for this category and zipcode.');
       }

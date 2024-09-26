@@ -21,6 +21,8 @@ import ProDashboard from './pages/ProDashboard';
 import SignupForm from './pages/ProSignUp';
 import { ProProvider } from './context/ProContext';
 import SearchResultsPage from './pages/ProSearch';
+import ProfilePage from './pages/ProProfile';
+import ProtectedProfileRoute from './components/ProtectedProfile';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,7 +35,7 @@ function App() {
           <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
           <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>}/>
           <Route path="/search-results" element={<SearchResultsPage />} />
-
+          <Route path="/profile/:id" element={ <ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute> } />
         </Route>
 
       </>

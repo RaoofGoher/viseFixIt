@@ -1,5 +1,6 @@
 import React from 'react';
 import { useProContext } from '../context/ProContext';
+import { Link } from 'react-router-dom';
 
 const SearchResultsPage = () => {
     const { zipProSearch } = useProContext();
@@ -15,7 +16,13 @@ const SearchResultsPage = () => {
                         <li key={provider.id} className="border rounded-lg p-4 shadow-md bg-white hover:shadow-lg transition-shadow">
                             <h3 className="text-lg font-semibold text-primaryColor">{provider.username}</h3>
                             <p className="text-gray-500">Category: {provider.category}</p>
-                            <p className="text-gray-500">id: {provider.service_provider_id}</p>
+                            <p className="text-gray-500">ID: {provider.service_provider_id}</p>
+                            <Link
+                                to={`/profile/${provider.service_provider_id}`}
+                                className="mt-2 inline-block bg-primaryColor text-white px-4 py-2 rounded hover:bg-lightColor1 transition-colors"
+                            >
+                                Read More
+                            </Link>
                         </li>
                     ))}
                 </ul>
