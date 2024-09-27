@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
-
+import RegistrationModal from '../components/RegistrationModal';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 // Validation schema using Yup
@@ -20,8 +20,8 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginComponent = () => {
-    const { loginUser, setCsrfToken } = useGlobalContext(); // Access global context
-    const { handleProLogin , profileSearchLocation } = useProContext(); // Access pro context
+    const { loginUser, setCsrfToken, openRegistrationModal, isRegistrationModalOpen } = useGlobalContext(); // Access global context
+    const { handleProLogin, profileSearchLocation,setProfileSearchLocation } = useProContext(); // Access pro context
     const navigate = useNavigate(); // For navigation
 
     const handleLogin = async (values) => {
@@ -36,9 +36,9 @@ const LoginComponent = () => {
                 // Always navigate to search-profile
                 if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
                     console.log("Logging in a professional user for search-profile");
-            
+
                     const csrfToken = userData.data.csrf_token;
-            
+
                     // Store the CSRF token in the context and set pro data
                     setCsrfToken(csrfToken);
                     handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
@@ -46,7 +46,7 @@ const LoginComponent = () => {
                     console.log("Logging in a regular customer for search-profile");
                     loginUser(userData); // Store user data in global context
                 }
-            
+
                 // Redirect to search-profile route
                 navigate("/search-results");
             
@@ -54,13 +54,13 @@ const LoginComponent = () => {
                 // For any other route
                 if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
                     console.log("Logging in a professional user for other routes");
-            
+
                     const csrfToken = userData.data.csrf_token;
-                    
+
                     // Store the CSRF token in the context and set pro data
                     setCsrfToken(csrfToken);
                     handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
-                    
+
                     // Redirect to pro dashboard
                     navigate(`/dashboard/prodashboard/${userData.data.username}`);
                 } else {
@@ -69,7 +69,7 @@ const LoginComponent = () => {
                     navigate(`/dashboard/${userData.data.username}`); // Redirect to customer dashboard
                 }
             }
-            
+
         } catch (error) {
             console.error('Login error:', error);
             alert('Login failed! Please check your credentials and try again.');
@@ -134,11 +134,23 @@ const LoginComponent = () => {
                                 >
                                     Log In
                                 </button>
+                                {
+                                
+                                profileSearchLocation ==="/search-results" ? 
+                                <h1
+                                    className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4"
+                                    onClick={openRegistrationModal}
+                                >
+                                    Or CLick here to Create a new Profile
+                                </h1>
+                                : ""
+                                }
                             </Form>
                         )}
                     </Formik>
                 </div>
             </div>
+            {isRegistrationModalOpen && <RegistrationModal />}
         </div>
     );
 };
