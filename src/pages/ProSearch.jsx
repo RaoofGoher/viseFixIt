@@ -14,6 +14,7 @@ const SearchResultsPage = () => {
             ) : (
                 <ul className="space-y-4">
                     {zipProSearch.map(provider => (
+                        
                         <li key={provider.id} className="border rounded-lg p-4 shadow-md bg-white hover:shadow-lg transition-shadow">
                             <h3 className="text-lg font-semibold text-primaryColor">{provider.username}</h3>
                             <p className="text-gray-500">Category: {provider.category}</p>

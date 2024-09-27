@@ -20,7 +20,7 @@ const ProfilePage = () => {
     }, [id]);
 
     if (!provider) return <p className="text-center text-gray-500">Loading...</p>;
-
+          console.log('here is provider',provider)
     return (
         <div className="profile-page max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10 mb-10">
             <div className="flex items-center space-x-6">
