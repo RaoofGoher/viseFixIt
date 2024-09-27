@@ -11,6 +11,7 @@ export const ProProvider = ({ children }) => {
     const [csrfTokenPro, setCsrfTokenPro] = useState(localStorage.getItem('csrfToken') || '');
     const [isProAuthenticated, setIsProAuthenticated] = useState(() => localStorage.getItem('isProAuthenticated') === 'true');
     const [zipProSearch, setZipProSearch] = useState([]);
+    const [profileSearchLocation, setProfileSearchLocation] = useState('');
 
     const logoutPro = () => {
         console.log("Logging out...");
@@ -74,6 +75,8 @@ export const ProProvider = ({ children }) => {
                 handleProLogin,
                 zipProSearch,
                 setZipProSearch,
+                profileSearchLocation,
+                setProfileSearchLocation,
             }}
         >
             {children}

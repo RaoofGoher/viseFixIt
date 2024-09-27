@@ -22,7 +22,7 @@ const ProfilePage = () => {
     if (!provider) return <p className="text-center text-gray-500">Loading...</p>;
 
     return (
-        <div className="profile-page max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
+        <div className="profile-page max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10 mb-10">
             <div className="flex items-center space-x-6">
                 <div className="flex-1">
                     <h2 className="text-3xl font-semibold text-gray-900">{provider.username}</h2>
@@ -34,7 +34,7 @@ const ProfilePage = () => {
 
             {/* Additional styling for more details if needed */}
             <div className="mt-6">
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                <button className="bg-primaryColor text-white px-4 py-2 rounded-lg hover:bg-lightColor1 hover:text-black transition duration-300">
                     Contact Provider
                 </button>
             </div>

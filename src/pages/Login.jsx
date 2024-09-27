@@ -21,7 +21,7 @@ const LoginSchema = Yup.object().shape({
 
 const LoginComponent = () => {
     const { loginUser, setCsrfToken } = useGlobalContext(); // Access global context
-    const { handleProLogin } = useProContext(); // Access pro context
+    const { handleProLogin , profileSearchLocation } = useProContext(); // Access pro context
     const navigate = useNavigate(); // For navigation
 
     const handleLogin = async (values) => {
@@ -30,19 +30,46 @@ const LoginComponent = () => {
             const userData = response.data; // Assuming this includes the user data (like username)
 
             // Check if the user is a pro or customer
-            if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
-                const csrfToken = userData.data.csrf_token;
-                
-                // Store the CSRF token in the context and set pro data
-                setCsrfToken(csrfToken);
-                handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
-                
-                // Redirect to pro dashboard
-                navigate(`/dashboard/prodashboard/${userData.data.username}`);
+            console.log(profileSearchLocation)
+
+            if (profileSearchLocation === "/search-results") {
+                // Always navigate to search-profile
+                if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
+                    console.log("Logging in a professional user for search-profile");
+            
+                    const csrfToken = userData.data.csrf_token;
+            
+                    // Store the CSRF token in the context and set pro data
+                    setCsrfToken(csrfToken);
+                    handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
+                } else {
+                    console.log("Logging in a regular customer for search-profile");
+                    loginUser(userData); // Store user data in global context
+                }
+            
+                // Redirect to search-profile route
+                navigate("/search-results");
+            
             } else {
-                loginUser(userData); // Store user data in global context
-                navigate(`/dashboard/${userData.data.username}`); // Redirect to customer dashboard
+                // For any other route
+                if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
+                    console.log("Logging in a professional user for other routes");
+            
+                    const csrfToken = userData.data.csrf_token;
+                    
+                    // Store the CSRF token in the context and set pro data
+                    setCsrfToken(csrfToken);
+                    handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
+                    
+                    // Redirect to pro dashboard
+                    navigate(`/dashboard/prodashboard/${userData.data.username}`);
+                } else {
+                    console.log("Logging in a regular customer for other routes");
+                    loginUser(userData); // Store user data in global context
+                    navigate(`/dashboard/${userData.data.username}`); // Redirect to customer dashboard
+                }
             }
+            
         } catch (error) {
             console.error('Login error:', error);
             alert('Login failed! Please check your credentials and try again.');

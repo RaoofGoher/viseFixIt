@@ -1,10 +1,11 @@
 import React from 'react';
 import { useProContext } from '../context/ProContext';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const SearchResultsPage = () => {
-    const { zipProSearch } = useProContext();
-
+    const { zipProSearch, setProfileSearchLocation } = useProContext();
+    const location = useLocation();
+    setProfileSearchLocation(location.pathname);
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4 text-primaryColor">Search Results</h2>

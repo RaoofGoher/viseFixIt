@@ -24,7 +24,7 @@ const Home = () => {
   
   
     useEffect(() => {
-      setTimeout(() => setIsNavbarLoading(false), 1000); // Simulates a 1-second loading time
+       // Simulates a 1-second loading time
       setTimeout(() => setIsHeroLoading(false), 1500);
       setTimeout(() => setIsTextLoading(false), 1200);
       setTimeout(() => setIsServicesLoading(false), 1800);

@@ -7,8 +7,6 @@ const ProtectedProfileRoute = ({ children }) => {
     const { isProAuthenticated } = useProContext(); // Check if the pro is authenticated
     const { isAuthenticated } = useGlobalContext(); // Check if the user is authenticated
 
-    console.log('Pro Authenticated:', isProAuthenticated);
-    console.log('User Authenticated:', isAuthenticated);
     // If neither is authenticated, redirect to login page
     if (!isProAuthenticated && !isAuthenticated) {
         return <Navigate to="/login" />; // Redirect to login if not authenticated
