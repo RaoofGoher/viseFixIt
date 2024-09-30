@@ -20,7 +20,7 @@ const PrimaryLayout = () => {
 
 
   return (
-    <div className='px-8 bg-gray-200'>
+    <div className='px-8 bg-gray-300'>
       {isNavbarLoading ? <Loader /> : <PrimaryNavbar />}
      
         <Outlet/>
