@@ -3,6 +3,8 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive'
+
 const SearchComponent = () => {
   const [problem, setProblem] = useState('');
   const [zipcode, setZipcode] = useState('');
@@ -13,6 +15,10 @@ const SearchComponent = () => {
   const navigate = useNavigate();
   
   const {setZipProSearch}   = useProContext();
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 640px)'
+  })
 
   const fetchCategories = async () => {
     try {
@@ -75,8 +81,8 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4">
-      <div className="relative flex-grow" style={{ width: '65%' }}>
+    <div className="flex smartHero:flex-col smartHero:items-start items-center space-x-4">
+      <div className="relative flex-grow my-2" style={{ width: isMobile ? '100%' : '65%' }}>
         <input
           type="text"
           value={problem}
@@ -98,7 +104,7 @@ const SearchComponent = () => {
           </ul>
         )}
       </div>
-      <div className="flex-grow relative" style={{ width: '35%' }}>
+      <div className="flex-grow relative my-2" style={{ width: isMobile ? '100%' : '35%' , marginLeft: isMobile ? '-1px':"" }}>
         <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
           type="text"

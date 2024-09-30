@@ -23,7 +23,7 @@ const PrimaryNavbar = () => {
 
 
   return (
-    <div className="flex items-center justify-between text-black px-10 py-2">
+    <div className="flex smartNavbar:flex-col  items-center justify-between text-black px-10 py-2 ">
       <Link to={'/'}>
         <div>
           <img 
@@ -34,7 +34,7 @@ const PrimaryNavbar = () => {
         </div>
       </Link>
 
-      <div className="navbar flex space-x-6 ">
+      <div className="navbar flex space-x-6 smartNavbar:py-4">
         <h1
           className="cursor-pointer hover:text-white hover:bg-secondaryColor border border-primaryColor py-3 px-4 rounded-sm flex items-center justify-between"
           onClick={openServiceModal} // Call openServiceModal when clicked
