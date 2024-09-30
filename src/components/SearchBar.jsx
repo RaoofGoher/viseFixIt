@@ -17,7 +17,7 @@ const SearchComponent = () => {
   const {setZipProSearch}   = useProContext();
 
   const isMobile = useMediaQuery({
-    query: '(max-width: 640px)'
+    query: '(max-width: 644px)'
   })
 
   const fetchCategories = async () => {

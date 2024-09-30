@@ -11,7 +11,7 @@ const ContactUS = () => {
         />
       </div>
       {/* Form Section */}
-      <div className="md:w-1/2 ">
+      <div className="w-[60vw] ">
         <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
         <form className="space-y-4">
           <div>

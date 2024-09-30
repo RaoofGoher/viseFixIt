@@ -21,6 +21,9 @@ export default {
         },
         'smartHero': {
           'max': '645px',
+        },
+        'changingText': {
+          'max': '810px',
         }
       },
     },

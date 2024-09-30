@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import TestimonialCard from './TestimonialCard'
-
+import { useMediaQuery } from 'react-responsive'
 import Img3 from "../assets/p3.jpg"
 import Img4 from "../assets/p4.jpg"
 import Img5 from "../assets/p5.jpg"
@@ -9,6 +9,16 @@ import Img7 from "../assets/p7.jpg"
 import Img8 from "../assets/p8.jpg"
 
 const TestimonialSlider = () => {
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 780px)'
+  })
+
+  const isMobile2 = useMediaQuery({
+    query: '(max-width: 630px)'
+  })
+
+
     const testimonials = [
         {
           id: 1,
@@ -60,13 +70,13 @@ const TestimonialSlider = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow : isMobile2 ? 1 : isMobile ? 2 : 3, 
     slidesToScroll: 1,
   
   };
 
   return (<>
-<div className="text-center text-6xl font-bold m-8">Testimonials</div>
+<div className="text-center text-6xl font-bold m-8" style={{ fontSize: 'clamp(1rem, 2vw + 1rem, 2rem)' }} >Testimonials</div>
 <Slider {...settings}>
       {testimonials.map((testimonial) => (
         <TestimonialCard key={testimonial.id} testimonial={testimonial} />

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FiMail, FiPhone, FiDollarSign, FiCalendar } from 'react-icons/fi'; // Importing icons
+import { FaCreditCard } from 'react-icons/fa'; // Importing icons
 import StarRating from '../components/Stars';
+
 
 const ProfilePage = () => {
     const { id } = useParams(); // Get the provider ID from the URL
@@ -83,13 +85,13 @@ const ProfilePage = () => {
                 <h3 className="text-2xl font-semibold text-gray-800 mt-4">Provider Details</h3>
                 <div className="flex items-center mt-2">
                     <p className="text-lg text-gray-600 flex items-center mr-6">
-                        <FiDollarSign className="mr-2 text-primaryColor" /> <strong>Base Price:</strong> ${provider.sp_profile.base_price}
+                        <FiDollarSign className="mr-2 text-primaryColor" /> <strong>Base Price:&nbsp;&nbsp;</strong> ${provider.sp_profile.base_price}
                     </p>
                     <p className="text-lg text-gray-600 flex items-center mr-6">
-                        <FiCalendar className="mr-2 text-primaryColor" /> <strong>Founded:</strong> {new Date(provider.sp_profile.company_founded_date).toLocaleDateString()}
+                        <FiCalendar className="mr-2 text-primaryColor" /> <strong>Founded:&nbsp;&nbsp; </strong> {new Date(provider.sp_profile.company_founded_date).toLocaleDateString()}
                     </p>
                     <p className="text-lg text-gray-600 flex items-center">
-                        <strong>Payment Methods:</strong> {provider.sp_profile.payment_methods}
+                       <FaCreditCard className="mr-2 text-primaryColor"/> <strong>Payment Methods:&nbsp;&nbsp;</strong> {provider.sp_profile.payment_methods}
                     </p>
                 </div>
                 <p className="text-lg text-gray-600 mt-4"><strong>Introduction:</strong> {provider.sp_profile.introduction}</p>
