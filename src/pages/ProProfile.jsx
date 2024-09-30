@@ -5,22 +5,39 @@ import { useParams } from 'react-router-dom';
 const ProfilePage = () => {
     const { id } = useParams(); // Get the provider ID from the URL
     const [provider, setProvider] = useState(null);
+    const [loading, setLoading] = useState(true); // Add a loading state
+    const [error, setError] = useState(null); // Add an error state
 
     useEffect(() => {
         const fetchProviderDetails = async () => {
+            setLoading(true); // Set loading to true before fetching data
             try {
                 const response = await axios.get(`http://51.21.129.246:8000/service_provider/get/${id}`);
                 setProvider(response.data.data.service_provider);
+                setError(null); // Clear any previous errors
             } catch (error) {
                 console.error('Error fetching provider details:', error);
+                setError('Failed to load provider details. Please try again.'); // Set error message
+            } finally {
+                setLoading(false); // Set loading to false after fetching data
             }
         };
 
         fetchProviderDetails();
     }, [id]);
 
-    if (!provider) return <p className="text-center text-gray-500">Loading...</p>;
-          console.log('here is provider',provider)
+    if (loading) {
+        return <p className="text-center text-gray-500">Loading...</p>;
+    }
+
+    if (error) {
+        return <p className="text-center text-red-500">{error}</p>;
+    }
+
+    if (!provider) {
+        return <p className="text-center text-gray-500">No professionals found.</p>;
+    }
+
     return (
         <div className="profile-page max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10 mb-10">
             <div className="flex items-center space-x-6">

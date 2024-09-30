@@ -23,6 +23,7 @@ import { ProProvider } from './context/ProContext';
 import SearchResultsPage from './pages/ProSearch';
 import ProfilePage from './pages/ProProfile';
 import ProtectedProfileRoute from './components/ProtectedProfile';
+import AxiosInterceptor from './axios/AxiosIntercepter';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -46,7 +47,9 @@ function App() {
 
     <GlobalProvider>
       <ProProvider>
+      <AxiosInterceptor>
       <RouterProvider router={router} />
+      </AxiosInterceptor>
       </ProProvider>
     </GlobalProvider>
   );
