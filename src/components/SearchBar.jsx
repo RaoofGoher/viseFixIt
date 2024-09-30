@@ -61,7 +61,7 @@ const SearchComponent = () => {
       });
       
       const serviceProviders = response.data.service_providers;
-      console.log(serviceProviders)
+      
      setZipProSearch(serviceProviders)
      navigate('/search-results');
       if (serviceProviders.length > 0) {
