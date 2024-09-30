@@ -59,8 +59,9 @@ const SearchComponent = () => {
         zipcode,
         category_id: selectedCategory.id,
       });
-      // console.log("hello",response.data.service_providers);
+      
       const serviceProviders = response.data.service_providers;
+      console.log(serviceProviders)
      setZipProSearch(serviceProviders)
      navigate('/search-results');
       if (serviceProviders.length > 0) {
