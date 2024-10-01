@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Added useEffect import
 import { useProContext } from '../context/ProContext';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // Imported useLocation
 import StarRating from '../components/Stars'; // Import the StarRating component
-import { useMediaQuery } from 'react-responsive'
-
+import { useMediaQuery } from 'react-responsive';
 
 const SearchResultsPage = () => {
-    const { zipProSearch } = useProContext();
-    const isMobile = useMediaQuery({
-        query: '(max-width: 525px)'
-      })
+    const location = useLocation(); // Use location to get the current route
+    const { zipProSearch, setProfileSearchLocation } = useProContext();
+    const isMobile = useMediaQuery({ query: '(max-width: 525px)' });
+
+    useEffect(() => {
+        // Update profileSearchLocation every time the route changes
+        setProfileSearchLocation(location.pathname);
+    }, [location, setProfileSearchLocation]); // Add setProfileSearchLocation as a dependency
+
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4 text-primaryColor">Search Results</h2>
@@ -22,7 +26,7 @@ const SearchResultsPage = () => {
 
                         return (
                             <li key={provider.service_provider_id} className="border rounded-lg px-4 py-6 shadow-md bg-white hover:shadow-lg transition-shadow">
-                                <div className={`flex items-center ${isMobile && "flex-col"}`} >
+                                <div className={`flex items-center ${isMobile && "flex-col"}`}>
                                     {/* Image Section */}
                                     <div className="relative w-16 h-16 mr-4">
                                         <img 
