@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FiMail, FiPhone, FiDollarSign, FiCalendar } from 'react-icons/fi'; // Importing icons
-import { FaCreditCard } from 'react-icons/fa'; // Importing icons
+import { FaMoneyBill } from 'react-icons/fa'; // Importing icons
 import StarRating from '../components/Stars';
-
+import { useMediaQuery } from 'react-responsive'
 
 const ProfilePage = () => {
     const { id } = useParams(); // Get the provider ID from the URL
@@ -12,6 +12,13 @@ const ProfilePage = () => {
     const [loading, setLoading] = useState(true); // Add a loading state
     const [error, setError] = useState(null); // Add an error state
     const [imageLoaded, setImageLoaded] = useState(false);
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 925px)'
+      })
+    const isMobile2 = useMediaQuery({
+        query: '(max-width: 625px)'
+      })
 
     useEffect(() => {
         const fetchProviderDetails = async () => {
@@ -47,7 +54,7 @@ const ProfilePage = () => {
 
     return (
         <div className="profile-page max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-6 mt-10 mb-10 border border-gray-200 transition-transform transform hover:scale-105">
-            <div className="flex items-center mb-6">
+            <div className={`flex items-center mb-6 ${isMobile2 && "flex-col"}`}>
                 {/* Profile Picture Section */}
                 <img 
                     src={provider.sp_profile.profile_picture_url || 'default_profile_picture_url_here'} 
@@ -83,7 +90,7 @@ const ProfilePage = () => {
             {/* Profile Details Section */}
             <div className="border-t border-gray-300 pt-4">
                 <h3 className="text-2xl font-semibold text-gray-800 mt-4">Provider Details</h3>
-                <div className="flex items-center mt-2">
+                <div className={`flex  mt-2 ${isMobile && "flex-col"}`}>
                     <p className="text-lg text-gray-600 flex items-center mr-6">
                         <FiDollarSign className="mr-2 text-primaryColor" /> <strong>Base Price:&nbsp;&nbsp;</strong> ${provider.sp_profile.base_price}
                     </p>
@@ -91,7 +98,7 @@ const ProfilePage = () => {
                         <FiCalendar className="mr-2 text-primaryColor" /> <strong>Founded:&nbsp;&nbsp; </strong> {new Date(provider.sp_profile.company_founded_date).toLocaleDateString()}
                     </p>
                     <p className="text-lg text-gray-600 flex items-center">
-                       <FaCreditCard className="mr-2 text-primaryColor"/> <strong>Payment Methods:&nbsp;&nbsp;</strong> {provider.sp_profile.payment_methods}
+                       <FaMoneyBill className="mr-2 text-primaryColor"/> <strong>Payment Methods:&nbsp;&nbsp;</strong> {provider.sp_profile.payment_methods}
                     </p>
                 </div>
                 <p className="text-lg text-gray-600 mt-4"><strong>Introduction:</strong> {provider.sp_profile.introduction}</p>

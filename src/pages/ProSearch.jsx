@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { useProContext } from '../context/ProContext';
 import { Link } from 'react-router-dom';
 import StarRating from '../components/Stars'; // Import the StarRating component
+import { useMediaQuery } from 'react-responsive'
+
 
 const SearchResultsPage = () => {
     const { zipProSearch } = useProContext();
-
+    const isMobile = useMediaQuery({
+        query: '(max-width: 525px)'
+      })
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4 text-primaryColor">Search Results</h2>
@@ -18,7 +22,7 @@ const SearchResultsPage = () => {
 
                         return (
                             <li key={provider.service_provider_id} className="border rounded-lg px-4 py-6 shadow-md bg-white hover:shadow-lg transition-shadow">
-                                <div className="flex items-center">
+                                <div className={`flex items-center ${isMobile && "flex-col"}`} >
                                     {/* Image Section */}
                                     <div className="relative w-16 h-16 mr-4">
                                         <img 
