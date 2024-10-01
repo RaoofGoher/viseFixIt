@@ -7,6 +7,7 @@ import TestimonialSlider from '../components/TestimonialSlider';
 import ContactUS from '../components/ContactUs';
 import FAQ from '../components/FaqSection';
 import TeamSlider from "../components/TeamSlider1"
+import SimpleSlider from '../components/HeroSlider';
 
 
 const Loader = () => {
@@ -36,7 +37,7 @@ const Home = () => {
   return (
     <div>
        <div className='flex justify-center items-center'>
-        {isHeroLoading ? <Loader /> : <PrimaryHero />}
+        {isHeroLoading ? <Loader /> : <SimpleSlider/>}
       </div>
       {isTextLoading ? <Loader /> : <ChangingText />}
       {isServicesLoading ? <Loader /> : <ServicesGrid />}
@@ -46,6 +47,7 @@ const Home = () => {
     
         {/* <TeamSlider/> */}
         <FAQ/>
+        
     </div>
   )
 }
