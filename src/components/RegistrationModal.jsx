@@ -14,7 +14,7 @@ const RegistrationModal = () => {
   return (
     <>
       {isRegistrationModalOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-10">
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-20">
           <div className={`bg-primaryColor p-6 rounded-lg shadow-lg ${isMobile ? "w-[95vw]" : "w-1/2" } text-white`}>
             <h2 className="text-2xl mb-4 text-center">Register</h2>
 

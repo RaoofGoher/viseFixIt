@@ -25,7 +25,7 @@ const SimpleSlider = () => {
   return (
     <div className="relative w-[94vw]">
       {/* Overlay content positioned on top of the slider */}
-      <div className="absolute top-20 left-1/2 transform z-20 -translate-x-1/2">
+      <div className="absolute top-20 left-1/2 transform z-10 -translate-x-1/2">
       <Stack>
         <SearchComponent buttonText={'Search'} labelText={"Zip Code"}/>
         
