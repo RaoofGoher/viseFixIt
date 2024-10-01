@@ -9,44 +9,45 @@ import RegistrationModal from '../components/RegistrationModal';
 
 const PrimaryNavbar = () => {
   // Access the modal state and open functions from the global context
-  const { 
-    openRegistrationModal, 
-    openServiceModal, 
-    isServiceModalOpen, 
-    isRegistrationModalOpen, 
-    isAuthenticated, 
-    user, 
-    logoutUser 
+  const {
+    openRegistrationModal,
+    openServiceModal,
+    isServiceModalOpen,
+    isRegistrationModalOpen,
+    isAuthenticated,
+    user,
+    logoutUser
   } = useGlobalContext();
 
-  const { isProAuthenticated, logoutPro , proData} = useProContext();
+  const { isProAuthenticated, logoutPro, proData } = useProContext();
 
 
   return (
     <div className="flex smartNavbar:flex-col  items-center justify-between text-black px-10 py-2 ">
       <Link to={'/'}>
         <div>
-          <img 
-            src={LogoImg} 
-            className="w-[25] h-[83px] border-2 border-primaryColor rounded-md" 
+          <img
+            src={LogoImg}
+            className="w-[25] h-[83px] border-2 border-primaryColor rounded-md"
             alt="Logo"
           />
         </div>
       </Link>
 
       <div className="navbar flex space-x-6 smartNavbar:py-4">
+        <Link to="/prosignup" className='mt-2'>
         <h1
           className="cursor-pointer hover:text-white hover:bg-secondaryColor border border-primaryColor py-3 px-4 rounded-sm flex items-center justify-between"
-          onClick={openServiceModal} // Call openServiceModal when clicked
-        >
-          Services <FaChevronDown className="mt-1 ml-1 text-primaryColor" />
-        </h1>
 
+        >
+          Join as Pro
+        </h1>
+        </Link>
         {/* Conditional rendering based on authentication states */}
         {!isAuthenticated && !isProAuthenticated ? (
           <>
-            <h1 
-              className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" 
+            <h1
+              className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4"
               onClick={openRegistrationModal}
             >
               Sign Up
@@ -67,8 +68,8 @@ const PrimaryNavbar = () => {
                   </h1>
                 </Link>
                 <Link to={'/'}>
-                  <h1 
-                    className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" 
+                  <h1
+                    className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4"
                     onClick={logoutPro}
                   >
                     Logout
@@ -83,8 +84,8 @@ const PrimaryNavbar = () => {
                   </h1>
                 </Link>
                 <Link to={'/'}>
-                  <h1 
-                    className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" 
+                  <h1
+                    className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4"
                     onClick={logoutUser}
                   >
                     Logout
