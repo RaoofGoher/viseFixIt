@@ -87,7 +87,7 @@ const SearchComponent = () => {
           type="text"
           value={problem}
           onChange={handleProblemChange}
-          placeholder="Search problem"
+          placeholder="Search a Service"
           className="border p-2 rounded w-full focus:border-primaryColor focus:outline-none"
         />
         {showDropdown && (

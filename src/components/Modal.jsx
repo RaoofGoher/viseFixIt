@@ -1,9 +1,8 @@
-// Modal.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
-import { useMediaQuery } from 'react-responsive'
-
+import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -12,10 +11,12 @@ const Modal = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const navigate = useNavigate();
 
   const isMobile = useMediaQuery({
-    query: '(max-width: 768px)'
-  })
+    query: '(max-width: 768px)',
+  });
 
   useEffect(() => {
     if (isServiceModalOpen) {
@@ -44,6 +45,13 @@ const Modal = () => {
     }
   }, [isServiceModalOpen]);
 
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category); // Store selected category
+    closeServiceModal(); // Close the service modal
+    navigate('/'); // Navigate to home page (or whatever route you need)
+    // You can also open another modal here to input the zip code
+  };
+
   if (!isServiceModalOpen) return null;
 
   return (
@@ -66,7 +74,7 @@ const Modal = () => {
           <ul className="mt-4">
             {categories.length > 0 ? (
               categories.map((category) => (
-                <li key={category.id} className="my-2">
+                <li key={category.id} className="my-2 cursor-pointer" onClick={() => handleCategoryClick(category)}>
                   {category.name}
                 </li>
               ))

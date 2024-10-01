@@ -17,3 +17,15 @@
     transform: translateX(1rem); /* Adjust based on your needs */
   }
   
+  input::placeholder {
+    color: #987D9A; /* Tailwind's gray-400 */
+    
+  }
+  
+  input:-ms-input-placeholder {
+    color: '#987D9A'; /* For Internet Explorer 10+ */
+  }
+  
+  input::-ms-input-placeholder {
+    color: '#987D9A'; /* For Microsoft Edge */
+  }
