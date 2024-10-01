@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
+import { useMediaQuery } from 'react-responsive'
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -10,6 +12,10 @@ const Modal = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)'
+  })
 
   useEffect(() => {
     if (isServiceModalOpen) {
@@ -42,7 +48,7 @@ const Modal = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
-      <div className="bg-primaryColor p-8 rounded-lg shadow-lg relative w-[60vw] h-[40vw] text-white">
+      <div className={`bg-primaryColor p-8 rounded-lg shadow-lg relative w-[80vw] ${isMobile ? "h-[80vh]" : "h-[50vh]"} text-white`}>
         <button
           className="absolute top-2 right-2 text-lg font-bold"
           onClick={closeServiceModal}
