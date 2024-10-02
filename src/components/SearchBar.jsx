@@ -62,7 +62,7 @@ const SearchComponent = () => {
     }
 
     try {
-      const response = await axios.post('http://51.21.129.246:8000/service_provider/search/', {
+      const response = await axios.post(`${apiUrl}/service_provider/search/`, {
         zipcode,
         category_id: selectedCategory.id,
       });
