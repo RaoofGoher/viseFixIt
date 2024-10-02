@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive'
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const SearchComponent = () => {
   const [problem, setProblem] = useState('');
@@ -22,7 +23,7 @@ const SearchComponent = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://51.21.129.246:8000/categories/all');
+      const response = await axios.get(`${apiUrl}/categories/all`);
       setCategories(response.data.data.categories); // Assuming the categories are in response.data.data.categories
     } catch (error) {
       console.error('Error fetching categories:', error);
