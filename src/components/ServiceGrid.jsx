@@ -42,7 +42,7 @@ const services = [
 
 const ServicesGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 p-4">
       {services.map((service, index) => (
         <ServiceCard key={index} title={service.title} description={service.description} icon={service.icon} image={service.img} />
       ))}
