@@ -6,9 +6,20 @@ import { useGlobalContext } from '../context/GlobalContext';
 import { useProContext } from '../context/ProContext';
 import { Link } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
+import { useMediaQuery } from 'react-responsive'
 
 const PrimaryNavbar = () => {
-  // Access the modal state and open functions from the global context
+  
+  const isMobile = useMediaQuery({
+    query: '(max-width: 432px)'
+  })
+  
+  const isMobile2 = useMediaQuery({
+    query: '(max-width: 354px)'
+  })
+  
+
+
   const {
     openRegistrationModal,
     openServiceModal,
@@ -34,7 +45,7 @@ const PrimaryNavbar = () => {
         </div>
       </Link>
 
-      <div className="navbar flex space-x-6 smartNavbar:py-4">
+      <div className={`navbar flex space-x-6 smartNavbar:py-4 ${isMobile ? "w-[95vw] items-center":""} ${isMobile2 ? "px-2" : "px-4"} `}>
         <Link to="/prosignup" className='mt-2'>
         <h1
           className="cursor-pointer hover:text-white hover:bg-secondaryColor border border-primaryColor py-3 px-4 rounded-sm flex items-center justify-between"
