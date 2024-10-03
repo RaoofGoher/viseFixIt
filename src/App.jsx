@@ -24,6 +24,7 @@ import SearchResultsPage from './pages/ProSearch';
 import ProfilePage from './pages/ProProfile';
 import ProtectedProfileRoute from './components/ProtectedProfile';
 import AxiosInterceptor from './axios/AxiosIntercepter';
+import NotFoundPage from './pages/NotFoundPage';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +38,7 @@ function App() {
           <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>}/>
           <Route path="/search-results" element={<SearchResultsPage />} />
           <Route path="/profile/:id" element={ <ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute> } />
+          <Route path='*' element={<NotFoundPage />} />
         </Route>
 
       </>

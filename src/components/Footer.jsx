@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from '../assets/mainImg.png'; // Replace with your logo path
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
 
@@ -15,17 +17,17 @@ const Footer = () => {
         <img src={logo} alt="Logo" className="h-20" />
         </div>
         <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2`}>
-          <a href="/" className="hover:text-lightColor1">Home</a>
-          <a href="/about" className="hover:text-lightColor1">About Us</a>
-          <a href="/services" className="hover:text-lightColor1">Services</a>
-          <a href="/contact" className="hover:text-lightColor1">Contact</a>
-          <a href="/privacy" className="hover:text-lightColor1">Privacy Policy</a>
+          <Link to="/" className="hover:text-lightColor1">Home</Link>
+          <Link to="/about" className="hover:text-lightColor1">About Us</Link>
+          <Link to="/services" className="hover:text-lightColor1">Services</Link>
+          <Link to="/contact" className="hover:text-lightColor1">Contact</Link>
+          <Link to="/privacy" className="hover:text-lightColor1">Privacy Policy</Link>
         </nav>
         <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2`}>
-          <a href="/" className="hover:text-lightColor1">Carrers</a>
-          <a href="/about" className="hover:text-lightColor1">Support</a>
-          <a href="/services" className="hover:text-lightColor1">Terms</a>
-          <a href="/services" className="hover:text-lightColor1">Find a Pro</a>
+          <Link to="/careers" className="hover:text-lightColor1">Carrers</Link>
+          <Link to="/about" className="hover:text-lightColor1">Support</Link>
+          <Link to="/services" className="hover:text-lightColor1">Terms</Link>
+          <Link to="/services" className="hover:text-lightColor1">Find a Pro</Link>
          
         </nav>
       </div>
