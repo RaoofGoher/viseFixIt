@@ -13,11 +13,16 @@ const ChangingText = () => {
   }, [texts.length]);
 
   return (
-    <div className='flex  changingText:flex-col justify-center items-center space-x-4 m-8'>
-    <h2 className="text-4xl font-bold text-center text-black my-4">Our great services are </h2>
-    <h1 className="text-6xl font-bold text-center text-primaryColor my-4">
-      {texts[currentIndex]}
-    </h1>
+    <div className="flex changingText:flex-col justify-center items-center space-x-4 m-8">
+      <h2 className="text-4xl font-bold text-center text-black my-4">Our great services are </h2>
+      <div className="h-16 overflow-hidden">
+        <h1
+          key={texts[currentIndex]} // use key to trigger re-mount on text change
+          className="text-6xl font-bold text-center text-primaryColor my-4 px-2 animate-slideUp"
+        >
+          {texts[currentIndex]}
+        </h1>
+      </div>
     </div>
   );
 };
