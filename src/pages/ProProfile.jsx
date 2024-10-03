@@ -5,6 +5,7 @@ import { FiMail, FiPhone, FiDollarSign, FiCalendar } from 'react-icons/fi'; // I
 import { FaMoneyBill } from 'react-icons/fa'; // Importing icons
 import StarRating from '../components/Stars';
 import { useMediaQuery } from 'react-responsive'
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const ProfilePage = () => {
     const { id } = useParams(); // Get the provider ID from the URL
@@ -24,7 +25,7 @@ const ProfilePage = () => {
         const fetchProviderDetails = async () => {
             setLoading(true); // Set loading to true before fetching data
             try {
-                const response = await axios.get(`http://51.21.129.246:8000/service_provider/get/${id}`);
+                const response = await axios.get(`${apiUrl}/service_provider/get/${id}`);
                 setProvider(response.data.data.service_provider);
                 setError(null); // Clear any previous errors
             } catch (error) {
