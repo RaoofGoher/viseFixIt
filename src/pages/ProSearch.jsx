@@ -53,7 +53,7 @@ const SearchResultsPage = () => {
                                     </div>
                                     {/* Base Price Section */}
                                     <div className="text-lg font-bold text-gray-800 flex flex-col text-right">
-                                        Base Price: {provider.base_price}$$
+                                        Base Price: {provider.base_price}$
                                         <Link
                                             to={`/profile/${provider.service_provider_id}`}
                                             className="mt-2 inline-block bg-primaryColor text-white px-4 py-2 rounded hover:bg-lightColor1 transition-colors"
