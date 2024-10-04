@@ -20,8 +20,7 @@ const ProDashboard = () => {
     { label: 'Phone Number', value: proData.phone_number },
     { label: 'Address', value: proData.address },
     { label: 'Zip Code', value: proData.zip_code },
-    { label: 'Service Provider', value: proData.isServiceProvider ? 'Yes' : 'No' },
-    { label: 'Customer', value: proData.isCustomer ? 'Yes' : 'No' },
+
   ];
 
   return (
