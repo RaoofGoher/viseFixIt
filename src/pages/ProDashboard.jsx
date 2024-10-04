@@ -1,5 +1,6 @@
 import React from 'react';
 import { useProContext } from '../context/ProContext';
+import { Link } from 'react-router-dom';
 
 const ProDashboard = () => {
   const { proData } = useProContext();
@@ -20,7 +21,6 @@ const ProDashboard = () => {
     { label: 'Phone Number', value: proData.phone_number },
     { label: 'Address', value: proData.address },
     { label: 'Zip Code', value: proData.zip_code },
-
   ];
 
   return (
@@ -33,6 +33,16 @@ const ProDashboard = () => {
             <span className="text-gray-700">{field.value}</span>
           </div>
         ))}
+        {/* Profile link */}
+        <div className="flex justify-between bg-gray-100 p-3 rounded-lg">
+          <span className="font-semibold capitalize">My Profile</span>
+          <Link 
+            to={`/myprofilepro/${proData.username}`} 
+            className="text-blue-500 hover:underline"
+          >
+            View Profile
+          </Link>
+        </div>
       </div>
     </div>
   );
