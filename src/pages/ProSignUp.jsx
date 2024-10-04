@@ -85,6 +85,8 @@ const ServiceProviderForm = () => {
             const response = await axios.post(`${apiUrl}/service_provider/register/`, values);
             const proData = response.data.data;
             const csrfToken = proData.csrf_token;
+            console.log("here is professional data" , proData,values)
+
             handleProLogin(csrfToken, proData);
             navigate(`/dashboard/prodashboard/${proData?.username}`);
         } catch (error) {
