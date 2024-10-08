@@ -112,7 +112,14 @@ const EditProProfile = () => {
                       onChange={(e) => {
                         const value = e.target.value;
                         const newServices = [...values.services];
-                        newServices[index] = value;
+
+                        // Only update if the selected service is not already in the array
+                        if (!newServices.includes(value)) {
+                          newServices[index] = value;
+                        } else {
+                          alert('This service has already been added.');
+                        }
+
                         setFieldValue('services', newServices);
                       }}
                       className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -144,7 +151,13 @@ const EditProProfile = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setFieldValue('services', [...values.services, '']); // Add empty service
+                  // Check for empty selection before adding
+                  const newService = '';
+                  if (!values.services.includes(newService)) {
+                    setFieldValue('services', [...values.services, newService]); // Add empty service
+                  } else {
+                    alert('This service has already been added.');
+                  }
                 }}
                 className="w-full px-4 py-2 text-white bg-green-600 rounded-md hover:bg-green-700"
               >
