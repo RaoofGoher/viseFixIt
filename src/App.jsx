@@ -26,6 +26,7 @@ import ProtectedProfileRoute from './components/ProtectedProfile';
 import AxiosInterceptor from './axios/AxiosIntercepter';
 import NotFoundPage from './pages/NotFoundPage';
 import MyProfilePro from './pages/MyProfilePro';
+import EditProProfile from './pages/EditProProfile';
 import MyProfileCustomer from './pages/MyProfileCustomer';
 import ProtecetdMyProProfile from './components/ProtecetdMyProProfile';
 import ProtectedMyCustomerProfile from './components/ProtectedMyCustomerProfile';
@@ -38,12 +39,14 @@ function App() {
           <Route path='/login' element={<LoginComponent />} />
           <Route path='/prosignup' element={<SignupForm />} />
           <Route path="/customersignup" element={<CustomerForm />} />
-          <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
-          <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>}/>
+          <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} />
           <Route path="/search-results" element={<SearchResultsPage />} />
-          <Route path="/profile/:id" element={ <ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute> } />
-          <Route path="/myprofilepro/:proname" element={ <ProtecetdMyProProfile> <MyProfilePro /> </ProtecetdMyProProfile> } />
-          <Route path="/myprofilecustomer/:customerName" element={ <ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile> } />
+          <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
+          <Route path="/myprofilepro/:proname" element={<ProtecetdMyProProfile> <MyProfilePro /> </ProtecetdMyProProfile>} />
+          <Route path="/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}
+          />
+          <Route path="/myprofilecustomer/:customerName" element={<ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile>} />
 
           <Route path='*' element={<NotFoundPage />} />
         </Route>
@@ -56,9 +59,9 @@ function App() {
 
     <GlobalProvider>
       <ProProvider>
-      <AxiosInterceptor>
-      <RouterProvider router={router} />
-      </AxiosInterceptor>
+        <AxiosInterceptor>
+          <RouterProvider router={router} />
+        </AxiosInterceptor>
       </ProProvider>
     </GlobalProvider>
   );
