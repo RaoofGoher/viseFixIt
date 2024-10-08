@@ -64,8 +64,11 @@ const EditProProfile = () => {
   }, [profile]);
 
   const initialValues = {
-    username: profile ? profile.username : '', // Store username
-    services: profile ? profile.sp_profile.services_included : ['', '', '', ''], // Create initial services state for four dropdowns
+    username: profile ? profile.username : '',
+    services: 
+      (profile && profile.sp_profile && profile.sp_profile.services_included && profile.sp_profile.services_included.length > 0) 
+        ? profile.sp_profile.services_included 
+        : ['', '', '', ''], // Default to empty services if none exist
   };
 
   const validationSchema = Yup.object({
@@ -77,13 +80,17 @@ const EditProProfile = () => {
 
   const handleSubmit = (values) => {
     const selectedServiceIds = values.services.map(serviceName => {
-      // Find the subcategory by name
       const foundSubcategory = subcategories.find(sub => sub.name === serviceName);
-      // Return the ID or null if not found
       return foundSubcategory ? foundSubcategory.id : null;
-    }).filter(id => id !== null); // Filter out any null values
+    }).filter(id => id !== null);
 
+    // Log the selected Service IDs
     console.log('Selected Service IDs:', selectedServiceIds);
+
+    // Log a message if no services were included
+    if (values.services.length === 0 || values.services.every(service => service === '')) {
+      console.log('No services included, adding new service.');
+    }
     
     // Here, you can send the updated profile data to your backend
   };
