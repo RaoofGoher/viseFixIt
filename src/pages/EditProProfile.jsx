@@ -76,7 +76,15 @@ const EditProProfile = () => {
   });
 
   const handleSubmit = (values) => {
-    console.log('Form values:', values);
+    const selectedServiceIds = values.services.map(serviceName => {
+      // Find the subcategory by name
+      const foundSubcategory = subcategories.find(sub => sub.name === serviceName);
+      // Return the ID or null if not found
+      return foundSubcategory ? foundSubcategory.id : null;
+    }).filter(id => id !== null); // Filter out any null values
+
+    console.log('Selected Service IDs:', selectedServiceIds);
+    
     // Here, you can send the updated profile data to your backend
   };
 
