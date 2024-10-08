@@ -114,10 +114,11 @@ const EditProProfile = () => {
                         const newServices = [...values.services];
 
                         // Only update if the selected service is not already in the array
-                        if (!newServices.includes(value)) {
-                          newServices[index] = value;
+                        if (newServices.includes(value)) {
+                          alert('This service has already been added. The last entry has been removed.');
+                          newServices.pop(); // Remove the last entry if duplicate
                         } else {
-                          alert('This service has already been added.');
+                          newServices[index] = value; // Update the selected service
                         }
 
                         setFieldValue('services', newServices);
