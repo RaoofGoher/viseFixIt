@@ -64,7 +64,7 @@ const EditProProfile = () => {
   }, [profile]);
 
   const initialValues = {
-    username: profile ? profile.username : '',
+    username: profile ? profile.username : '', // Store username
     services: profile ? profile.sp_profile.services_included : ['', '', '', ''], // Create initial services state for four dropdowns
   };
 
@@ -95,13 +95,10 @@ const EditProProfile = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700">Username</label>
                 <Field
-                  as="select"
+                  type="text"
                   name="username"
                   className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                >
-                  <option value="professional626">professional626</option>
-                  {/* Add more usernames here if necessary */}
-                </Field>
+                />
                 <ErrorMessage name="username" component="div" className="text-red-500" />
               </div>
 
