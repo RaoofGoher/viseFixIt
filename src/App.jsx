@@ -30,6 +30,8 @@ import EditProProfile from './pages/EditProProfile';
 import MyProfileCustomer from './pages/MyProfileCustomer';
 import ProtecetdMyProProfile from './components/ProtecetdMyProProfile';
 import ProtectedMyCustomerProfile from './components/ProtectedMyCustomerProfile';
+import { ToastProvider } from './context/ToastContext';
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -60,7 +62,9 @@ function App() {
     <GlobalProvider>
       <ProProvider>
         <AxiosInterceptor>
+        <ToastProvider>
           <RouterProvider router={router} />
+          </ToastProvider>
         </AxiosInterceptor>
       </ProProvider>
     </GlobalProvider>

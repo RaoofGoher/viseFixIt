@@ -7,6 +7,8 @@ import { useGlobalContext } from '../context/GlobalContext';
 import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
+import { useToast } from '../context/ToastContext';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 // Validation schema using Yup
@@ -23,7 +25,7 @@ const LoginComponent = () => {
     const { loginUser, setCsrfToken, openRegistrationModal, isRegistrationModalOpen } = useGlobalContext(); // Access global context
     const { handleProLogin, profileSearchLocation,setProfileSearchLocation } = useProContext(); // Access pro context
     const navigate = useNavigate(); // For navigation
-
+    const { showToast } = useToast();
     const handleLogin = async (values) => {
         try {
             const response = await axios.post(`${apiUrl}/service_provider/login/`, values);
@@ -69,7 +71,7 @@ const LoginComponent = () => {
                     navigate(`/dashboard/${userData.data.username}`); // Redirect to customer dashboard
                 }
             }
-
+            showToast('Success! you are loged in.', 'success')
         } catch (error) {
             console.error('Login error:', error);
             alert('Login failed! Please check your credentials and try again.');
