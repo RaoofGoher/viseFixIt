@@ -65,6 +65,7 @@ const EditProProfile = () => {
 
   const initialValues = {
     username: profile ? profile.username : '',
+    email: profile ? profile.email : '',
     services: 
       (profile && profile.sp_profile && profile.sp_profile.services_included && profile.sp_profile.services_included.length > 0) 
         ? profile.sp_profile.services_included 
@@ -73,32 +74,50 @@ const EditProProfile = () => {
 
   const validationSchema = Yup.object({
     username: Yup.string().required('Username is required'),
+    email: Yup.string().required('email is required'),
     services: Yup.array()
       .of(Yup.string().required('Service is required'))
       .min(1, 'At least one service is required'),
   });
 
-  const handleSubmit = (values) => {
-    // Map the service names to their corresponding IDs
+  const handleSubmit = async (values) => {
+    // Map service names to their IDs
     const selectedServiceIds = values.services.map(serviceName => {
       const foundSubcategory = subcategories.find(sub => sub.name === serviceName);
       return foundSubcategory ? foundSubcategory.id : null;
-    }).filter(id => id !== null); // Filter out any null values
+    }).filter(id => id !== null);
   
-    // Log the selected service IDs
-    console.log('Selected Service IDs:', selectedServiceIds);
-  
-    // Create an object with the form data, replacing the service names with IDs
-    const formData = {
+    const registerData = {
       username: values.username,
-      services: selectedServiceIds, // Send the IDs instead of the names
+      email: values.email,
     };
   
-    // Log the final form data
-    console.log('Final Form Data:', formData);
+    const profileData = {
+      services_included: selectedServiceIds,
+    };
   
-    // Here, you can send formData to your backend using an API call
+    // 1. Send PATCH request for registerData
+    const registerResponse = await axios.patch(`https://51.20.63.119/service_provider/update/user/${id}/`, registerData);
+    console.log('Register Data PATCH request successful:', registerResponse.data);
+  
+    // 2. Try PATCH request for profileData
+    const profileResponse = await axios.patch(`https://51.20.63.119/service_provider/update/profile/${id}/`, profileData);
+  
+    if (profileResponse.status === 200) {
+      // If PATCH request was successful
+      console.log('Profile Data PATCH request successful:', profileResponse.data.status);
+    } else if (profileResponse.status === 404 && profileResponse.data.reason?.error === "SP Profile not found.") {
+      // If PATCH fails due to 404, send POST request for profileData
+      const postResponse = await axios.post(`https://51.20.63.119/service_provider/create/profile/`, profileData);
+      console.log('Profile Data POST request successful (created new profile):', postResponse.data);
+    } else {
+      // Handle other errors
+      console.error('Error in PATCH request for profileData:', profileResponse.data);
+    }
   };
+  
+  
+  
   
 
   return (
@@ -121,6 +140,15 @@ const EditProProfile = () => {
                   className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
                 <ErrorMessage name="username" component="div" className="text-red-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Email</label>
+                <Field
+                  type="text"
+                  name="email"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <ErrorMessage name="email" component="div" className="text-red-500" />
               </div>
 
               <div>
