@@ -79,21 +79,27 @@ const EditProProfile = () => {
   });
 
   const handleSubmit = (values) => {
+    // Map the service names to their corresponding IDs
     const selectedServiceIds = values.services.map(serviceName => {
       const foundSubcategory = subcategories.find(sub => sub.name === serviceName);
       return foundSubcategory ? foundSubcategory.id : null;
-    }).filter(id => id !== null);
-
-    // Log the selected Service IDs
+    }).filter(id => id !== null); // Filter out any null values
+  
+    // Log the selected service IDs
     console.log('Selected Service IDs:', selectedServiceIds);
-
-    // Log a message if no services were included
-    if (values.services.length === 0 || values.services.every(service => service === '')) {
-      console.log('No services included, adding new service.');
-    }
-    
-    // Here, you can send the updated profile data to your backend
+  
+    // Create an object with the form data, replacing the service names with IDs
+    const formData = {
+      username: values.username,
+      services: selectedServiceIds, // Send the IDs instead of the names
+    };
+  
+    // Log the final form data
+    console.log('Final Form Data:', formData);
+  
+    // Here, you can send formData to your backend using an API call
   };
+  
 
   return (
     <div className="max-w-md mx-auto p-4">
