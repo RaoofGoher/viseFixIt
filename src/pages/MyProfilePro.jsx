@@ -59,7 +59,7 @@ const MyProfilePro = () => {
           <h2 className="text-xl font-semibold mb-4">Company Information</h2>
           <div className="space-y-3">
             <p className="flex justify-between"><strong>Company Name:</strong> <span>{profile.company_name || "N/A"}</span></p>
-            <p className="flex justify-between"><strong>Category:</strong> <span>{profile.category}</span></p>
+            <p className="flex justify-between"><strong>Service:</strong> <span>{profile.category}</span></p>
             <p className="flex justify-between"><strong>Status:</strong> <span>{profile.status}</span></p>
             <p className="flex justify-between"><strong>Number of People:</strong> <span>{profile.number_of_people}</span></p>
             <p className="flex justify-between"><strong>Company Founded Date:</strong> <span>{profile.sp_profile.company_founded_date}</span></p>
@@ -70,7 +70,7 @@ const MyProfilePro = () => {
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Services & Pricing</h2>
           <div className="space-y-3">
-            <p className="flex justify-between"><strong>Subcategory:</strong> <span>{profile.sp_profile.services_included}</span></p>
+            <p className="flex justify-between"><strong>included services:</strong> <span>{profile.sp_profile.services_included}</span></p>
             <p className="flex justify-between"><strong>Base Price:</strong> <span>{profile.sp_profile.base_price}</span></p>
             <p className="flex justify-between"><strong>Payment Methods:</strong> <span>{profile.sp_profile.payment_methods}</span></p>
           </div>
