@@ -66,14 +66,14 @@ const EditProProfile = () => {
   const initialValues = {
     username: profile ? profile.username : '',
     email: profile ? profile.email : '',
-    baseprice: profile ? profile.base_price : '',
+    baseprice: profile ? profile.sp_profile.base_price : '',
     services:
       (profile && profile.sp_profile && profile.sp_profile.services_included && profile.sp_profile.services_included.length > 0)
         ? profile.sp_profile.services_included
         : ['', '', '', ''], // Default to empty services if none exist
-    company_founded_date: profile ? profile.company_founded_date : '',
-    introduction: profile ? profile.introduction : '',
-    payment: profile ? profile.payment : '',
+    company_founded_date: profile ? profile.sp_profile.company_founded_date : '',
+    introduction: profile ? profile.sp_profile.introduction : '',
+    payment: profile ? profile.sp_profile.payment_methods : '',
   };
 
 

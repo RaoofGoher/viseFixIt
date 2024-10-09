@@ -48,7 +48,7 @@ const MyProfilePro = () => {
           <p className="flex justify-between"><strong>Zip Code:</strong> <span className="text-gray-600">{profile.zip_code}</span></p>
           <p className="flex justify-between"><strong>Company Name:</strong> <span className="text-gray-600">{profile.company_name || "N/A"}</span></p>
           <p className="flex justify-between"><strong>Category:</strong> <span className="text-gray-600">{profile.category}</span></p>
-          <p className="flex justify-between"><strong>Subcategory:</strong> <span className="text-gray-600">{profile.subcategory}</span></p>
+          <p className="flex justify-between"><strong>Subcategory:</strong> <span className="text-gray-600">{profile.sp_profile.services_included}</span></p>
           <p className="flex justify-between"><strong>Number of People:</strong> <span className="text-gray-600">{profile.number_of_people}</span></p>
           <p className="flex justify-between"><strong>Status:</strong> <span className="text-gray-600">{profile.status}</span></p>
           <p className="flex justify-between"><strong>Average Rating:</strong> <span className="text-gray-600">{profile.average_rating}</span></p>
