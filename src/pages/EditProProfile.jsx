@@ -3,7 +3,7 @@ import { useProContext } from '../context/ProContext';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
-
+import { useToast } from '../context/ToastContext';
 import * as Yup from 'yup';
 
 const EditProProfile = () => {
@@ -13,6 +13,7 @@ const EditProProfile = () => {
   const [categoryId, setCategoryId] = useState(''); // State for category ID
   const [subcategories, setSubcategories] = useState([]); // State for subcategories
   const navigate = useNavigate();
+  const { showToast } = useToast();
   useEffect(() => {
     if (proData && proData.id) {
       setId(proData.id);
@@ -131,6 +132,7 @@ const EditProProfile = () => {
     }
 
     navigate(`/myprofilepro/${profile.username}`);
+    showToast('Success! Task completed.', 'success')
   };
 
 
