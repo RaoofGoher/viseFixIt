@@ -231,7 +231,8 @@ const EditProProfile = () => {
                         const newServices = [...values.services];
 
                         if (newServices.includes(value)) {
-                          alert('This service has already been added. The last entry has been removed.');
+                          // alert('This service has already been added. The last entry has been removed.');
+                          showToast('Warning! subcategory already exist.', 'warning')
                           newServices.pop();
                         } else {
                           newServices[index] = value;
@@ -272,7 +273,8 @@ const EditProProfile = () => {
                   if (!values.services.includes(newService)) {
                     setFieldValue('services', [...values.services, newService]);
                   } else {
-                    alert('This service has already been added.');
+                    // alert('This service has already been added.');
+                    showToast('Warning! subcategory already exist.', 'warning')
                   }
                 }}
                 className="w-full px-4 py-2 text-white bg-green-600 rounded-md hover:bg-green-700"
