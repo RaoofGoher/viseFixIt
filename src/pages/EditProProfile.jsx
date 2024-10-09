@@ -103,12 +103,12 @@ const EditProProfile = () => {
     // 2. Try PATCH request for profileData
     const profileResponse = await axios.patch(`https://51.20.63.119/service_provider/update/profile/${id}/`, profileData);
   
-    if (profileResponse.status === 200) {
+    if (profileResponse.data.status === 200) {
       // If PATCH request was successful
       console.log('Profile Data PATCH request successful:', profileResponse.data.status);
-    } else if (profileResponse.status === 404 && profileResponse.data.reason?.error === "SP Profile not found.") {
+    } else if (profileResponse.data.status === 404 && profileResponse.data.reason?.error === "SP Profile not found.") {
       // If PATCH fails due to 404, send POST request for profileData
-      const postResponse = await axios.post(`https://51.20.63.119/service_provider/create/profile/`, profileData);
+      const postResponse = await axios.post(`https://51.20.63.119/service_provider/create/profile/${id}/`, profileData);
       console.log('Profile Data POST request successful (created new profile):', postResponse.data);
     } else {
       // Handle other errors
