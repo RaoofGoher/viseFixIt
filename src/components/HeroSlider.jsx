@@ -4,10 +4,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SearchComponent from './SearchBar';
 import Stack from './Stack'
-import HeroImage from '../assets/viseFixitHero.png'
-import HeroImage1 from '../assets/h1.png'
-import HeroImage2 from '../assets/h2.png'
-import HeroImage3 from '../assets/h3.png'
+import HeroImage from '../assets/viseFixitHero.jpg'
+import HeroImage1 from '../assets/h1.jpg'
+import HeroImage2 from '../assets/h2.jpg'
+import HeroImage3 from '../assets/h3.jpg'
 import { useMediaQuery } from 'react-responsive'
 
 const SimpleSlider = () => {

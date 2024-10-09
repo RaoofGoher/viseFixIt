@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useProContext } from '../context/ProContext';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
 import * as Yup from 'yup';
 
 const EditProProfile = () => {
@@ -10,7 +12,7 @@ const EditProProfile = () => {
   const [profile, setProfile] = useState(null); // State to hold profile data
   const [categoryId, setCategoryId] = useState(''); // State for category ID
   const [subcategories, setSubcategories] = useState([]); // State for subcategories
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (proData && proData.id) {
       setId(proData.id);
@@ -103,9 +105,9 @@ const EditProProfile = () => {
     const profileData = {
       services_included: selectedServiceIds,
       company_founded_date: values.company_founded_date,
-      base_price:values.baseprice,
+      base_price: values.baseprice,
       introduction: values.introduction,
-      payment_methods:values.payment
+      payment_methods: values.payment
     };
 
 
@@ -127,6 +129,8 @@ const EditProProfile = () => {
       // Handle other errors
       console.error('Error in PATCH request for profileData:', profileResponse.data);
     }
+
+    navigate(`/myprofilepro/${profile.username}`);
   };
 
 
@@ -144,65 +148,79 @@ const EditProProfile = () => {
           onSubmit={handleSubmit}
         >
           {({ values, setFieldValue }) => (
-            <Form className="space-y-4">
-              <div>
+            <Form className="space-y-6 bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto">
+              {/* Username Field */}
+              <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Username</label>
                 <Field
                   type="text"
                   name="username"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
-                <ErrorMessage name="username" component="div" className="text-red-500" />
+                <ErrorMessage name="username" component="div" className="text-red-500 text-sm" />
               </div>
-              <div>
+
+              {/* Email Field */}
+              <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Email</label>
                 <Field
                   type="text"
                   name="email"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
-                <ErrorMessage name="email" component="div" className="text-red-500" />
+                <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
               </div>
-              <div>
-                <label htmlFor="company_founded_date">Company Founded Date</label>
+
+              {/* Company Founded Date Field */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700">Company Founded Date</label>
                 <Field
                   name="company_founded_date"
                   type="date"
-                  value={values.company_founded_date} // Link to Formik's state
+                  value={values.company_founded_date}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
-                <ErrorMessage name="company_founded_date" component="div" />
+                <ErrorMessage name="company_founded_date" component="div" className="text-red-500 text-sm" />
               </div>
-              <div>
+
+              {/* Base Price Field */}
+              <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Base Price</label>
                 <Field
                   type="text"
                   name="baseprice"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
-                <ErrorMessage name="baseprice" component="div" className="text-red-500" />
+                <ErrorMessage name="baseprice" component="div" className="text-red-500 text-sm" />
               </div>
-              <div>
+
+              {/* Introduction Field */}
+              <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Introduction</label>
                 <Field
                   type="text"
                   name="introduction"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
-                <ErrorMessage name="introduction" component="div" className="text-red-500" />
+                <ErrorMessage name="introduction" component="div" className="text-red-500 text-sm" />
               </div>
-              <div>
+
+              {/* Payment Field */}
+              <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Payment</label>
                 <Field
                   type="text"
                   name="payment"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
-                <ErrorMessage name="payment" component="div" className="text-red-500" />
+                <ErrorMessage name="payment" component="div" className="text-red-500 text-sm" />
               </div>
-              <div>
+
+              {/* Services Field */}
+              <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Services</label>
                 {values.services.map((service, index) => (
-                  <div key={index} className="flex items-center mt-1">
+                  <div key={index} className="flex items-center mt-1 space-x-2">
                     <Field
                       as="select"
                       name={`services[${index}]`}
@@ -210,17 +228,15 @@ const EditProProfile = () => {
                         const value = e.target.value;
                         const newServices = [...values.services];
 
-                        // Only update if the selected service is not already in the array
                         if (newServices.includes(value)) {
                           alert('This service has already been added. The last entry has been removed.');
-                          newServices.pop(); // Remove the last entry if duplicate
+                          newServices.pop();
                         } else {
-                          newServices[index] = value; // Update the selected service
+                          newServices[index] = value;
                         }
-
                         setFieldValue('services', newServices);
                       }}
-                      className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     >
                       <option value="">Select a service</option>
                       {subcategories.map((sub) => (
@@ -234,25 +250,25 @@ const EditProProfile = () => {
                       type="button"
                       onClick={() => {
                         const newServices = [...values.services];
-                        newServices.splice(index, 1); // Remove service
+                        newServices.splice(index, 1);
                         setFieldValue('services', newServices);
                       }}
-                      className="ml-2 px-2 py-1 text-white bg-red-600 rounded-md hover:bg-red-700"
+                      className="px-2 py-1 text-white bg-red-600 rounded-md hover:bg-red-700"
                     >
                       Remove
                     </button>
                   </div>
                 ))}
-                <ErrorMessage name="services" component="div" className="text-red-500" />
+                <ErrorMessage name="services" component="div" className="text-red-500 text-sm" />
               </div>
 
+              {/* Add Service Button */}
               <button
                 type="button"
                 onClick={() => {
-                  // Check for empty selection before adding
                   const newService = '';
                   if (!values.services.includes(newService)) {
-                    setFieldValue('services', [...values.services, newService]); // Add empty service
+                    setFieldValue('services', [...values.services, newService]);
                   } else {
                     alert('This service has already been added.');
                   }
@@ -262,6 +278,7 @@ const EditProProfile = () => {
                 Add Service
               </button>
 
+              {/* Save Changes Button */}
               <button
                 type="submit"
                 className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
@@ -272,6 +289,7 @@ const EditProProfile = () => {
           )}
         </Formik>
       )}
+
     </div>
   );
 };
