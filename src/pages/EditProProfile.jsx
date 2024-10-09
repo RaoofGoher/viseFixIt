@@ -66,15 +66,23 @@ const EditProProfile = () => {
   const initialValues = {
     username: profile ? profile.username : '',
     email: profile ? profile.email : '',
-    services: 
-      (profile && profile.sp_profile && profile.sp_profile.services_included && profile.sp_profile.services_included.length > 0) 
-        ? profile.sp_profile.services_included 
+    baseprice: profile ? profile.base_price : '',
+    services:
+      (profile && profile.sp_profile && profile.sp_profile.services_included && profile.sp_profile.services_included.length > 0)
+        ? profile.sp_profile.services_included
         : ['', '', '', ''], // Default to empty services if none exist
+    company_founded_date: profile ? profile.company_founded_date : '',
+    introduction: profile ? profile.introduction : '',
+    payment: profile ? profile.payment : '',
   };
+
 
   const validationSchema = Yup.object({
     username: Yup.string().required('Username is required'),
     email: Yup.string().required('email is required'),
+    baseprice: Yup.string().required('baseprice is required'),
+    introduction: Yup.string().required('introduction is required'),
+    payment: Yup.string().required('payment is required'),
     services: Yup.array()
       .of(Yup.string().required('Service is required'))
       .min(1, 'At least one service is required'),
@@ -86,23 +94,28 @@ const EditProProfile = () => {
       const foundSubcategory = subcategories.find(sub => sub.name === serviceName);
       return foundSubcategory ? foundSubcategory.id : null;
     }).filter(id => id !== null);
-  
+
     const registerData = {
       username: values.username,
       email: values.email,
     };
-  
+
     const profileData = {
       services_included: selectedServiceIds,
+      company_founded_date: values.company_founded_date,
+      base_price:values.baseprice,
+      introduction: values.introduction,
+      payment_methods:values.payment
     };
-  
+
+
     // 1. Send PATCH request for registerData
     const registerResponse = await axios.patch(`https://51.20.63.119/service_provider/update/user/${id}/`, registerData);
     console.log('Register Data PATCH request successful:', registerResponse.data);
-  
+
     // 2. Try PATCH request for profileData
     const profileResponse = await axios.patch(`https://51.20.63.119/service_provider/update/profile/${id}/`, profileData);
-  
+
     if (profileResponse.data.status === 200) {
       // If PATCH request was successful
       console.log('Profile Data PATCH request successful:', profileResponse.data.status);
@@ -115,10 +128,10 @@ const EditProProfile = () => {
       console.error('Error in PATCH request for profileData:', profileResponse.data);
     }
   };
-  
-  
-  
-  
+
+
+
+
 
   return (
     <div className="max-w-md mx-auto p-4">
@@ -150,7 +163,42 @@ const EditProProfile = () => {
                 />
                 <ErrorMessage name="email" component="div" className="text-red-500" />
               </div>
-
+              <div>
+                <label htmlFor="company_founded_date">Company Founded Date</label>
+                <Field
+                  name="company_founded_date"
+                  type="date"
+                  value={values.company_founded_date} // Link to Formik's state
+                />
+                <ErrorMessage name="company_founded_date" component="div" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Base Price</label>
+                <Field
+                  type="text"
+                  name="baseprice"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <ErrorMessage name="baseprice" component="div" className="text-red-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Introduction</label>
+                <Field
+                  type="text"
+                  name="introduction"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <ErrorMessage name="introduction" component="div" className="text-red-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Payment</label>
+                <Field
+                  type="text"
+                  name="payment"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <ErrorMessage name="payment" component="div" className="text-red-500" />
+              </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Services</label>
                 {values.services.map((service, index) => (
