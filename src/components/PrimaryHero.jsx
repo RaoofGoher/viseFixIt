@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroImage from '../assets/viseFixitHero.png'
+import HeroImage from '../assets/viseFixitHero.jpg'
 import SearchBarWithLabel from './SearchBar'
 import Stack from './Stack'
 const PrimaryHero = () => {
