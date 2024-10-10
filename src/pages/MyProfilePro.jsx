@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const MyProfilePro = () => {
   const { proData } = useProContext();
@@ -21,7 +22,7 @@ const MyProfilePro = () => {
     const fetchData = async () => {
       if (id) {
         try {
-          const response = await axios.get(`https://51.20.63.119/service_provider/get/${id}`);
+          const response = await axios.get(`${apiUrl}/service_provider/get/${id}`);
           setProfile(response.data.data.service_provider); // Set profile data to state
         } catch (error) {
           console.error('Error fetching service provider data:', error);
@@ -34,6 +35,7 @@ const MyProfilePro = () => {
 
   // Render loading or profile
   if (!profile) return <div className="text-center">Loading...</div>;
+  const fullImageUrl = `${apiUrl}${profile.sp_profile.profile_picture_url}`;
 
   return (
     <div className="max-w-6xl mx-auto my-6 rounded-lg p-6 bg-secondaryColor ">
@@ -46,6 +48,8 @@ const MyProfilePro = () => {
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
           <div className="space-y-3">
+            <p className="flex justify-between"><img src={fullImageUrl} alt='profile image' style={{ width: 100, height: 100 }} /></p>
+            {console.log("image",profile.sp_profile.profile_picture_url)}
             <p className="flex justify-between"><strong>Username:</strong> <span>{profile.username}</span></p>
             <p className="flex justify-between"><strong>Email:</strong> <span>{profile.email}</span></p>
             <p className="flex justify-between"><strong>Phone Number:</strong> <span>{profile.phone_number}</span></p>

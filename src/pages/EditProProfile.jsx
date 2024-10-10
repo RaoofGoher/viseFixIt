@@ -4,7 +4,9 @@ import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
+import ProImageUpdate from "../components/ProImageUpdate"
 import * as Yup from 'yup';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const EditProProfile = () => {
   const { proData } = useProContext();
@@ -25,7 +27,7 @@ const EditProProfile = () => {
     const fetchData = async () => {
       if (id) {
         try {
-          const response = await axios.get(`https://51.20.63.119/service_provider/get/${id}`);
+          const response = await axios.get(`${apiUrl}/service_provider/get/${id}`);
           const newProfile = response.data.data.service_provider;
 
           if (JSON.stringify(newProfile) !== JSON.stringify(profile)) {
@@ -46,7 +48,7 @@ const EditProProfile = () => {
     const fetchSubcategories = async () => {
       if (categoryId) {
         try {
-          const response = await axios.get(`https://51.20.63.119/categories/subcategories/${categoryId}/`);
+          const response = await axios.get(`${apiUrl}/categories/subcategories/${categoryId}/`);
           const fetchedSubcategories = response.data.data.subcategories; // Adjust based on actual response structure
           setSubcategories(fetchedSubcategories);
           console.log('Subcategories:', fetchedSubcategories); // Log subcategories
@@ -113,18 +115,18 @@ const EditProProfile = () => {
 
 
     // 1. Send PATCH request for registerData
-    const registerResponse = await axios.patch(`https://51.20.63.119/service_provider/update/user/${id}/`, registerData);
+    const registerResponse = await axios.patch(`${apiUrl}/service_provider/update/user/${id}/`, registerData);
     console.log('Register Data PATCH request successful:', registerResponse.data);
 
     // 2. Try PATCH request for profileData
-    const profileResponse = await axios.patch(`https://51.20.63.119/service_provider/update/profile/${id}/`, profileData);
+    const profileResponse = await axios.patch(`${apiUrl}/service_provider/update/profile/${id}/`, profileData);
 
     if (profileResponse.data.status === 200) {
       // If PATCH request was successful
       console.log('Profile Data PATCH request successful:', profileResponse.data.status);
     } else if (profileResponse.data.status === 404 && profileResponse.data.reason?.error === "SP Profile not found.") {
       // If PATCH fails due to 404, send POST request for profileData
-      const postResponse = await axios.post(`https://51.20.63.119/service_provider/create/profile/${id}/`, profileData);
+      const postResponse = await axios.post(`${apiUrl}/service_provider/create/profile/${id}/`, profileData);
       console.log('Profile Data POST request successful (created new profile):', postResponse.data);
     } else {
       // Handle other errors
@@ -151,6 +153,15 @@ const EditProProfile = () => {
         >
           {({ values, setFieldValue }) => (
             <Form className="space-y-6 bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto">
+               {/* Image Field */}
+               <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700">Image</label>
+                <Field
+                  component={ProImageUpdate}
+                  
+                />
+                
+              </div>
               {/* Username Field */}
               <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Username</label>
