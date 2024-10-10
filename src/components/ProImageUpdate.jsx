@@ -1,13 +1,15 @@
-// ImageUpdate.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useProContext } from '../context/ProContext';
+import { useToast } from '../context/ToastContext';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const ImageUpdate = ({ field, form, ...props }) => {
   const [uploading, setUploading] = useState(false);
   const [id, setId] = useState('');
   const { proData } = useProContext();
+  const { showToast } = useToast();
 
   useEffect(() => {
     if (proData && proData.id) {
@@ -19,6 +21,12 @@ const ImageUpdate = ({ field, form, ...props }) => {
     const file = event.target.files[0];
 
     if (file) {
+      // Check if the file size is less than 5MB (5 * 1024 * 1024 bytes)
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('Failed! image is too large below 5mb only.', 'warning')
+        return; // Early exit if the file is too large
+      }
+
       form.setFieldValue(field.name, file); // Set the file in Formik's state
       await handleImageUpload(file); // Automatically trigger the upload
     }

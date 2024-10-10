@@ -8,6 +8,7 @@ const MyProfilePro = () => {
   const { proData } = useProContext();
   const [id, setId] = useState('');
   const [profile, setProfile] = useState(null); // State to hold profile data
+  const [profilePicUrl, setProfilePicUrl] = useState(''); // State to hold profile picture URL
   const navigate = useNavigate();
 
   // Set id when proData changes
@@ -33,9 +34,16 @@ const MyProfilePro = () => {
     fetchData(); 
   }, [id]);
 
+  // Update profilePicUrl whenever profile data changes
+  useEffect(() => {
+    if (profile && profile.sp_profile) {
+      const newUrl = `${apiUrl}${profile.sp_profile.profile_picture_url}?t=${new Date().getTime()}`; // Add timestamp to avoid cache
+      setProfilePicUrl(newUrl);
+    }
+  }, [profile]);
+
   // Render loading or profile
   if (!profile) return <div className="text-center">Loading...</div>;
-  const fullImageUrl = `${apiUrl}${profile.sp_profile.profile_picture_url}`;
 
   return (
     <div className="max-w-6xl mx-auto my-6 rounded-lg p-6 bg-secondaryColor ">
@@ -48,8 +56,9 @@ const MyProfilePro = () => {
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
           <div className="space-y-3">
-            <p className="flex justify-between"><img src={fullImageUrl} alt='profile image' style={{ width: 100, height: 100 }} /></p>
-            {console.log("image",profile.sp_profile.profile_picture_url)}
+            <p className="flex justify-between">
+              <img src={profilePicUrl} alt='profile image' style={{ width: 100, height: 100 }} />
+            </p>
             <p className="flex justify-between"><strong>Username:</strong> <span>{profile.username}</span></p>
             <p className="flex justify-between"><strong>Email:</strong> <span>{profile.email}</span></p>
             <p className="flex justify-between"><strong>Phone Number:</strong> <span>{profile.phone_number}</span></p>
@@ -74,7 +83,7 @@ const MyProfilePro = () => {
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Services & Pricing</h2>
           <div className="space-y-3">
-            <p className="flex justify-between"><strong>included services:</strong> <span>{profile.sp_profile.services_included}</span></p>
+            <p className="flex justify-between"><strong>Included Services:</strong> <span>{profile.sp_profile.services_included}</span></p>
             <p className="flex justify-between"><strong>Base Price:</strong> <span>{profile.sp_profile.base_price}</span></p>
             <p className="flex justify-between"><strong>Payment Methods:</strong> <span>{profile.sp_profile.payment_methods}</span></p>
           </div>
