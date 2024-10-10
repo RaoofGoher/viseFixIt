@@ -53,7 +53,7 @@ const ImageUpdate = ({ field, form, ...props }) => {
       });
 
       console.log(response.data); // Handle success response
-      alert("Image uploaded successfully!");
+      showToast('Success! image uploaded.', 'success')
     } catch (error) {
       console.error("Error uploading image:", error);
       alert("Image upload failed! " + (error.response ? error.response.data.reason.error : ""));
