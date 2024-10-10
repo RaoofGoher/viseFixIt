@@ -37,6 +37,7 @@ function App() {
     createRoutesFromElements(
       <>
         <Route path="/" element={<PrimaryLayout />} >
+        
           <Route index element={<Home />} />
           <Route path='/login' element={<LoginComponent />} />
           <Route path='/prosignup' element={<SignupForm />} />
@@ -46,8 +47,7 @@ function App() {
           <Route path="/search-results" element={<SearchResultsPage />} />
           <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
           <Route path="/myprofilepro/:proname" element={<ProtecetdMyProProfile> <MyProfilePro /> </ProtecetdMyProProfile>} />
-          <Route path="/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}
-          />
+          <Route path="/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}/>
           <Route path="/myprofilecustomer/:customerName" element={<ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile>} />
 
           <Route path='*' element={<NotFoundPage />} />
