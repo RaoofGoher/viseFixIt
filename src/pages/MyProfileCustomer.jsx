@@ -36,16 +36,15 @@ const MyProfileCustomer = () => {
   }, [fetchProfile]);
 
   useEffect(() => {
-    if (profile && profile.sp_profile) {
-      const newUrl = `${apiUrl}${profile.sp_profile.profile_picture_url}?t=${new Date().getTime()}`; // Add timestamp to avoid cache
+    if (profile) {
+      const newUrl = `${apiUrl}${profile.profile_picture_url}?t=${new Date().getTime()}`; // Add timestamp to avoid cache
       setProfilePicUrl(newUrl);
+      console.log("new url",newUrl)
     }
   }, [profile]);
 
 
   if (!profile) return <div className="text-center">Loading...</div>;
-
-  console.log("component rendered",profile.profile_picture_url);
 
   const handleEditClick = () => {
     navigate(`/myprofilecustomer/${profile.username}/edit`);

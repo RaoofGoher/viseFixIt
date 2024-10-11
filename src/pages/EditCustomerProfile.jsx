@@ -5,6 +5,7 @@ import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useToast } from '../context/ToastContext';
+import CustomerImageUpdate from '../components/CustomerImageUpdate';
 
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -75,7 +76,10 @@ const EditCustomerProfile = () => {
           {/* Image Field */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-gray-700">Profile Picture</label>
-            
+            <Field
+                  component={CustomerImageUpdate}
+                  
+                />
           </div>
 
           {/* Username Field */}

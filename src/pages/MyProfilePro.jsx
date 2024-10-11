@@ -39,6 +39,7 @@ const MyProfilePro = () => {
     if (profile && profile.sp_profile) {
       const newUrl = `${apiUrl}${profile.sp_profile.profile_picture_url}?t=${new Date().getTime()}`; // Add timestamp to avoid cache
       setProfilePicUrl(newUrl);
+      console.log("pro pic",newUrl)
     }
   }, [profile]);
 
