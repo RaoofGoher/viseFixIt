@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useToast } from '../context/ToastContext';
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -12,7 +14,7 @@ const EditCustomerProfile = () => {
   const navigate = useNavigate();
   const [id, setId] = useState('');
   const [profile, setProfile] = useState(null);
-
+  const { showToast } = useToast();
   useEffect(() => {
     if (user && user.data.id) {
       setId(user.data.id);
@@ -44,7 +46,7 @@ const EditCustomerProfile = () => {
   const handleSubmit = async (values) => {
     try {
       await axios.patch(`${apiUrl}/customer/update/${id}/`, values);
-      alert('Profile updated successfully!');
+      showToast('Success! Task completed.', 'success')
       navigate(`/myprofilecustomer/${profile.username}`);
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -69,7 +71,7 @@ const EditCustomerProfile = () => {
       onSubmit={handleSubmit}
     >
       {({ setFieldValue }) => (
-        <Form className="space-y-6 bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto">
+        <Form className="space-y-6 bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto my-6">
           {/* Image Field */}
           <div className="space-y-1">
             <label className="block text-sm font-medium text-gray-700">Profile Picture</label>

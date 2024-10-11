@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -10,30 +10,35 @@ const MyProfileCustomer = () => {
   const [id, setId] = useState('');
   const [profile, setProfile] = useState(null);
 
+  // Set the ID when the user is available
   useEffect(() => {
     if (user && user.data.id) {
       setId(user.data.id);
     }
   }, [user]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (id) {
-        try {
-          const response = await axios.get(`${apiUrl}/customer/get/${id}/`);
-          setProfile(response.data.data.customer); // Update the profile state with fetched data
-        } catch (error) {
-          console.error('Error fetching profile data:', error);
-        }
+  // Fetch profile data when the ID is set
+  const fetchProfile = useCallback(async () => {
+    if (id) {
+      try {
+        const response = await axios.get(`${apiUrl}/customer/get/${id}/`);
+        setProfile(response.data.data.customer);
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
       }
-    };
-    fetchData();
+    }
   }, [id]);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   if (!profile) return <div className="text-center">Loading...</div>;
 
+  console.log("component rendered",profile.profile_picture_url);
+
   const handleEditClick = () => {
-    navigate(`/myprofilecustomer/${profile.username}/edit`); // Navigates to the Edit Profile page
+    navigate(`/myprofilecustomer/${profile.username}/edit`);
   };
 
   return (
