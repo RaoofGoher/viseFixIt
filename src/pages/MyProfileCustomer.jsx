@@ -39,7 +39,6 @@ const MyProfileCustomer = () => {
     if (profile) {
       const newUrl = `${apiUrl}${profile.profile_picture_url}?t=${new Date().getTime()}`; // Add timestamp to avoid cache
       setProfilePicUrl(newUrl);
-      console.log("new url",newUrl)
     }
   }, [profile]);
 

@@ -12,12 +12,11 @@ const CustomerImageUpdate = ({ field, form, ...props }) => {
   const { showToast } = useToast();
 
   useEffect(() => {
-    console.log("User from context:", user);
+    
     if (user && user.data.id) {
       setId(user.data.id);
     }
   }, [user]);
-console.log("hello",id)
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
 
