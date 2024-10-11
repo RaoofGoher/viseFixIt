@@ -9,6 +9,8 @@ const MyProfileCustomer = () => {
   const navigate = useNavigate();
   const [id, setId] = useState('');
   const [profile, setProfile] = useState(null);
+  const [profilePicUrl, setProfilePicUrl] = useState('');
+
 
   // Set the ID when the user is available
   useEffect(() => {
@@ -33,6 +35,14 @@ const MyProfileCustomer = () => {
     fetchProfile();
   }, [fetchProfile]);
 
+  useEffect(() => {
+    if (profile && profile.sp_profile) {
+      const newUrl = `${apiUrl}${profile.sp_profile.profile_picture_url}?t=${new Date().getTime()}`; // Add timestamp to avoid cache
+      setProfilePicUrl(newUrl);
+    }
+  }, [profile]);
+
+
   if (!profile) return <div className="text-center">Loading...</div>;
 
   console.log("component rendered",profile.profile_picture_url);
@@ -46,7 +56,7 @@ const MyProfileCustomer = () => {
       <div className="flex items-center justify-center mb-4">
         {profile.profile_picture_url ? (
           <img
-            src={profile.profile_picture_url}
+            src={profilePicUrl}
             alt={`${profile.username}'s profile`}
             className="w-24 h-24 rounded-full object-cover"
           />
