@@ -19,70 +19,70 @@ const TestimonialSlider = () => {
   })
 
 
-    const testimonials = [
-        {
-          id: 1,
-          name: "John Doe",
-          image: Img7,
-          rating: 5,
-          review: "This service was amazing! Highly recommend."
-        },
-        {
-          id: 2,
-          name: "Jane Smith",
-          image: Img8,
-          rating: 4,
-          review: "Very satisfied with the experience."
-        },
-        {
-          id: 1,
-          name: "John Doe",
-          image: Img3,
-          rating: 5,
-          review: "This service was amazing! Highly recommend."
-        },
-        {
-          id: 2,
-          name: "Jane Smith",
-          image: Img4,
-          rating: 4,
-          review: "Very satisfied with the experience."
-        },
-        {
-          id: 1,
-          name: "John Doe",
-          image: Img5,
-          rating: 5,
-          review: "This service was amazing! Highly recommend."
-        },
-        {
-          id: 2,
-          name: "Jane Smith",
-          image: Img6,
-          rating: 4,
-          review: "Very satisfied with the experience."
-        },
-        // Add more testimonials as needed
-      ];
-      
+  const testimonials = [
+    {
+      id: 1,
+      name: "John Doe",
+      image: Img7,
+      rating: 5,
+      review: "This service was amazing! Highly recommend."
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      image: Img8,
+      rating: 4,
+      review: "Very satisfied with the experience."
+    },
+    {
+      id: 1,
+      name: "John Doe",
+      image: Img3,
+      rating: 5,
+      review: "This service was amazing! Highly recommend."
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      image: Img4,
+      rating: 4,
+      review: "Very satisfied with the experience."
+    },
+    {
+      id: 1,
+      name: "John Doe",
+      image: Img5,
+      rating: 5,
+      review: "This service was amazing! Highly recommend."
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      image: Img6,
+      rating: 4,
+      review: "Very satisfied with the experience."
+    },
+    // Add more testimonials as needed
+  ];
+
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow : isMobile2 ? 1 : isMobile ? 2 : 3, 
+    slidesToShow: isMobile2 ? 1 : isMobile ? 2 : 3,
     slidesToScroll: 1,
-  
+
   };
 
   return (<>
-<div className="text-center text-6xl font-bold m-8" style={{ fontSize: 'clamp(1rem, 2vw + 1rem, 2rem)' }} >Testimonials</div>
-<Slider {...settings}>
+    <div className="text-center text-6xl font-bold m-8" style={{ fontSize: 'clamp(1rem, 2vw + 1rem, 2rem)' }} >Testimonials</div>
+    <Slider {...settings}>
       {testimonials.map((testimonial) => (
         <TestimonialCard key={testimonial.id} testimonial={testimonial} />
       ))}
     </Slider>
-    </>
+  </>
   );
 };
 export default TestimonialSlider;

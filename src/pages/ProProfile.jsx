@@ -52,13 +52,16 @@ const ProfilePage = () => {
     }
 
     // Track image loading state
-
+    const profilePictureURL = provider.sp_profile.profile_picture_url
+    ? `${apiUrl}${provider.sp_profile.profile_picture_url}`
+    : 'default_image_url_here';
+   
     return (
         <div className="profile-page max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-6 mt-10 mb-10 border border-gray-200 transition-transform transform hover:scale-105">
             <div className={`flex items-center mb-6 ${isMobile2 && "flex-col"}`}>
                 {/* Profile Picture Section */}
                 <img 
-                    src={provider.sp_profile.profile_picture_url || 'default_profile_picture_url_here'} 
+                    src={profilePictureURL || 'default_profile_picture_url_here'} 
                     alt={`${provider.username}'s profile`} 
                     className={`w-32 h-32 rounded-full border-4 border-primaryColor shadow-lg transform transition-transform duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} 
                     onLoad={() => setImageLoaded(true)} // Set image loaded state to true when the image is successfully loaded
