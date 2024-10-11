@@ -3,6 +3,7 @@ import { useProContext } from '../context/ProContext';
 import { Link, useLocation } from 'react-router-dom'; // Imported useLocation
 import StarRating from '../components/Stars'; // Import the StarRating component
 import { useMediaQuery } from 'react-responsive';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const SearchResultsPage = () => {
     const location = useLocation(); // Use location to get the current route
@@ -13,7 +14,7 @@ const SearchResultsPage = () => {
         // Update profileSearchLocation every time the route changes
         setProfileSearchLocation(location.pathname);
     }, [location, setProfileSearchLocation]); // Add setProfileSearchLocation as a dependency
-
+   
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4 text-primaryColor">Search Results</h2>
@@ -23,14 +24,17 @@ const SearchResultsPage = () => {
                 <ul className="space-y-4">
                     {zipProSearch.map(provider => {
                         const [imageLoaded, setImageLoaded] = useState(false); // Track image loading state
-
+                        const profilePictureURL = provider.profile_picture
+                        ? `${apiUrl}${provider.profile_picture}`
+                        : 'default_image_url_here';
                         return (
                             <li key={provider.service_provider_id} className="border rounded-lg px-4 py-6 shadow-md bg-white hover:shadow-lg transition-shadow">
                                 <div className={`flex items-center ${isMobile && "flex-col"}`}>
                                     {/* Image Section */}
                                     <div className="relative w-16 h-16 mr-4">
+                                        
                                         <img 
-                                            src={provider.image_url || 'default_image_url_here'} 
+                                            src={profilePictureURL}
                                             alt={`${provider.username}'s profile`} 
                                             className={`w-full h-full rounded-full border border-2 border-primaryColor object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} 
                                             onLoad={() => setImageLoaded(true)} // Set image loaded state to true when the image is successfully loaded

@@ -8,6 +8,7 @@ import { useProContext } from '../context/ProContext';
 import { Link } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
 import { useMediaQuery } from 'react-responsive';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const PrimaryNavbar = () => {
   const isMobile = useMediaQuery({
@@ -79,7 +80,9 @@ const PrimaryNavbar = () => {
                 </Link>
                 {/* Profile icon for Pro */}
                 <Link to={`/myprofilepro/${proData?.username}`}>
-                  <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
+                
+                  {/* <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" /> */}
+                  <img src={`${apiUrl}${proData.profile_picture_url}`} className="w-8 h-8 rounded-2xl cursor-pointer text-primaryColor mt-4"/>
                 </Link>
               </>
             ) : (
@@ -96,7 +99,9 @@ const PrimaryNavbar = () => {
                 </Link>
                 {/* Profile icon for Customer */}
                 <Link to={`/myprofilecustomer/${user?.data?.username}`}>
-                  <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
+                  {/* <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" /> */}
+                  
+                  <img src={`${apiUrl}${user?.data?.profile_picture_url}`} className="w-8 h-8 cursor-pointer rounded-2xl text-primaryColor mt-4"/>
                 </Link>
               </>
             )}
