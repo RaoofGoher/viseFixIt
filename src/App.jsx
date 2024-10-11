@@ -31,12 +31,13 @@ import MyProfileCustomer from './pages/MyProfileCustomer';
 import ProtecetdMyProProfile from './components/ProtecetdMyProProfile';
 import ProtectedMyCustomerProfile from './components/ProtectedMyCustomerProfile';
 import { ToastProvider } from './context/ToastContext';
-
+import EditCustomerProfile from './pages/EditCustomerProfile';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<PrimaryLayout />} >
+
           <Route index element={<Home />} />
           <Route path='/login' element={<LoginComponent />} />
           <Route path='/prosignup' element={<SignupForm />} />
@@ -46,10 +47,9 @@ function App() {
           <Route path="/search-results" element={<SearchResultsPage />} />
           <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
           <Route path="/myprofilepro/:proname" element={<ProtecetdMyProProfile> <MyProfilePro /> </ProtecetdMyProProfile>} />
-          <Route path="/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}
-          />
+          <Route path="/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}/>
           <Route path="/myprofilecustomer/:customerName" element={<ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile>} />
-
+          <Route path="/myprofilecustomer/:customername/edit" element={<ProtectedMyCustomerProfile><EditCustomerProfile /></ProtectedMyCustomerProfile>}/>
           <Route path='*' element={<NotFoundPage />} />
         </Route>
 
