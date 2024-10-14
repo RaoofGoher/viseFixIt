@@ -44,14 +44,14 @@ const PrimaryNavbar = () => {
       </Link>
 
       <div className={`navbar flex space-x-6 smartNavbar:py-4 ${isMobile ? "w-[95vw] items-center" : ""} ${isMobile2 ? "px-2" : "px-4"}`}>
-        
+
         {isAuthenticated || isProAuthenticated ? "" : <Link to="/prosignup" className='mt-2'>
           <h1 className="cursor-pointer hover:text-white hover:bg-secondaryColor border border-primaryColor py-3 px-4 rounded-sm flex items-center justify-between">
             Join as Pro
           </h1>
-        </Link> }
-        
-        
+        </Link>}
+
+
         {/* Conditional rendering based on authentication states */}
         {!isAuthenticated && !isProAuthenticated ? (
           <>
@@ -80,9 +80,19 @@ const PrimaryNavbar = () => {
                 </Link>
                 {/* Profile icon for Pro */}
                 <Link to={`/myprofilepro/${proData?.username}`}>
-                
-                  {/* <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" /> */}
-                  <img src={`${apiUrl}${proData.profile_picture_url}`} className="w-8 h-8 rounded-2xl cursor-pointer text-primaryColor mt-4"/>
+                  {console.log("picture", proData?.profile_picture_url)}
+                  {
+                    !proData?.profile_picture_url || proData.profile_picture_url === 'null'
+                      ? (
+                        <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
+                      ) : (
+                        <img
+                          src={`${apiUrl}${proData.profile_picture_url}`}
+                          alt="Profile"
+                          className="w-8 h-8 rounded-2xl cursor-pointer text-primaryColor mt-4"
+                        />
+                      )
+                  }
                 </Link>
               </>
             ) : (
@@ -99,9 +109,18 @@ const PrimaryNavbar = () => {
                 </Link>
                 {/* Profile icon for Customer */}
                 <Link to={`/myprofilecustomer/${user?.data?.username}`}>
-                  {/* <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" /> */}
-                  
-                  <img src={`${apiUrl}${user?.data?.profile_picture_url}`} className="w-8 h-8 cursor-pointer rounded-2xl text-primaryColor mt-4"/>
+                  {
+                    !user?.data?.profile_picture_url || user?.data?.profile_picture_url === 'null'
+                      ? (
+                        <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
+                      ) : (
+                        <img
+                          src={`${apiUrl}${user.data.profile_picture_url}`}
+                          alt="Profile"
+                          className="w-8 h-8 cursor-pointer rounded-2xl text-primaryColor mt-4"
+                        />
+                      )
+                  }
                 </Link>
               </>
             )}

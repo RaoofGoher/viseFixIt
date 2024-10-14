@@ -4,13 +4,14 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const CustomerForm = () => {
     const { loginUser, setCsrfToken } = useGlobalContext();
     const navigate = useNavigate();
-
+    const { showToast } = useToast();
     const initialValues = {
         first_name: '',
         last_name: '',
@@ -36,15 +37,25 @@ const CustomerForm = () => {
         zip_code: Yup.string().required('Zip code is required'),
     });
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values,{ setFieldError }) => {
         try {
             const response = await axios.post(`${apiUrl}/customer/register/`, values);
-            console.log(response.data); // Handle successful response
-
-            // Assuming your API returns user data
-            const userData = response.data; // Adjust this based on your actual API response
+            // Adjust this based on your actual API response
+            console.log(response.data.reason.error)
+            if(response.data.status === 409 && response.data.reason.error === "email already taken try another account"){
+                const errorMessages = response.data.reason.error;
+               setFieldError('email', "Email already taken");
+              showToast('email already exist', 'warning')
+             }else if(response.data.status === 409 && response.data.reason.error === "Phone number already exists"){
+               
+                showToast('phone number already exist', 'warning')
+                const errorMessages = response.data.reason.error;
+               setFieldError('phone_number', errorMessages);
+               
+             }else {
 
             // Log the user in
+            const userData = response.data;
             loginUser(userData);
             navigate(`/dashboard/${userData.data.username}`); // Redirect to the dashboard
 
@@ -52,6 +63,7 @@ const CustomerForm = () => {
             console.log(csrfToken);
             // Store the CSRF token in the context
             setCsrfToken(csrfToken);
+             }
         } catch (error) {
             console.error('There was an error registering the user:', error);
             alert('Registration failed! Please try again.'); // Provide user feedback
