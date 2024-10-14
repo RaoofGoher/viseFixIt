@@ -20,7 +20,7 @@ const Dashboard = () => {
         {userInfo1.map(([key, value]) => (
           <div key={key} className="flex justify-between bg-gray-100 p-3 rounded-lg">
             <span className="font-semibold capitalize">{key.replace('_', ' ')}</span>
-            <span className="text-gray-700">{value.toString()}</span>
+            <span className="text-gray-700">{value?.toString()}</span>
           </div>
         ))}
 
