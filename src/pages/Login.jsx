@@ -64,7 +64,7 @@ const LoginComponent = () => {
                     handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
 
                     // Redirect to pro dashboard
-                    navigate(`/dashboard/prodashboard/${userData.data.username}`);
+                    navigate(`/dashboard/prodashboard/${userData?.data?.username}`);
                 } else {
                     console.log("Logging in a regular customer for other routes");
                     loginUser(userData); // Store user data in global context
