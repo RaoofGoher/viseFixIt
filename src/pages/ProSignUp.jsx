@@ -16,6 +16,7 @@ const ServiceProviderForm = () => {
     const [subcategories, setSubcategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const { showToast } = useToast();
+   
     const initialValues = {
         first_name: '',
         last_name: '',
@@ -80,17 +81,21 @@ const ServiceProviderForm = () => {
         }
     };
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values, { setFieldError }) => {
         setIsSubmitting(true);
         try {
             const response = await axios.post(`${apiUrl}/service_provider/register/`, values);
             console.log("here is professional data" , response.data)
              if(response.data.status === 409 && response.data.reason.error === "email already taken try another one"){
-        
+                const errorMessages = response.data.reason.error;
+               setFieldError('email', "Email already taken");
               showToast('email already exist', 'warning')
              }else if(response.data.status === 409 && response.data.reason.error === "Phone number already exists"){
-                
+               
                 showToast('phone number already exist', 'warning')
+                const errorMessages = response.data.reason.error;
+               setFieldError('phone_number', errorMessages);
+               
              }
              else {
                 const proData = response.data.data;
