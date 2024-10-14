@@ -41,7 +41,7 @@ const CustomerForm = () => {
         try {
             const response = await axios.post(`${apiUrl}/customer/register/`, values);
             // Adjust this based on your actual API response
-            console.log(response.data.reason.error)
+            
             if(response.data.status === 409 && response.data.reason.error === "email already taken try another account"){
                 const errorMessages = response.data.reason.error;
                setFieldError('email', "Email already taken");

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa'
 import axios from 'axios';
 const apiUrl = import.meta.env.VITE_API_URL;
 

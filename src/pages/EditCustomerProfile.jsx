@@ -44,12 +44,23 @@ const EditCustomerProfile = () => {
     zip_code: Yup.string().required('Zip code is required'),
   });
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values,{setFieldError}) => {
     try {
-      await axios.patch(`${apiUrl}/customer/update/${id}/`, values);
+       const response  = await axios.patch(`${apiUrl}/customer/update/${id}/`, values);
+       console.log("rrr",response)
+       if(response.data.status === 400 && response.data.reason.error === "Email is already taken, try another."){
+       setFieldError('email', "The email is already set. Try another one.");
+      showToast('The email is already set. Try another one.', 'warning')
+     }else if(response.data.status === 400 && response.data.reason.error === "Phone number is already taken, try another."){
+        showToast('phone number already exist', 'warning')
+        const errorMessages = response.data.reason.error;
+       setFieldError('phone_number', errorMessages);
+       
+     }else {
       showToast('Success! Task completed.', 'success')
       navigate(`/myprofilecustomer/${profile.username}`);
-    } catch (error) {
+    } 
+  }catch (error) {
       console.error('Error updating profile:', error);
     }
   };

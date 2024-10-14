@@ -22,7 +22,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginComponent = () => {
-    const { loginUser, setCsrfToken, openRegistrationModal, isRegistrationModalOpen } = useGlobalContext(); // Access global context
+    const { loginUser, setCsrfToken, openRegistrationModal, isRegistrationModalOpen,logoutUser } = useGlobalContext(); // Access global context
     const { handleProLogin, profileSearchLocation,setProfileSearchLocation } = useProContext(); // Access pro context
     const navigate = useNavigate(); // For navigation
     const { showToast } = useToast();
@@ -64,7 +64,7 @@ const LoginComponent = () => {
                     handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
 
                     // Redirect to pro dashboard
-                    navigate(`/dashboard/prodashboard/${userData.data.username}`);
+                    navigate(`/dashboard/prodashboard/${userData?.data?.username}`);
                 } else {
                     console.log("Logging in a regular customer for other routes");
                     loginUser(userData); // Store user data in global context
@@ -75,6 +75,7 @@ const LoginComponent = () => {
         } catch (error) {
             console.error('Login error:', error);
             alert('Login failed! Please check your credentials and try again.');
+            logoutUser()
         }
     };
 

@@ -71,6 +71,7 @@ const EditProProfile = () => {
   const initialValues = {
     username: profile ? profile.username : '',
     email: profile ? profile.email : '',
+    phone_number:profile?profile.phone_number:"",
     baseprice: profile ? profile.sp_profile.base_price : '',
     services:
       (profile && profile.sp_profile && profile.sp_profile.services_included && profile.sp_profile.services_included.length > 0)
@@ -85,6 +86,7 @@ const EditProProfile = () => {
   const validationSchema = Yup.object({
     username: Yup.string().required('Username is required'),
     email: Yup.string().required('email is required'),
+    phone_number: Yup.string().required('phone number is required'),
     baseprice: Yup.string().required('baseprice is required'),
     introduction: Yup.string().required('introduction is required'),
     payment: Yup.string().required('payment is required'),
@@ -93,49 +95,75 @@ const EditProProfile = () => {
       .min(1, 'At least one service is required'),
   });
 
-  const handleSubmit = async (values) => {
-    // Map service names to their IDs
-    const selectedServiceIds = values.services.map(serviceName => {
-      const foundSubcategory = subcategories.find(sub => sub.name === serviceName);
-      return foundSubcategory ? foundSubcategory.id : null;
-    }).filter(id => id !== null);
-
-    const registerData = {
-      username: values.username,
-      email: values.email,
-    };
-
-    const profileData = {
-      services_included: selectedServiceIds,
-      company_founded_date: values.company_founded_date,
-      base_price: values.baseprice,
-      introduction: values.introduction,
-      payment_methods: values.payment
-    };
-
-
-    // 1. Send PATCH request for registerData
-    const registerResponse = await axios.patch(`${apiUrl}/service_provider/update/user/${id}/`, registerData);
-    console.log('Register Data PATCH request successful:', registerResponse.data);
-
-    // 2. Try PATCH request for profileData
-    const profileResponse = await axios.patch(`${apiUrl}/service_provider/update/profile/${id}/`, profileData);
-
-    if (profileResponse.data.status === 200) {
-      // If PATCH request was successful
-      console.log('Profile Data PATCH request successful:', profileResponse.data.status);
-    } else if (profileResponse.data.status === 404 && profileResponse.data.reason?.error === "SP Profile not found.") {
-      // If PATCH fails due to 404, send POST request for profileData
-      const postResponse = await axios.post(`${apiUrl}/service_provider/create/profile/${id}/`, profileData);
-      console.log('Profile Data POST request successful (created new profile):', postResponse.data);
-    } else {
-      // Handle other errors
-      console.error('Error in PATCH request for profileData:', profileResponse.data);
+  const handleSubmit = async (values, { setFieldError }) => {
+    try {
+      // Map service names to their IDs
+      const selectedServiceIds = values.services.map(serviceName => {
+        const foundSubcategory = subcategories.find(sub => sub.name === serviceName);
+        return foundSubcategory ? foundSubcategory.id : null;
+      }).filter(id => id !== null);
+  
+      // Prepare data
+      const registerData = {
+        username: values.username,
+        email: values.email,
+        phone_number: values.phone_number,
+      };
+  
+      const profileData = {
+        services_included: selectedServiceIds,
+        company_founded_date: values.company_founded_date,
+        base_price: values.baseprice,
+        introduction: values.introduction,
+        payment_methods: values.payment,
+      };
+  
+      // 1. Send PATCH request for registerData
+      const registerResponse = await axios.patch(`${apiUrl}/service_provider/update/user/${id}/`, registerData);
+      console.log("Register Data Updated", registerResponse);
+  
+      if (registerResponse.data.status === 400) {
+        console.log(registerResponse.data.status)
+        if (registerResponse.data.reason.error === "Email is already taken, try another.") {
+          setFieldError('email', "The email is already set. Try another one.");
+          showToast('The email is already set. Try another one.', 'warning');
+          return;
+        } else if (registerResponse.data.reason.error === "Phone number is already taken, try another.") {
+          setFieldError('phone_number', "Phone number already exists. Try another one.");
+          showToast('Phone number already exists. Try another one.', 'warning');
+          return;
+        }
+      }
+      // 2. Try PATCH request for profileData
+      const profileResponse = await axios.patch(`${apiUrl}/service_provider/update/profile/${id}/`, profileData);
+      console.log("Profile Data Updated", profileResponse);
+  
+      // Check if PATCH for profileData was successful
+      if (profileResponse.data.status === 200) {
+        showToast('Profile updated successfully!', 'success');
+      } else if (profileResponse.data.status === 404 && profileResponse.data.reason?.error === "SP Profile not found.") {
+        // If PATCH fails due to profile not existing, send POST request
+        const postResponse = await axios.post(`${apiUrl}/service_provider/create/profile/${id}/`, profileData);
+        console.log("Profile Created", postResponse);
+  
+        // Handle email and phone number errors from the POST request
+      
+      } else {
+        // Handle other profile PATCH errors
+        console.error('Error in PATCH request for profileData:', profileResponse.data);
+        showToast('An error occurred while updating the profile.', 'error');
+      }
+  
+      // Navigate to profile page after success
+      navigate(`/myprofilepro/${profile.username}`);
+      showToast('Success! Task completed.', 'success');
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('Error updating profile:', error);
+      showToast('An error occurred while updating the profile. Please try again.', 'error');
     }
-
-    navigate(`/myprofilepro/${profile.username}`);
-    showToast('Success! Task completed.', 'success')
   };
+  
 
 
 
@@ -182,6 +210,16 @@ const EditProProfile = () => {
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
                 <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+              </div>
+              {/* Phone Number Field */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+                <Field
+                  type="text"
+                  name="phone_number"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <ErrorMessage name="phone_number" component="div" className="text-red-500 text-sm" />
               </div>
 
               {/* Company Founded Date Field */}

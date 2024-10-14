@@ -80,7 +80,7 @@ const PrimaryNavbar = () => {
                 </Link>
                 {/* Profile icon for Pro */}
                 <Link to={`/myprofilepro/${proData?.username}`}>
-                  {console.log("picture", proData?.profile_picture_url)}
+                  
                   {
                     !proData?.profile_picture_url || proData.profile_picture_url === 'null'
                       ? (

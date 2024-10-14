@@ -9,7 +9,7 @@ export const GlobalProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(() => localStorage.getItem('isAuthenticated') === 'true');
     const [user, setUser] = useState(() => {
         const storedUser = localStorage.getItem('user');
-        return storedUser ? JSON.parse(storedUser) : null;
+        return storedUser && storedUser !== 'undefined' ? JSON.parse(storedUser) : null;
     });
     const [csrfToken, setCsrfToken] = useState('');
     const [token, setToken] = useState(localStorage.getItem('token'));
