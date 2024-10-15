@@ -24,10 +24,8 @@ export const AvailabilityProvider = ({ children }) => {
   // Fetch subcategories when categoryId changes
   useEffect(() => {
     if (categoryId) {
-      console.log(`CategoryId has changed to: ${categoryId}. Fetching subcategories...`);
       const fetchSubcategories = async () => {
         try {
-          console.log("Making API request...");
           const response = await axios.get(`https://api.thefixit4u.com/categories/subcategories/${categoryId}/`);
           setSubcategoriesList(response.data.data.subcategories);
           console.log("Subcategories fetched successfully:", response.data.data.subcategories);

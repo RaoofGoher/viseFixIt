@@ -60,13 +60,12 @@ const SearchComponent = () => {
       console.error('Please select a category and enter a zipcode');
       return;
     }
-
     try {
       const response = await axios.post(`${apiUrl}/service_provider/search/`, {
         zipcode,
         category_id: selectedCategory.id,
       });
-      
+      console.log("baly",response)
       const serviceProviders = response.data.service_providers;
       
      setZipProSearch(serviceProviders)
