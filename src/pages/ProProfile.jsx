@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FiMail, FiPhone, FiDollarSign, FiCalendar } from 'react-icons/fi'; // Importing icons
 import { FaMoneyBill } from 'react-icons/fa'; // Importing icons
 import StarRating from '../components/Stars';
+import AvailabilityModal from '../components/AvailabilityModal';
+import { AvailabilityContext } from '../context/AvailabilityContext';
 import { useMediaQuery } from 'react-responsive'
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -13,7 +15,7 @@ const ProfilePage = () => {
     const [loading, setLoading] = useState(true); // Add a loading state
     const [error, setError] = useState(null); // Add an error state
     const [imageLoaded, setImageLoaded] = useState(false);
-
+    const { openModal } = useContext(AvailabilityContext); // Get openModal from context
     const isMobile = useMediaQuery({
         query: '(max-width: 925px)'
       })
@@ -56,6 +58,11 @@ const ProfilePage = () => {
     ? `${apiUrl}${provider.sp_profile.profile_picture_url}`
     : 'default_image_url_here';
    
+    function handleSubmit () {
+       openModal()
+    }
+
+
     return (
         <div className="profile-page max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-6 mt-10 mb-10 border border-gray-200 transition-transform transform hover:scale-105">
             <div className={`flex items-center mb-6 ${isMobile2 && "flex-col"}`}>
@@ -109,10 +116,11 @@ const ProfilePage = () => {
             </div>
 
             <div className="mt-6">
-                <button className="w-full bg-primaryColor text-white px-4 py-3 rounded-lg shadow-md hover:bg-lightColor1 hover:text-black transition duration-300 transform hover:scale-105">
+                <button onClick={handleSubmit} className="w-full bg-primaryColor text-white px-4 py-3 rounded-lg shadow-md hover:bg-lightColor1 hover:text-black transition duration-300 transform hover:scale-105">
                     Contact Provider
                 </button>
             </div>
+            <AvailabilityModal/>
         </div>
     );
 };
