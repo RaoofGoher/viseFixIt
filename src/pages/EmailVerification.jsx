@@ -20,7 +20,7 @@ const EmailVerification = () => {
           showToast('Email verified successfully!','success');
           setTimeout(() => {
             navigate("/");
-          }, 3000);
+          }, 6000);
         } else {
           setStatus('Email verification failed.');
         }
