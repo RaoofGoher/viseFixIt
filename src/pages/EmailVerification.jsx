@@ -2,6 +2,8 @@ import { useParams,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useToast } from '../context/ToastContext';
+import { FaCheck, FaCross } from 'react-icons/fa';
+import { faXmark } from 'react-icons/fa';
 
 const EmailVerification = () => {
   const { uid, token } = useParams();
@@ -35,7 +37,15 @@ const EmailVerification = () => {
     <div className="flex items-center justify-center h-[70vh] bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md">
         <h2 className="text-xl font-semibold mb-4">Email Verification</h2>
-        <p>{status}</p>
+        <p>{status === "Your email has been verified successfully!" ?
+         <>
+         You are varified <FaCheck className='text-green'/>
+         
+         </>
+        :<>
+        you are not verified <FaCross className='text-red'/>
+        </>
+        }</p>
       </div>
     </div>
   );
