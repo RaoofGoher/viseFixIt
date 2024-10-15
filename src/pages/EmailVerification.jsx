@@ -17,6 +17,7 @@ const EmailVerification = () => {
           setStatus('Email verification failed.');
         }
       } catch (error) {
+        console.log("email verifiaction error",error)
         setStatus('Email verification failed.');
       }
     };
