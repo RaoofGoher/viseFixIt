@@ -34,16 +34,17 @@ const EmailVerification = () => {
   }, [uid, token]);
 
   return (
-    <div className="flex items-center justify-center h-[70vh] bg-gray-100">
+    <div className="flex items-center justify-center h-[30vh] bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md">
         <h2 className="text-xl font-semibold mb-4">Email Verification</h2>
         <p>{status === "Your email has been verified successfully!" ?
-         <>
-         You are varified <FaCheck className='text-green'/>
+         <div className='flex  items-center'>
+
+         You are varified <FaCheck className='text-green-500'/>
          
-         </>
+         </div>
         :<>
-        you are not verified <FaCross className='text-red'/>
+        you are not verified <FaCross className='text-red-500'/>
         </>
         }</p>
       </div>
