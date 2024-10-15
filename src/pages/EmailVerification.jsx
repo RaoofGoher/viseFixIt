@@ -10,6 +10,7 @@ const EmailVerification = () => {
     const verifyEmail = async () => {
       try {
         const response = await axios.get(`http://api.thefixit4u.com/activate/${id}/${token}/`);
+        console.log("email verifiaction response",response)
         if (response.status === 200) {
           setStatus('Your email has been verified successfully!');
         } else {
