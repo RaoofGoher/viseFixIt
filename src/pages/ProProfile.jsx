@@ -15,7 +15,7 @@ const ProfilePage = () => {
     const [loading, setLoading] = useState(true); // Add a loading state
     const [error, setError] = useState(null); // Add an error state
     const [imageLoaded, setImageLoaded] = useState(false);
-    const { openModal } = useContext(AvailabilityContext); // Get openModal from context
+    const { openModal,setCategoryId } = useContext(AvailabilityContext); // Get openModal from context
     const isMobile = useMediaQuery({
         query: '(max-width: 925px)'
       })
@@ -30,6 +30,7 @@ const ProfilePage = () => {
                 const response = await axios.get(`${apiUrl}/service_provider/get/${id}`);
                 setProvider(response.data.data.service_provider);
                 setError(null); // Clear any previous errors
+                setCategoryId(response.data.data.service_provider.category_id)
             } catch (error) {
                 console.error('Error fetching provider details:', error);
                 setError('Failed to load provider details. Please try again.'); // Set error message
