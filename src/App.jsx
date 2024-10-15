@@ -32,6 +32,7 @@ import ProtecetdMyProProfile from './components/ProtecetdMyProProfile';
 import ProtectedMyCustomerProfile from './components/ProtectedMyCustomerProfile';
 import { ToastProvider } from './context/ToastContext';
 import EditCustomerProfile from './pages/EditCustomerProfile';
+import EmailVerification from './pages/EmailVerification';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -51,6 +52,7 @@ function App() {
           <Route path="/myprofilecustomer/:customerName" element={<ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile>} />
           <Route path="/myprofilecustomer/:customername/edit" element={<ProtectedMyCustomerProfile><EditCustomerProfile /></ProtectedMyCustomerProfile>}/>
           <Route path='*' element={<NotFoundPage />} />
+          <Route path="/activate/:uid/:token" element={<EmailVerification />} />
         </Route>
 
       </>
