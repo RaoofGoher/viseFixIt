@@ -20,7 +20,7 @@ const EmailVerification = () => {
           showToast('Email verified successfully!','success');
           setTimeout(() => {
             navigate("/");
-          }, 2000);
+          }, 3000);
         } else {
           setStatus('Email verification failed.');
         }
@@ -40,7 +40,7 @@ const EmailVerification = () => {
         <p>{status === "Your email has been verified successfully!" ?
          <div className='flex  items-center'>
 
-         You are varified <FaCheck className='text-green-500'/>
+         You are varified <FaCheck className='text-green-500 text-xl'/>
          
          </div>
         :<>
