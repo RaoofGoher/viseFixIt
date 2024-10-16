@@ -9,6 +9,8 @@ export const AvailabilityProvider = ({ children }) => {
   const [subcategoriesList, setSubcategoriesList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [categoryId, setCategoryId] = useState('');
+  const [selectedProId, setSelectedProId] = useState('');
+  const [selectedProDetails, setSelectedProDetails] = useState('');
 
   // Open and close modal functions
   const openModal = () => {
@@ -39,7 +41,24 @@ export const AvailabilityProvider = ({ children }) => {
       console.warn("No categoryId provided!");
     }
   }, [categoryId]); // useEffect runs when categoryId changes
+  
+  
+  // selected pro details
+  useEffect(() => {
+    const fetchSelectedProDetails = async () => {
+      try {
+        const response = await axios.get(`https://api.thefixit4u.com/service_provider/get/${selectedProId}`);
+        setSelectedProDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching the service provider details:", error);
+        // Handle error appropriately (e.g., show an error message)
+      }
+    };
 
+    if (selectedProId) {
+      fetchSelectedProDetails();
+    }
+  }, [selectedProId]);
   return (
     <AvailabilityContext.Provider
       value={{
@@ -49,6 +68,10 @@ export const AvailabilityProvider = ({ children }) => {
         isModalOpen, // Provide modal state
         openModal,   // Provide open modal function
         closeModal,  // Provide close modal function
+        selectedProId,
+        setSelectedProId,
+        selectedProDetails,
+        setSelectedProDetails
       }}
     >
       {children}

@@ -7,6 +7,7 @@ const AvailabilityModal = () => {
     subcategoriesList,
     isModalOpen,
     closeModal,
+    selectedProDetails
   } = useContext(AvailabilityContext);
 
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,7 @@ const AvailabilityModal = () => {
 
   // Update the selectedServices when subcategoriesList is available
   useEffect(() => {
+    console.log("baly",selectedProDetails)
     if (subcategoriesList.length > 0) {
       setSelectedServices(
         subcategoriesList.map(sub => ({
@@ -64,7 +66,7 @@ const AvailabilityModal = () => {
       console.log("Payload: ", payload);
 
       // Fake API call with the new payload structure
-      const response = await axios.post('http://api.thefixit4u.com/service_provider/create/service/request/', payload);
+      const response = await axios.post('https://api.thefixit4u.com/service_provider/create/service/request/', payload);
       console.log(response.data);
       
     } catch (error) {
@@ -75,11 +77,37 @@ const AvailabilityModal = () => {
     }
   };
 
+  let providerInfo;
+
+  if (selectedProDetails) {
+    {console.log("baly3",selectedProDetails)}
+      const { company_name, sp_profile, average_rating, services_included } = selectedProDetails.data.service_provider;
+         console.log("baly2",company_name,sp_profile,average_rating,services_included)
+      providerInfo = (
+          <div>
+              <h2>Service Provider Information</h2>
+              <p><strong>Company Name:</strong> {company_name || 'N/A'}</p>
+              <p><strong>Base Price:</strong> ${sp_profile?.base_price}</p>
+              <p><strong>Average Rating:</strong> {average_rating} / 5</p>
+              <h3>Services Included:</h3>
+              <ul>
+                  {services_included?.map((service, index) => (
+                      <li key={index}>{service}</li>
+                  ))}
+              </ul>
+          </div>
+      );
+  } else {
+      providerInfo = <p>Loading...</p>;
+  }
+
+  
+
   return isModalOpen ? (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-[120px]">
         <h2 className="text-xl font-semibold mb-4">Manage Availability</h2>
-
+        <div>{providerInfo}</div>
         {/* Display subcategories with quantity controls and total price */}
         <div className="mb-4">
           <h3 className="text-lg font-semibold mb-2">Available Subcategories</h3>
