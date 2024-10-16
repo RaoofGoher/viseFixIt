@@ -68,7 +68,6 @@ const SearchComponent = () => {
         zip_code:zipcode,
         category_id: selectedCategory.id,
       });
-      console.log("baly",response)
       const serviceProviders = response.data.service_providers;
       
      setZipProSearch(serviceProviders)

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext';
 import axios from 'axios';
 
@@ -12,13 +12,20 @@ const AvailabilityModal = () => {
   const [loading, setLoading] = useState(false);
 
   // Set initial state for quantities and total prices for each subcategory
-  const [selectedServices, setSelectedServices] = useState(
-    subcategoriesList.map(sub => ({
-      ...sub,
-      quantity: 0,
-      total: 0
-    }))
-  );
+  const [selectedServices, setSelectedServices] = useState([]);
+
+  // Update the selectedServices when subcategoriesList is available
+  useEffect(() => {
+    if (subcategoriesList.length > 0) {
+      setSelectedServices(
+        subcategoriesList.map(sub => ({
+          ...sub,
+          quantity: 0,
+          total: 0
+        }))
+      );
+    }
+  }, [subcategoriesList]);
 
   // Handle increasing quantity
   const handleIncrease = (index) => {
@@ -39,67 +46,34 @@ const AvailabilityModal = () => {
   };
 
   // Handle form submission
-  // const handleSubmit = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
-  //       success: true,
-  //       data: {
-  //         message: "Service request created successfully!",
-  //         service_request: {
-  //           id: 3,
-  //           service_provider_id: 4,
-  //           category_id: 2,
-  //           base_price: 500.0,
-  //           subcategories: selectedServices.filter(service => service.quantity > 0).map(service => ({
-  //             subcategory_name: service.name,
-  //             quantity: service.quantity,
-  //             individual_price: service.additional_price,
-  //             individual_total: service.total
-  //           }))
-  //         }
-  //       }
-  //     });
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      // Construct the payload with only id and quantity
+      const payload = {
+        service_provider_id: 4,  // Assuming this is a static value, you can adjust it if needed
+        category_id: 2,  // Assuming this is a static value
+        subcategories: selectedServices
+          .filter(service => service.quantity > 0) // Only include subcategories with quantity > 0
+          .map(service => ({
+            id: service.id,  // Send the subcategory ID
+            quantity: service.quantity // Send the quantity
+          }))
+      };
 
-  //     console.log(response.data);
+      console.log("Payload: ", payload);
+
+      // Fake API call with the new payload structure
+      const response = await axios.post('http://api.thefixit4u.com/service_provider/create/service/request/', payload);
+      console.log(response.data);
       
-  //   } catch (error) {
-  //     console.error('Error submitting service request:', error);
-      
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-// Handle form submission
-const handleSubmit = async () => {
-  setLoading(true);
-  try {
-    // Construct the payload with only id and quantity
-    const payload = {
-      service_provider_id: 4,  // Assuming this is a static value, you can adjust it if needed
-      category_id: 2,  // Assuming this is a static value
-      subcategories: selectedServices
-        .filter(service => service.quantity > 0) // Only include subcategories with quantity > 0
-        .map(service => ({
-          id: service.id,  // Send the subcategory ID
-          quantity: service.quantity // Send the quantity
-        }))
-    };
-
-    // Fake API call with the new payload structure
-    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', payload);
-   console.log("baly",payload)
-    console.log(response.data);
-    
-  } catch (error) {
-    console.error('Error submitting service request:', error);
+    } catch (error) {
+      console.error('Error submitting service request:', error);
    
-  } finally {
-    setLoading(false);
-  }
-};
-
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return isModalOpen ? (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
