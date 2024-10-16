@@ -33,6 +33,7 @@ import ProtectedMyCustomerProfile from './components/ProtectedMyCustomerProfile'
 import { ToastProvider } from './context/ToastContext';
 import EditCustomerProfile from './pages/EditCustomerProfile';
 import EmailVerification from './pages/EmailVerification';
+import {AvailabilityProvider} from'./context/AvailabilityContext'
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -63,11 +64,13 @@ function App() {
 
     <GlobalProvider>
       <ProProvider>
+        <AvailabilityProvider>
         <AxiosInterceptor>
         <ToastProvider>
           <RouterProvider router={router} />
           </ToastProvider>
         </AxiosInterceptor>
+        </AvailabilityProvider>
       </ProProvider>
     </GlobalProvider>
   );

@@ -37,7 +37,7 @@ const LoginComponent = () => {
             if (profileSearchLocation === "/search-results") {
                 // Always navigate to search-profile
                 if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
-                    console.log("Logging in a professional user for search-profile");
+                   
 
                     const csrfToken = userData.data.csrf_token;
 
@@ -45,7 +45,7 @@ const LoginComponent = () => {
                     setCsrfToken(csrfToken);
                     handleProLogin(csrfToken, userData.data); // Pass the pro data to handleProLogin
                 } else {
-                    console.log("Logging in a regular customer for search-profile");
+                   
                     loginUser(userData); // Store user data in global context
                 }
 
