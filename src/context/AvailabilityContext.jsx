@@ -11,7 +11,8 @@ export const AvailabilityProvider = ({ children }) => {
   const [categoryId, setCategoryId] = useState('');
   const [selectedProId, setSelectedProId] = useState('');
   const [selectedProDetails, setSelectedProDetails] = useState('');
-
+  const [selectedProCategories, setSelectedProCategories] = useState('');
+  const [availabilityResponse, setAvailabilityResponse ] =useState('');
   // Open and close modal functions
   const openModal = () => {
     console.log("Opening modal...");
@@ -30,7 +31,7 @@ export const AvailabilityProvider = ({ children }) => {
         try {
           const response = await axios.get(`https://api.thefixit4u.com/categories/subcategories/${categoryId}/`);
           setSubcategoriesList(response.data.data.subcategories);
-          console.log("Subcategories fetched successfully:", response.data.data.subcategories);
+          
         } catch (error) {
           console.error("Error fetching subcategories:", error);
         }
@@ -71,7 +72,11 @@ export const AvailabilityProvider = ({ children }) => {
         selectedProId,
         setSelectedProId,
         selectedProDetails,
-        setSelectedProDetails
+        setSelectedProDetails,
+        selectedProCategories,
+        setSelectedProCategories,
+        availabilityResponse, 
+        setAvailabilityResponse
       }}
     >
       {children}
