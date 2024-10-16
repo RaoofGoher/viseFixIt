@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext'; // Or create a new context for receipt if needed
 
 const ReceiptModal = () => {
-  const { isReceiptModalOpen, closeReceiptModal } = useContext(AvailabilityContext); // Use AvailabilityContext for modal state management or create a new context
+  const { isReceiptModalOpen, closeReceiptModal, selectedProDetails, availabilityResponse } = useContext(AvailabilityContext); // Use AvailabilityContext for modal state management or create a new context
 
   // Sample receipt data (replace this with actual data from your context or props)
   const receipt = {
@@ -13,7 +13,7 @@ const ReceiptModal = () => {
     ],
     totalAmount: 80,
   };
-
+        console.log("baly111",selectedProDetails,availabilityResponse)
   return isReceiptModalOpen ? (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">

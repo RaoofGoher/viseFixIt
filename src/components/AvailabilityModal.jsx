@@ -11,6 +11,8 @@ const AvailabilityModal = () => {
     selectedProDetails,
     setAvailabilityResponse,
     openReceiptModal,
+    selectedProId,
+    
   } = useContext(AvailabilityContext);
 
   const [loading, setLoading] = useState(false);
@@ -55,8 +57,8 @@ const AvailabilityModal = () => {
     try {
       // Construct the payload with only id and quantity
       const payload = {
-        service_provider_id: 4,  // Assuming this is a static value, you can adjust it if needed
-        category_id: 2,  // Assuming this is a static value
+        service_provider_id: selectedProId,  // Assuming this is a static value, you can adjust it if needed
+        category_id: selectedProDetails.data.service_provider.category_id,  // Assuming this is a static value
         subcategories: selectedServices
           .filter(service => service.quantity > 0) // Only include subcategories with quantity > 0
           .map(service => ({
@@ -103,8 +105,8 @@ const AvailabilityModal = () => {
 
   return isModalOpen ? (
     <>
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-[120px]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 mt-[320px]">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full ">
         <h2 className="text-xl font-semibold mb-4">Manage Availability</h2>
         <div>{providerInfo}</div>
         <hr/>

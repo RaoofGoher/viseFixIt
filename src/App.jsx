@@ -1,4 +1,5 @@
 // App.js
+import React from 'react';
 import {
   Route,
   createBrowserRouter,
@@ -67,7 +68,9 @@ function App() {
         <AvailabilityProvider>
         <AxiosInterceptor>
         <ToastProvider>
+        <React.StrictMode>
           <RouterProvider router={router} />
+        </React.StrictMode>
           </ToastProvider>
         </AxiosInterceptor>
         </AvailabilityProvider>

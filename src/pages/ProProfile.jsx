@@ -30,6 +30,7 @@ const ProfilePage = () => {
                 setError(null); // Clear any previous errors
                 setCategoryId(response.data.data.service_provider.category_id);
                 setSelectedProId(response.data.data.service_provider.id)
+                
                 setSelectedProCategories(response.data.data.service_provider.sp_profile)
             } catch (error) {
                 console.error('Error fetching provider details:', error);
