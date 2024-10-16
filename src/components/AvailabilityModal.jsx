@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext';
 import axios from 'axios';
+import ReceiptModal from './ReceiptModal';
 
 const AvailabilityModal = () => {
   const {
@@ -8,7 +9,8 @@ const AvailabilityModal = () => {
     isModalOpen,
     closeModal,
     selectedProDetails,
-    setAvailabilityResponse
+    setAvailabilityResponse,
+    openReceiptModal,
   } = useContext(AvailabilityContext);
 
   const [loading, setLoading] = useState(false);
@@ -71,6 +73,7 @@ const AvailabilityModal = () => {
     } finally {
       setLoading(false);
     }
+    openReceiptModal();
   };
 
   let providerInfo;
@@ -99,6 +102,7 @@ const AvailabilityModal = () => {
   
 
   return isModalOpen ? (
+    <>
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-[120px]">
         <h2 className="text-xl font-semibold mb-4">Manage Availability</h2>
@@ -164,6 +168,8 @@ const AvailabilityModal = () => {
         </div>
       </div>
     </div>
+    <ReceiptModal/>
+    </>
   ) : null;
 };
 

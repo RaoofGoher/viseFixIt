@@ -13,15 +13,21 @@ export const AvailabilityProvider = ({ children }) => {
   const [selectedProDetails, setSelectedProDetails] = useState('');
   const [selectedProCategories, setSelectedProCategories] = useState('');
   const [availabilityResponse, setAvailabilityResponse ] =useState('');
+  const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
   // Open and close modal functions
   const openModal = () => {
-    console.log("Opening modal...");
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log("Closing modal...");
     setIsModalOpen(false);
+  };
+  const openReceiptModal = () => {
+    setIsReceiptModalOpen(true);
+  };
+
+  const closeReceiptModal = () => {
+    setIsReceiptModalOpen(false);
   };
 
   // Fetch subcategories when categoryId changes
@@ -76,7 +82,11 @@ export const AvailabilityProvider = ({ children }) => {
         selectedProCategories,
         setSelectedProCategories,
         availabilityResponse, 
-        setAvailabilityResponse
+        setAvailabilityResponse,
+        isReceiptModalOpen,
+        setIsReceiptModalOpen,
+        openReceiptModal,
+        closeReceiptModal,  // Provide open receipt modal function
       }}
     >
       {children}
