@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive'
+import { useToast } from '../context/ToastContext';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SearchComponent = () => {
@@ -14,6 +16,7 @@ const SearchComponent = () => {
   const [selectedCategory, setSelectedCategory] = useState(null); // Store selected category
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+  const { showToast } = useToast();
   
   const {setZipProSearch}   = useProContext();
 
@@ -57,12 +60,12 @@ const SearchComponent = () => {
 
   const handleSearch = async () => {
     if (!selectedCategory || !zipcode) {
-      console.error('Please select a category and enter a zipcode');
+      showToast('please enter category and zip code', 'warning')
       return;
     }
     try {
       const response = await axios.post(`${apiUrl}/service_provider/search/`, {
-        zipcode,
+        zip_code:zipcode,
         category_id: selectedCategory.id,
       });
       console.log("baly",response)
@@ -76,7 +79,7 @@ const SearchComponent = () => {
         console.log('No service providers found for this category and zipcode.');
       }
     } catch (error) {
-      console.error('Error searching service providers:', error);
+      showToast('please enter valid category and valid zip code', 'warning')
     }
   };
 
