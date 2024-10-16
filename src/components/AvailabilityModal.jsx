@@ -1,12 +1,18 @@
 import { useContext, useState, useEffect } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext';
 import axios from 'axios';
+import ReceiptModal from './ReceiptModal';
 
 const AvailabilityModal = () => {
   const {
     subcategoriesList,
     isModalOpen,
     closeModal,
+    selectedProDetails,
+    setAvailabilityResponse,
+    openReceiptModal,
+    selectedProId,
+    
   } = useContext(AvailabilityContext);
 
   const [loading, setLoading] = useState(false);
@@ -51,8 +57,8 @@ const AvailabilityModal = () => {
     try {
       // Construct the payload with only id and quantity
       const payload = {
-        service_provider_id: 4,  // Assuming this is a static value, you can adjust it if needed
-        category_id: 2,  // Assuming this is a static value
+        service_provider_id: selectedProId,  // Assuming this is a static value, you can adjust it if needed
+        category_id: selectedProDetails.data.service_provider.category_id,  // Assuming this is a static value
         subcategories: selectedServices
           .filter(service => service.quantity > 0) // Only include subcategories with quantity > 0
           .map(service => ({
@@ -61,33 +67,57 @@ const AvailabilityModal = () => {
           }))
       };
 
-      console.log("Payload: ", payload);
-
-      // Fake API call with the new payload structure
-      const response = await axios.post('http://api.thefixit4u.com/service_provider/create/service/request/', payload);
-      console.log(response.data);
-      
+      const response = await axios.post('https://api.thefixit4u.com/service_provider/create/service/request/', payload);
+      setAvailabilityResponse(response.data)
     } catch (error) {
       console.error('Error submitting service request:', error);
    
     } finally {
       setLoading(false);
     }
+    openReceiptModal();
   };
 
-  return isModalOpen ? (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full mt-[120px]">
-        <h2 className="text-xl font-semibold mb-4">Manage Availability</h2>
+  let providerInfo;
 
+  if (selectedProDetails) {
+      const { company_name, sp_profile, average_rating, services_included } = selectedProDetails.data.service_provider;
+        
+      providerInfo = (
+          <div>
+              <h2>Service Provider Information</h2>
+              <p><strong>Company Name:</strong> {company_name || 'N/A'}</p>
+              <p><strong>Base Price:</strong> ${sp_profile?.base_price}</p>
+              <p><strong>Average Rating:</strong> {average_rating} / 5</p>
+              <h3>Services Included:</h3>
+              <ul>
+                  {sp_profile?.services_included?.map((service, index) => (
+                      <li key={index}>{service}</li>
+                  ))}
+              </ul>
+          </div>
+      );
+  } else {
+      providerInfo = <p>Loading...</p>;
+  }
+
+  
+
+  return isModalOpen ? (
+    <>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 mt-[320px]">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full ">
+        <h2 className="text-xl font-semibold mb-4">Manage Availability</h2>
+        <div>{providerInfo}</div>
+        <hr/>
         {/* Display subcategories with quantity controls and total price */}
         <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2">Available Subcategories</h3>
+          <h3 className="text-lg font-semibold mb-2">Extra Services</h3>
           <div className="space-y-4">
             {selectedServices.map((sub, index) => (
               <div key={index} className="flex justify-between items-center">
                 <div className="text-gray-700">
-                  {sub.name} - <strong>Price per unit:</strong> ${sub.additional_price}
+                  {sub.name} - <strong>Price:</strong> ${sub.additional_price}
                 </div>
                 <div className="flex items-center space-x-2">
                   {/* Minus Button */}
@@ -140,6 +170,8 @@ const AvailabilityModal = () => {
         </div>
       </div>
     </div>
+    <ReceiptModal/>
+    </>
   ) : null;
 };
 

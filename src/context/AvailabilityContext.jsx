@@ -9,16 +9,25 @@ export const AvailabilityProvider = ({ children }) => {
   const [subcategoriesList, setSubcategoriesList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [categoryId, setCategoryId] = useState('');
-
+  const [selectedProId, setSelectedProId] = useState('');
+  const [selectedProDetails, setSelectedProDetails] = useState('');
+  const [selectedProCategories, setSelectedProCategories] = useState('');
+  const [availabilityResponse, setAvailabilityResponse ] =useState('');
+  const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
   // Open and close modal functions
   const openModal = () => {
-    console.log("Opening modal...");
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log("Closing modal...");
     setIsModalOpen(false);
+  };
+  const openReceiptModal = () => {
+    setIsReceiptModalOpen(true);
+  };
+
+  const closeReceiptModal = () => {
+    setIsReceiptModalOpen(false);
   };
 
   // Fetch subcategories when categoryId changes
@@ -28,7 +37,7 @@ export const AvailabilityProvider = ({ children }) => {
         try {
           const response = await axios.get(`https://api.thefixit4u.com/categories/subcategories/${categoryId}/`);
           setSubcategoriesList(response.data.data.subcategories);
-          console.log("Subcategories fetched successfully:", response.data.data.subcategories);
+          
         } catch (error) {
           console.error("Error fetching subcategories:", error);
         }
@@ -39,7 +48,24 @@ export const AvailabilityProvider = ({ children }) => {
       console.warn("No categoryId provided!");
     }
   }, [categoryId]); // useEffect runs when categoryId changes
+  
+  
+  // selected pro details
+  useEffect(() => {
+    const fetchSelectedProDetails = async () => {
+      try {
+        const response = await axios.get(`https://api.thefixit4u.com/service_provider/get/${selectedProId}`);
+        setSelectedProDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching the service provider details:", error);
+        // Handle error appropriately (e.g., show an error message)
+      }
+    };
 
+    if (selectedProId) {
+      fetchSelectedProDetails();
+    }
+  }, [selectedProId]);
   return (
     <AvailabilityContext.Provider
       value={{
@@ -49,6 +75,18 @@ export const AvailabilityProvider = ({ children }) => {
         isModalOpen, // Provide modal state
         openModal,   // Provide open modal function
         closeModal,  // Provide close modal function
+        selectedProId,
+        setSelectedProId,
+        selectedProDetails,
+        setSelectedProDetails,
+        selectedProCategories,
+        setSelectedProCategories,
+        availabilityResponse, 
+        setAvailabilityResponse,
+        isReceiptModalOpen,
+        setIsReceiptModalOpen,
+        openReceiptModal,
+        closeReceiptModal,  // Provide open receipt modal function
       }}
     >
       {children}
