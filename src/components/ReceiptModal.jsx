@@ -1,8 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext'; // Or create a new context for receipt if needed
 
 const ReceiptModal = () => {
-  const { isReceiptModalOpen, closeReceiptModal, selectedProDetails, availabilityResponse } = useContext(AvailabilityContext); // Use AvailabilityContext for modal state management or create a new context
+  const { isReceiptModalOpen, closeReceiptModal, selectedProDetails, availabilityResponse,closeModal } = useContext(AvailabilityContext); // Use AvailabilityContext for modal state management or create a new context
+  
+  useEffect(() => {
+    if (isReceiptModalOpen) {
+      console.log()
+    }
+  }, [isReceiptModalOpen, selectedProDetails, availabilityResponse]); //
+  
   // Check if selectedProDetails is available
   const baseDeatails = selectedProDetails ? (
     <div>
@@ -20,7 +27,7 @@ const ReceiptModal = () => {
   ) : null;
 
   // Check if availabilityResponse is available and has the expected structure
-  const extraServices = availabilityResponse && availabilityResponse.data.service_request && availabilityResponse.data.service_request.subcategories.length > 0 ? (
+  const extraServices = availabilityResponse && availabilityResponse.data.service_request && availabilityResponse.data.service_request.subcategories?.length > 0 ? (
     <div>
       <p>Extra Services:</p>
       <ul>
@@ -42,6 +49,11 @@ const ReceiptModal = () => {
     <p>Grand Total: ${availabilityResponse.data.service_request.grand_total}</p>
   ) : null;
 
+const receiptClose =  ()=>{
+  closeReceiptModal();
+  closeModal();
+} 
+
   return isReceiptModalOpen ? (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
@@ -53,7 +65,7 @@ const ReceiptModal = () => {
 
         <div className="flex justify-end mt-6">
           <button
-            onClick={closeReceiptModal} // Close modal
+            onClick={receiptClose} // Close modal
             className="ml-4 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600"
           >
             Close

@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext';
 import axios from 'axios';
 import ReceiptModal from './ReceiptModal';
+import { useGlobalContext } from '../context/GlobalContext';
 
 const AvailabilityModal = () => {
   const {
@@ -12,13 +13,17 @@ const AvailabilityModal = () => {
     setAvailabilityResponse,
     openReceiptModal,
     selectedProId,
+    selectedServices, 
+    setSelectedServices,
+    resetSelectedServices
     
   } = useContext(AvailabilityContext);
+
+  const { user } = useGlobalContext();
 
   const [loading, setLoading] = useState(false);
 
   // Set initial state for quantities and total prices for each subcategory
-  const [selectedServices, setSelectedServices] = useState([]);
 
   // Update the selectedServices when subcategoriesList is available
   useEffect(() => {
@@ -51,12 +56,14 @@ const AvailabilityModal = () => {
     }
   };
 
+
   // Handle form submission
   const handleSubmit = async () => {
     setLoading(true);
     try {
       // Construct the payload with only id and quantity
       const payload = {
+        customer_id: user.data.id,
         service_provider_id: selectedProId,  // Assuming this is a static value, you can adjust it if needed
         category_id: selectedProDetails.data.service_provider.category_id,  // Assuming this is a static value
         subcategories: selectedServices
@@ -69,6 +76,7 @@ const AvailabilityModal = () => {
 
       const response = await axios.post('https://api.thefixit4u.com/service_provider/create/service/request/', payload);
       setAvailabilityResponse(response.data)
+  
     } catch (error) {
       console.error('Error submitting service request:', error);
    
@@ -76,12 +84,13 @@ const AvailabilityModal = () => {
       setLoading(false);
     }
     openReceiptModal();
+    resetSelectedServices();
   };
 
   let providerInfo;
 
   if (selectedProDetails) {
-      const { company_name, sp_profile, average_rating, services_included } = selectedProDetails.data.service_provider;
+      const { company_name, sp_profile, average_rating } = selectedProDetails.data.service_provider;
         
       providerInfo = (
           <div>

@@ -8,6 +8,8 @@ import AvailabilityModal from '../components/AvailabilityModal';
 import { AvailabilityContext } from '../context/AvailabilityContext';
 import { useMediaQuery } from 'react-responsive';
 import { FaUserCircle } from 'react-icons/fa';
+import { useGlobalContext } from '../context/GlobalContext';
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -18,6 +20,7 @@ const ProfilePage = () => {
     const [error, setError] = useState(null); // Add an error state
     const [imageLoaded, setImageLoaded] = useState(false);
     const { openModal, setCategoryId, setSelectedProId, setSelectedProCategories } = useContext(AvailabilityContext); // Get openModal from context
+    const { isCustomer } = useGlobalContext();
     const isMobile = useMediaQuery({ query: '(max-width: 925px)' });
     const isMobile2 = useMediaQuery({ query: '(max-width: 625px)' });
 
@@ -117,12 +120,12 @@ const ProfilePage = () => {
                 </div>
                 <p className="text-lg text-gray-600 mt-4"><strong>Introduction:</strong> {provider.sp_profile.introduction}</p>
             </div>
-
-            <div className="mt-6">
+             {isCustomer ? <div className="mt-6">
                 <button onClick={handleSubmit} className="w-full bg-primaryColor text-white px-4 py-3 rounded-lg shadow-md hover:bg-lightColor1 hover:text-black transition duration-300 transform hover:scale-105">
                     Contact Provider
                 </button>
-            </div>
+            </div> : <p className='border border-red-500 flex itmes-center'>"please login as customer to check availability"</p> }
+            
             <AvailabilityModal />
         </div>
     );

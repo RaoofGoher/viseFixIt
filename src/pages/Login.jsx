@@ -22,7 +22,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginComponent = () => {
-    const { loginUser, setCsrfToken, openRegistrationModal, isRegistrationModalOpen,logoutUser } = useGlobalContext(); // Access global context
+    const { loginUser, setCsrfToken, openRegistrationModal, isRegistrationModalOpen,logoutUser, } = useGlobalContext(); // Access global context
     const { handleProLogin, profileSearchLocation,setProfileSearchLocation } = useProContext(); // Access pro context
     const navigate = useNavigate(); // For navigation
     const { showToast } = useToast();
@@ -32,11 +32,12 @@ const LoginComponent = () => {
             const userData = response.data; // Assuming this includes the user data (like username)
 
             // Check if the user is a pro or customer
-            console.log(profileSearchLocation)
+            console.log("UserChecking",userData)
 
             if (profileSearchLocation === "/search-results") {
                 // Always navigate to search-profile
                 if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
+                   
                    
 
                     const csrfToken = userData.data.csrf_token;

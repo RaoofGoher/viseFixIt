@@ -16,6 +16,7 @@ export const GlobalProvider = ({ children }) => {
 
     const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [isServiceModalOpen, setServiceModalOpen] = useState(false);
+    const [isCustomer, setIsCustomer] = useState(true);
 
     const logoutUser = () => {
         setUser(null);
@@ -50,6 +51,7 @@ export const GlobalProvider = ({ children }) => {
         localStorage.setItem('isAuthenticated', 'true');
         const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour
         localStorage.setItem('tokenExpiry', expiryTime);
+        setIsCustomer(true)
     };
 
     const openRegistrationModal = () => setRegistrationModalOpen(true);
@@ -74,6 +76,8 @@ export const GlobalProvider = ({ children }) => {
                 isServiceModalOpen,
                 openServiceModal,
                 closeServiceModal,
+                isCustomer,
+                setIsCustomer
             }}
         >
             {children}
