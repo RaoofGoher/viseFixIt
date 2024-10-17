@@ -56,11 +56,10 @@ const AvailabilityModal = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("User Data changed:", user);
-  }, [user]);
+
   // Handle form submission
   const handleSubmit = async () => {
+    console.log("handleSubmit called")
     setLoading(true);
     try {
       // Construct the payload with only id and quantity
@@ -93,7 +92,7 @@ const AvailabilityModal = () => {
   let providerInfo;
 
   if (selectedProDetails) {
-      const { company_name, sp_profile, average_rating, services_included } = selectedProDetails.data.service_provider;
+      const { company_name, sp_profile, average_rating } = selectedProDetails.data.service_provider;
         
       providerInfo = (
           <div>

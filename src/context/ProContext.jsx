@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useGlobalContext } from '../context/GlobalContext';
 
 const ProContext = createContext();
 
@@ -12,7 +13,7 @@ export const ProProvider = ({ children }) => {
     const [isProAuthenticated, setIsProAuthenticated] = useState(() => localStorage.getItem('isProAuthenticated') === 'true');
     const [zipProSearch, setZipProSearch] = useState([]);
     const [profileSearchLocation, setProfileSearchLocation] = useState('');
-
+    const { setIsCustomer } = useGlobalContext();
     const logoutPro = () => {
         console.log("Logging out...");
         setProData(null);
@@ -61,6 +62,7 @@ export const ProProvider = ({ children }) => {
 
         setTimeout(logoutPro, 10 * 60 * 1000); // Auto-logout after 10 minutes
         localStorage.setItem('isProAuthenticated', 'true');
+        setIsCustomer(false);
     };
 
     return (

@@ -51,6 +51,7 @@ export const GlobalProvider = ({ children }) => {
         localStorage.setItem('isAuthenticated', 'true');
         const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour
         localStorage.setItem('tokenExpiry', expiryTime);
+        setIsCustomer(true)
     };
 
     const openRegistrationModal = () => setRegistrationModalOpen(true);

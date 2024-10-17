@@ -1,8 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext'; // Or create a new context for receipt if needed
 
 const ReceiptModal = () => {
   const { isReceiptModalOpen, closeReceiptModal, selectedProDetails, availabilityResponse,closeModal } = useContext(AvailabilityContext); // Use AvailabilityContext for modal state management or create a new context
+  
+  useEffect(() => {
+    if (isReceiptModalOpen) {
+      console.log("use effect", selectedProDetails, availabilityResponse);
+    }
+  }, [isReceiptModalOpen, selectedProDetails, availabilityResponse]); //
+  
   // Check if selectedProDetails is available
   const baseDeatails = selectedProDetails ? (
     <div>
@@ -20,7 +27,7 @@ const ReceiptModal = () => {
   ) : null;
 
   // Check if availabilityResponse is available and has the expected structure
-  const extraServices = availabilityResponse && availabilityResponse.data.service_request && availabilityResponse.data.service_request.subcategories.length > 0 ? (
+  const extraServices = availabilityResponse && availabilityResponse.data.service_request && availabilityResponse.data.service_request.subcategories?.length > 0 ? (
     <div>
       <p>Extra Services:</p>
       <ul>
