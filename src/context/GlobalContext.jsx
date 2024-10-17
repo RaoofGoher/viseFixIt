@@ -16,6 +16,7 @@ export const GlobalProvider = ({ children }) => {
 
     const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [isServiceModalOpen, setServiceModalOpen] = useState(false);
+    const [isCustomer, setIsCustomer] = useState(true);
 
     const logoutUser = () => {
         setUser(null);
@@ -74,6 +75,8 @@ export const GlobalProvider = ({ children }) => {
                 isServiceModalOpen,
                 openServiceModal,
                 closeServiceModal,
+                isCustomer,
+                setIsCustomer
             }}
         >
             {children}

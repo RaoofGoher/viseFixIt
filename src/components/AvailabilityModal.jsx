@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { AvailabilityContext } from '../context/AvailabilityContext';
 import axios from 'axios';
 import ReceiptModal from './ReceiptModal';
+import { useGlobalContext } from '../context/GlobalContext';
 
 const AvailabilityModal = () => {
   const {
@@ -17,6 +18,8 @@ const AvailabilityModal = () => {
     resetSelectedServices
     
   } = useContext(AvailabilityContext);
+
+  const { user } = useGlobalContext();
 
   const [loading, setLoading] = useState(false);
 
@@ -53,12 +56,16 @@ const AvailabilityModal = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("User Data changed:", user);
+  }, [user]);
   // Handle form submission
   const handleSubmit = async () => {
     setLoading(true);
     try {
       // Construct the payload with only id and quantity
       const payload = {
+        customer_id: user.data.id,
         service_provider_id: selectedProId,  // Assuming this is a static value, you can adjust it if needed
         category_id: selectedProDetails.data.service_provider.category_id,  // Assuming this is a static value
         subcategories: selectedServices
@@ -69,6 +76,7 @@ const AvailabilityModal = () => {
           }))
       };
 
+      console.log("payload",payload)
       const response = await axios.post('https://api.thefixit4u.com/service_provider/create/service/request/', payload);
       setAvailabilityResponse(response.data)
       console.log("bug response ",response.data)
