@@ -6,7 +6,7 @@ const ReceiptModal = () => {
   
   useEffect(() => {
     if (isReceiptModalOpen) {
-      console.log("use effect", selectedProDetails, availabilityResponse);
+      console.log()
     }
   }, [isReceiptModalOpen, selectedProDetails, availabilityResponse]); //
   

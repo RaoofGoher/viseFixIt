@@ -59,7 +59,6 @@ const AvailabilityModal = () => {
 
   // Handle form submission
   const handleSubmit = async () => {
-    console.log("handleSubmit called")
     setLoading(true);
     try {
       // Construct the payload with only id and quantity
@@ -75,10 +74,9 @@ const AvailabilityModal = () => {
           }))
       };
 
-      console.log("payload",payload)
       const response = await axios.post('https://api.thefixit4u.com/service_provider/create/service/request/', payload);
       setAvailabilityResponse(response.data)
-      console.log("bug response ",response.data)
+  
     } catch (error) {
       console.error('Error submitting service request:', error);
    
