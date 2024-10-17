@@ -12,13 +12,15 @@ const AvailabilityModal = () => {
     setAvailabilityResponse,
     openReceiptModal,
     selectedProId,
+    selectedServices, 
+    setSelectedServices,
+    resetSelectedServices
     
   } = useContext(AvailabilityContext);
 
   const [loading, setLoading] = useState(false);
 
   // Set initial state for quantities and total prices for each subcategory
-  const [selectedServices, setSelectedServices] = useState([]);
 
   // Update the selectedServices when subcategoriesList is available
   useEffect(() => {
@@ -69,6 +71,7 @@ const AvailabilityModal = () => {
 
       const response = await axios.post('https://api.thefixit4u.com/service_provider/create/service/request/', payload);
       setAvailabilityResponse(response.data)
+      console.log("bug response ",response.data)
     } catch (error) {
       console.error('Error submitting service request:', error);
    
@@ -76,6 +79,7 @@ const AvailabilityModal = () => {
       setLoading(false);
     }
     openReceiptModal();
+    resetSelectedServices();
   };
 
   let providerInfo;

@@ -14,6 +14,8 @@ export const AvailabilityProvider = ({ children }) => {
   const [selectedProCategories, setSelectedProCategories] = useState('');
   const [availabilityResponse, setAvailabilityResponse ] =useState('');
   const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
+  const [selectedServices, setSelectedServices] = useState([]);
+
   // Open and close modal functions
   const openModal = () => {
     setIsModalOpen(true);
@@ -66,6 +68,17 @@ export const AvailabilityProvider = ({ children }) => {
       fetchSelectedProDetails();
     }
   }, [selectedProId]);
+
+  const resetSelectedServices = () => {
+    setSelectedServices(
+      subcategoriesList.map(sub => ({
+        ...sub,
+        quantity: 0,
+        total: 0,
+      }))
+    );
+  };
+
   return (
     <AvailabilityContext.Provider
       value={{
@@ -87,6 +100,9 @@ export const AvailabilityProvider = ({ children }) => {
         setIsReceiptModalOpen,
         openReceiptModal,
         closeReceiptModal,  // Provide open receipt modal function
+        selectedServices, 
+        setSelectedServices,
+        resetSelectedServices
       }}
     >
       {children}
