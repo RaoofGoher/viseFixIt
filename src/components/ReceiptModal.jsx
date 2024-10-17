@@ -14,31 +14,47 @@ const ReceiptModal = () => {
     totalAmount: 80,
   };
         console.log("baly111",selectedProDetails,availabilityResponse)
-  return isReceiptModalOpen ? (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 className="text-2xl font-semibold mb-4">Receipt</h2>
 
-        <div className="mb-4">
-          <p className="text-lg font-medium">Receipt Number: {receipt.receiptNumber}</p>
-        </div>
-
-        <div className="mb-4">
-          <h3 className="text-xl font-semibold">Items</h3>
-          <ul className="space-y-2">
-            {receipt.items.map((item, index) => (
-              <li key={index} className="flex justify-between">
-                <span>{item.name} (x{item.quantity})</span>
-                <span>${item.price}</span>
+      const baseDeatails = <div>
+        <p>Company Name: {selectedProDetails.data.service_provider.company_name || 'N/A'}</p>
+        <p>Email: {selectedProDetails.data.service_provider.email}</p>
+        <p>Base Price: ${selectedProDetails.data.service_provider.sp_profile.base_price}</p>
+        <p>Service : {selectedProDetails.data.service_provider.category}</p> 
+        <p>Services Included:</p>
+        <ul>
+          {selectedProDetails.data.service_provider.sp_profile.services_included.map((service, index) => (
+            <li key={index}>{service}</li>
+          ))}
+        </ul>
+      </div>
+      const extraServices = availabilityResponse.data.service_request.subcategories.length > 0 ? (
+        <div>
+          <p>Extra Services:</p>
+          <ul>
+            {availabilityResponse.data.service_request.subcategories.map((subcategory, index) => (
+              <li key={index}>
+                Name: {subcategory.subcategory_name}, Price: ${subcategory.individual_price}, 
+                Quantity: {subcategory.quantity}, Sub Total: ${subcategory.individual_total}
               </li>
             ))}
           </ul>
         </div>
+      ) : null;
 
-        <div className="flex justify-between items-center mt-4">
-          <span className="text-lg font-semibold">Total:</span>
-          <span className="text-lg font-semibold">${receipt.totalAmount}</span>
-        </div>
+      const proName = <p>Pro Name: {availabilityResponse.data.service_request.pro_name}</p>;
+      const grandTotal = (
+        <p>Grand Total: ${availabilityResponse.data.service_request.grand_total}</p>
+      );
+      
+
+  return isReceiptModalOpen ? (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+        <h2 className="text-2xl font-semibold mb-4">Receipt</h2>
+         {proName}
+         {baseDeatails}
+         {extraServices}
+         {grandTotal}
 
         <div className="flex justify-end mt-6">
           <button
