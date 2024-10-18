@@ -20,7 +20,7 @@ const SimpleSlider = () => {
   })
   const settings = {
     dots: false,
-    arrows:false,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -31,27 +31,35 @@ const SimpleSlider = () => {
 
   return (
     <div className="relative w-[94vw] mb-[50px] ">
+
       {/* Overlay content positioned on top of the slider */}
-      <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[150px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" :""}`}>
-      <Stack>
-        <SearchComponent buttonText={'Search'} labelText={"Zip Code"}/>
-        
-       </Stack>
+      <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[50px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>
+        <h1 className="text-6xl font-bold text-center text-white">
+          Find Top-rated Certified
+          <br />
+          Pros In Your Area.
+        </h1>
+      </div>
+      <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[210px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>
+        <Stack>
+          <SearchComponent buttonText={'Search'} labelText={"Zip Code"} />
+
+        </Stack>
       </div>
 
       {/* Slider Component */}
       <Slider {...settings}>
         <div className={`bg-heroColor ${isHeroCollapsing ? "h-52" : "h-[400px]"} flex items-center justify-center`}>
-          <img src={HeroImage} className="border border-2 border-heroColor"/>
+          <img src={HeroImage} className="border border-2 border-heroColor" />
         </div>
         <div className={`bg-heroColor ${isHeroCollapsing ? "h-52" : "h-[400px]"} flex items-center justify-center`}>
-        <img src={HeroImage1} className=""/>
+          <img src={HeroImage1} className="" />
         </div>
         <div className={`bg-heroColor ${isHeroCollapsing ? "h-52" : "h-[400px]"} flex items-center justify-center`}>
-        <img src={HeroImage2} className=""/>
+          <img src={HeroImage2} className="" />
         </div>
         <div className={`bg-heroColor ${isHeroCollapsing ? "h-52" : "h-[400px]"} flex items-center justify-center`}>
-        <img src={HeroImage3} className=""/>
+          <img src={HeroImage3} className="" />
         </div>
       </Slider>
     </div>

@@ -3,7 +3,7 @@ import ExploreButton from './ExploreButton';
 
 const ServiceCard = ({ title, description, icon, image }) => {
   return (
-    <div className="relative p-4 border bg-black border-gray-300 rounded-lg hover:border-primaryColor hover:bg-secondaryColor hover:text-white overflow-hidden group">
+    <div className="relative p-4 bg-black border-4 border-primaryColor rounded-lg hover:border-primaryColor hover:bg-secondaryColor hover:text-white overflow-hidden group">
       {/* Image that is visible by default */}
       <img
         src={image} // Your image URL

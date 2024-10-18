@@ -109,7 +109,7 @@ const ContactUS = () => {
 
               <button
                 type="submit"
-                className="w-full py-2 px-4 bg-primaryColor text-black font-semibold rounded-md shadow-sm hover:bg-lightColor2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full py-2 px-4 bg-primaryColor text-white font-semibold rounded-md shadow-sm hover:bg-lightColor2 hover:text-secondaryColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}

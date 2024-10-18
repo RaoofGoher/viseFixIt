@@ -6,11 +6,14 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Lato', 'sans-serif'],
+      },
       colors: {
-        'primaryColor': "#987D9A",
-        'secondaryColor': '#BB9AB1',
-        'lightColor1': '#EECEB9', 
-        'lightColor2': '#FEFBD8', 
+        'primaryColor': "#f08422",
+        'secondaryColor': '#333131',
+        'lightColor1': '#fee3d0', 
+        'lightColor2': '#bebebe', 
         'heroColor':'#D1D5DB'
       },
       boxShadow: {
@@ -48,3 +51,10 @@ export default {
   },
   plugins: [],
 }
+
+//  'black': "#333131",
+// 'lightskin': '#fee3d0',
+// 'orange': '#f08422', 
+// 'lightgray': '#bebebe',
+//  white:"#ffffff" 
+// 'heroColor':'#D1D5DB'

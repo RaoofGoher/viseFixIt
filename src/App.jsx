@@ -35,6 +35,7 @@ import { ToastProvider } from './context/ToastContext';
 import EditCustomerProfile from './pages/EditCustomerProfile';
 import EmailVerification from './pages/EmailVerification';
 import {AvailabilityProvider} from'./context/AvailabilityContext'
+import '@fontsource/lato';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(

@@ -29,3 +29,12 @@
   input::-ms-input-placeholder {
     color: '#987D9A'; /* For Microsoft Edge */
   }
+
+  /* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
