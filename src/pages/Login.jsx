@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import img from '../assets/mainImg.png';
+import logo2 from '../assets/logo2.jpg';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useProContext } from '../context/ProContext';
@@ -86,7 +86,7 @@ const LoginComponent = () => {
                 {/* Image Section */}
                 <div className="w-1/2">
                     <img
-                        src={img}
+                        src={logo2}
                         alt="Login visual"
                         className="object-cover w-full h-full"
                     />

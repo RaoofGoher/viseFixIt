@@ -8,6 +8,7 @@ import ContactUS from '../components/ContactUs';
 import FAQ from '../components/FaqSection';
 import TeamSlider from "../components/TeamSlider1"
 import SimpleSlider from '../components/HeroSlider';
+import SecondaryNavbar from '../components/SecondaryNavabr';
 
 
 const Loader = () => {
@@ -36,6 +37,8 @@ const Home = () => {
 
   return (
     <div>
+              <SecondaryNavbar/>
+
        <div className='flex justify-center items-center'>
         {isHeroLoading ? <Loader /> : <SimpleSlider/>}
       </div>

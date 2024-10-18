@@ -35,7 +35,7 @@ const PrimaryNavbar = () => {
 
   return (
     <div>
-      <div className="flex smartNavbar:flex-col items-center justify-between text-black px-10 py-2">
+      <div className="flex smartNavbar:flex-col items-center justify-between text-black px-10 ">
         <Link to={'/'}>
           <div>
             <img
@@ -143,7 +143,7 @@ const PrimaryNavbar = () => {
         {isRegistrationModalOpen && <RegistrationModal />}
         {isServiceModalOpen && <ServicesModal />}
       </div>
-      <SecondaryNavbar />
+     
     </div>
   );
 };

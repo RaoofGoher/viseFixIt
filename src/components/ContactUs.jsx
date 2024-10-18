@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import MainImage from '../assets/mainImg.png';
+import logo2 from '../assets/logo2.jpg';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 // Validation Schema using Yup
@@ -33,15 +34,15 @@ const ContactUS = () => {
 
   return (
     <div className="flex flex-col md:flex-row items-center p-4 md:p-4 border border-4 border-lightColor1 mt-24 bg-lightColor1 mb-4">
-      <div className=" p-4 flex justify-center items-center">
+      <div className=" p-2 flex justify-center items-center flex-5">
         <img
-          src={MainImage}
+          src={logo2}
           alt="Contact Us"
           className="w-full h-[600px] rounded-lg shadow-lg"
         />
       </div>
       
-      <div className="w-[60vw]">
+      <div className="flex-1">
         <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
 
         <Formik
