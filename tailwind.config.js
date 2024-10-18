@@ -10,10 +10,10 @@ export default {
         sans: ['Lato', 'sans-serif'],
       },
       colors: {
-        'primaryColor': "#f08422",
-        'secondaryColor': '#333131',
+        'primaryColor': "#F58634",
+        'secondaryColor': '#282829',
         'lightColor1': '#fee3d0', 
-        'lightColor2': '#bebebe', 
+        'lightColor2': '#96989A', 
         'heroColor':'#D1D5DB'
       },
       boxShadow: {
@@ -52,9 +52,9 @@ export default {
   plugins: [],
 }
 
-//  'black': "#333131",
+//  'black': "#282829",
 // 'lightskin': '#fee3d0',
-// 'orange': '#f08422', 
-// 'lightgray': '#bebebe',
+// 'orange': '#F58634', 
+// 'lightgray': '#96989A',
 //  white:"#ffffff" 
 // 'heroColor':'#D1D5DB'
