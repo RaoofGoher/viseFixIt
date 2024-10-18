@@ -83,7 +83,7 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="flex smartHero:flex-col smartHero:items-start items-center space-x-4">
+    <div className="flex smartHero:flex-col smartHero:items-start items-center space-x-8 h-[30px]">
       <div className="relative flex-grow my-2" style={{ width: isMobile ? '100%' : '65%' }}>
         <input
           type="text"
