@@ -62,12 +62,12 @@ const SecondaryNavbar = () => {
 
   return (
     <>
-      <nav className="bg-orange-500 p-2 w-full mx-auto mb-2 relative">
+      <nav className="bg-primaryColor p-2 w-[94vw] mx-auto mb-2 relative rounded">
         <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 transition"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-gray-200 transition"
         >
-          <FaChevronLeft />
+          <FaChevronLeft className='text-secondaryColor font-bold text-2xl' />
         </button>
         <div
           ref={scrollRef}
@@ -79,8 +79,8 @@ const SecondaryNavbar = () => {
               <li key={item.id}> {/* Assuming each item has a unique id */}
                 <button
                   onClick={() => openModal(item)}
-                  className={`ml-4 p-4 text-black font-bold font-segoei transition duration-200 ${
-                    activeModal === item.name ? 'text-yellow-400' : 'text-white hover:text-yellow-300'
+                  className={`ml-4 p-4 text-black font-bold transition duration-200 ${
+                    activeModal === item.name ? 'text-yellow-400' : 'text-white hover:text-secondaryColor'
                   }`}
                 >
                   {item.name}
@@ -91,9 +91,9 @@ const SecondaryNavbar = () => {
         </div>
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 transition"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full  hover:bg-gray-200 transition"
         >
-          <FaChevronRight />
+          <FaChevronRight className='text-secondaryColor font-bold text-2xl' />
         </button>
       </nav>
 
