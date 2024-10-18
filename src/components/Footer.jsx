@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/mainImg.png'; // Replace with your logo path
+import logo2 from '../assets/logo2.jpg'; // Replace with your logo path
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const Footer = () => {
     <footer className="bg-primaryColor text-white py-6">
       <div className={`max-w-6xl mx-4 flex ${isMobile ? "flex-col" : ""} justify-between items-center`}>
         <div className='border-[16px] border-lightColor1'>
-        <img src={logo} alt="Logo" className="h-20" />
+        <img src={logo2} alt="Logo" className="h-20" />
         </div>
         <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2`}>
           <Link to="/" className="hover:text-lightColor1">Home</Link>
