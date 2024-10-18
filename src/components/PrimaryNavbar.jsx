@@ -40,7 +40,7 @@ const PrimaryNavbar = () => {
           <div>
             <img
               src={Logo2}
-              className="w-[200px] h-[83px] rounded-md"
+              className="w-[200px] h-[120px] rounded-md"
               alt="Logo"
             />
           </div>
