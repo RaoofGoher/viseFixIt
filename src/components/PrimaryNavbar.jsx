@@ -1,5 +1,6 @@
 import React from 'react';
 import LogoImg from '../assets/mainImg.png';
+import Logo2 from '../assets/logo2.jpg';
 import { FaUserCircle } from 'react-icons/fa'; // Import profile icon from react-icons
 import { FaChevronDown } from 'react-icons/fa';
 import ServicesModal from './Modal';
@@ -38,8 +39,8 @@ const PrimaryNavbar = () => {
         <Link to={'/'}>
           <div>
             <img
-              src={LogoImg}
-              className="w-[25] h-[83px] border-2 border-primaryColor rounded-md"
+              src={Logo2}
+              className="w-[200px] h-[120px] rounded-md"
               alt="Logo"
             />
           </div>
