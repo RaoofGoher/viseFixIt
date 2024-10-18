@@ -62,7 +62,7 @@ const SecondaryNavbar = () => {
 
   return (
     <>
-      <nav className="bg-orange-500 p-4 w-full mx-auto mb-2 relative">
+      <nav className="bg-orange-500 p-2 w-full mx-auto mb-2 relative">
         <button
           onClick={scrollLeft}
           className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 transition"
@@ -79,7 +79,7 @@ const SecondaryNavbar = () => {
               <li key={item.id}> {/* Assuming each item has a unique id */}
                 <button
                   onClick={() => openModal(item)}
-                  className={`p-4 text-black font-bold font-segoei transition duration-200 ${
+                  className={`ml-4 p-4 text-black font-bold font-segoei transition duration-200 ${
                     activeModal === item.name ? 'text-yellow-400' : 'text-white hover:text-yellow-300'
                   }`}
                 >
