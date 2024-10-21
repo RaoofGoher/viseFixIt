@@ -8,7 +8,7 @@ const SecondaryNavbar = () => {
   const [subCategories, setSubCategories] = useState([]); // State for subcategories
   const scrollRef = useRef(null); // Reference to the scrollable container
   const itemWidth = 250; // Width of each item (based on your button width)
-  const autoScrollInterval = 3000; // Auto-scroll interval in milliseconds
+  const autoScrollInterval = 2000; // Auto-scroll interval in milliseconds
   const scrollDirectionRef = useRef('right'); // To track the scroll direction
   // Function to fetch categories from the backend
   const fetchCategories = async () => {
@@ -104,7 +104,7 @@ const SecondaryNavbar = () => {
               <li key={item.id}> {/* Assuming each item has a unique id */}
                 <button
                   onClick={() => openModal(item)}
-                  className={`ml-4 p-4 w-[${itemWidth}px] text-black font-bold transition duration-200 ${
+                  className={`ml-4 p-4 w-[200px] text-black font-bold transition duration-200 ${
                     activeModal === item.name ? 'text-yellow-400' : 'text-white hover:text-secondaryColor'
                   }`}
                 >
