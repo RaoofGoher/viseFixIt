@@ -35,8 +35,6 @@ const PrimaryNavbar = () => {
 
   const { isProAuthenticated, logoutPro, proData } = useProContext();
   
-
-
   return (
     <div>
       <div className="flex smartNavbar:flex-col items-center justify-between text-black px-10 ">
@@ -101,12 +99,13 @@ const PrimaryNavbar = () => {
                   <Link to={`/myprofilepro/${proData?.username}`}>
 
                     {
+                      
                       !proData?.profile_picture_url || proData.profile_picture_url === 'null'
                         ? (
                           <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
                         ) : (
                           <img
-                            src={`${apiUrl}${proData.profile_picture_url}`}
+                            src={`${apiUrl}${proData.profile_picture_url}?t=${new Date().getTime()}`}
                             alt="Profile"
                             className="w-8 h-8 rounded-2xl cursor-pointer text-primaryColor mt-4"
                           />

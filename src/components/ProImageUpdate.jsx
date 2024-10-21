@@ -8,7 +8,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const ImageUpdate = ({ field, form, ...props }) => {
   const [uploading, setUploading] = useState(false);
   const [id, setId] = useState('');
-  const { proData } = useProContext();
+  const { proData,setProData } = useProContext();
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -51,8 +51,16 @@ const ImageUpdate = ({ field, form, ...props }) => {
           'Content-Type': 'multipart/form-data', // Specify content type
         },
       });
+         
 
-      console.log(response.data); // Handle success response
+      const updatedImageUrl = response.data.imageUrl; // Adjust according to your API response
+
+      // Update the proData state in ProContext with the new image URL
+      setProData(prevData => ({
+          ...prevData,
+          profileImageUrl: updatedImageUrl, // Adjust this to the correct field
+      }));
+      
       showToast('Success! image uploaded.', 'success')
     } catch (error) {
       console.error("Error uploading image:", error);
