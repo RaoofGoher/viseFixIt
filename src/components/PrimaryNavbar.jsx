@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
 import { useMediaQuery } from 'react-responsive';
 import SecondaryNavbar from './SecondaryNavabr';
+import axios from 'axios';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const PrimaryNavbar = () => {
@@ -126,14 +128,14 @@ const PrimaryNavbar = () => {
                   </Link>
                   {/* Profile icon for Customer */}
                   <Link to={`/myprofilecustomer/${user?.data?.username}`}>
-                  {console.log("profile picture",user?.data)}
+              
                     {
                       !user?.data?.profile_picture_url || user?.data?.profile_picture_url === 'null'
                         ? (
                           <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
                         ) : (
                           <img
-                            src={`${apiUrl}${user.data.profile_picture_url}`}
+                            src={`${apiUrl}${user.data.profile_picture_url}?t=${new Date().getTime()}`}
                             alt="Profile"
                             className="w-8 h-8 cursor-pointer rounded-2xl text-primaryColor mt-4"
                           />

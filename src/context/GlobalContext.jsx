@@ -18,6 +18,16 @@ export const GlobalProvider = ({ children }) => {
     const [isServiceModalOpen, setServiceModalOpen] = useState(false);
     const [isCustomer, setIsCustomer] = useState(true);
 
+
+    const updateProfilePicture = (newImageUrl) => {
+        setUser((prevUser) => ({
+            ...prevUser,
+            data: {
+                ...prevUser.data,
+                profile_picture_url: newImageUrl,
+            },
+        }));
+    };
     const logoutUser = () => {
         setUser(null);
         setToken(null);
@@ -77,7 +87,8 @@ export const GlobalProvider = ({ children }) => {
                 openServiceModal,
                 closeServiceModal,
                 isCustomer,
-                setIsCustomer
+                setIsCustomer,
+                updateProfilePicture
             }}
         >
             {children}
