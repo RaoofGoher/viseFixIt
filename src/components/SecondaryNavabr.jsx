@@ -79,7 +79,7 @@ const SecondaryNavbar = () => {
               <li key={item.id}> {/* Assuming each item has a unique id */}
                 <button
                   onClick={() => openModal(item)}
-                  className={`ml-4 p-4 text-black font-bold transition duration-200 ${
+                  className={`ml-4 p-4 w-[250px] text-black font-bold transition duration-200 ${
                     activeModal === item.name ? 'text-yellow-400' : 'text-white hover:text-secondaryColor'
                   }`}
                 >

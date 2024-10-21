@@ -38,3 +38,6 @@
   -ms-overflow-style: none;  /* Internet Explorer and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+.fixed {
+  transition: transform 0.3s ease;
+}
