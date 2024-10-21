@@ -7,7 +7,9 @@ const SecondaryNavbar = () => {
   const [navItems, setNavItems] = useState([]); // State to hold categories
   const [subCategories, setSubCategories] = useState([]); // State for subcategories
   const scrollRef = useRef(null); // Reference to the scrollable container
-
+  const itemWidth = 250; // Width of each item (based on your button width)
+  const autoScrollInterval = 3000; // Auto-scroll interval in milliseconds
+  const scrollDirectionRef = useRef('right'); // To track the scroll direction
   // Function to fetch categories from the backend
   const fetchCategories = async () => {
     try {
@@ -49,16 +51,39 @@ const SecondaryNavbar = () => {
   // Function to scroll left
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+      const scrollWidth = scrollRef.current.scrollWidth;
+      const clientWidth = scrollRef.current.clientWidth;
+
+      // If scrolled to the start, reset to the end
+      if (scrollRef.current.scrollLeft === 0) {
+        scrollRef.current.scrollTo({ left: scrollWidth - clientWidth, behavior: 'smooth' });
+      } else {
+        scrollRef.current.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+      }
     }
   };
 
   // Function to scroll right
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+      const scrollWidth = scrollRef.current.scrollWidth;
+      const clientWidth = scrollRef.current.clientWidth;
+
+      // If scrolled to the end, reset to the start
+      if (scrollRef.current.scrollLeft >= scrollWidth - clientWidth) {
+        scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        scrollRef.current.scrollBy({ left: itemWidth, behavior: 'smooth' });
+      }
     }
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollDirectionRef.current === 'right' ? scrollRight() : scrollLeft();
+    }, autoScrollInterval);
+
+    return () => clearInterval(interval); // Clear interval on unmount
+  }, []);
 
   return (
     <>
@@ -79,7 +104,7 @@ const SecondaryNavbar = () => {
               <li key={item.id}> {/* Assuming each item has a unique id */}
                 <button
                   onClick={() => openModal(item)}
-                  className={`ml-4 p-4 w-[250px] text-black font-bold transition duration-200 ${
+                  className={`ml-4 p-4 w-[${itemWidth}px] text-black font-bold transition duration-200 ${
                     activeModal === item.name ? 'text-yellow-400' : 'text-white hover:text-secondaryColor'
                   }`}
                 >
@@ -91,7 +116,7 @@ const SecondaryNavbar = () => {
         </div>
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full  hover:bg-gray-200 transition"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-gray-200 transition"
         >
           <FaChevronRight className='text-secondaryColor font-bold text-2xl' />
         </button>
