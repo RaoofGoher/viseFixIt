@@ -31,7 +31,7 @@ const Footer = () => {
          
         </nav>
       </div>
-      <p className="mt-4 text-center text-sm text-secondaryColor">© 2024 ViseFixiT. All rights reserved.</p>
+      <p className="mt-4 text-center">© 2024 ViseFixiT. All rights reserved.</p>
     </footer>
   );
 };

@@ -105,7 +105,7 @@ const ServicesGrid = () => {
       </div>
 
       {/* Pagination buttons */}
-      <div className="flex justify-center mt-6">
+      <div className="flex justify-center mt-6 text-white">
         <button
           onClick={prevPage}
           disabled={currentPage === 1}

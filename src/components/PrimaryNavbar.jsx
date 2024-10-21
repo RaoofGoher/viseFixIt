@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogoImg from '../assets/mainImg.png';
 import Logo2 from '../assets/logo2.jpg';
 import { FaUserCircle } from 'react-icons/fa'; // Import profile icon from react-icons
@@ -28,10 +28,12 @@ const PrimaryNavbar = () => {
     isRegistrationModalOpen,
     isAuthenticated,
     user,
-    logoutUser
+    logoutUser,
   } = useGlobalContext();
 
   const { isProAuthenticated, logoutPro, proData } = useProContext();
+  
+
 
   return (
     <div>
@@ -46,14 +48,19 @@ const PrimaryNavbar = () => {
           </div>
         </Link>
 
-        
 
-        <div className={`navbar flex space-x-6 smartNavbar:py-4 ${isMobile ? "w-[95vw] items-center" : ""} ${isMobile2 ? "px-2" : "px-4"}`}>
-         
-        <div className="flex items-center">
-          <span className="text-secondaryColor text-lg font-bold">Call Us: </span>
-          <span className="text-primaryColor text-lg font-bold">(123) 456-7890</span>
-        </div>
+
+
+        <div className={`navbar flex items-center space-x-6 smartNavbar:py-4 ${isMobile ? "w-[95vw] items-center" : ""} ${isMobile2 ? "px-2" : "px-4"}`}>
+
+          <div className="flex items-center ">
+            <span className="text-secondaryColor text-lg font-bold">Call Us: </span>
+            <span className="text-primaryColor text-lg font-bold">(123) 456-7890</span>
+            <Link to={'/'} className='ml-2 bg-primaryColor p-2 rounded border border-primaryColor text-white hover:bg-white  hover:text-black'>
+
+              Home
+            </Link>
+          </div>
 
           {isAuthenticated || isProAuthenticated ? "" : <Link to="/prosignup" className='mt-2'>
             <h1 className="cursor-pointer hover:text-white hover:bg-secondaryColor border border-primaryColor py-3 px-4 rounded-sm flex items-center justify-between">
@@ -119,6 +126,7 @@ const PrimaryNavbar = () => {
                   </Link>
                   {/* Profile icon for Customer */}
                   <Link to={`/myprofilecustomer/${user?.data?.username}`}>
+                  {console.log("profile picture",user?.data)}
                     {
                       !user?.data?.profile_picture_url || user?.data?.profile_picture_url === 'null'
                         ? (
@@ -143,7 +151,7 @@ const PrimaryNavbar = () => {
         {isRegistrationModalOpen && <RegistrationModal />}
         {isServiceModalOpen && <ServicesModal />}
       </div>
-     
+
     </div>
   );
 };

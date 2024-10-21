@@ -56,8 +56,7 @@ const LoginComponent = () => {
             } else {
                 // For any other route
                 if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
-                    console.log("Logging in a professional user for other routes");
-
+                    
                     const csrfToken = userData.data.csrf_token;
 
                     // Store the CSRF token in the context and set pro data
@@ -67,7 +66,7 @@ const LoginComponent = () => {
                     // Redirect to pro dashboard
                     navigate(`/dashboard/prodashboard/${userData?.data?.username}`);
                 } else {
-                    console.log("Logging in a regular customer for other routes");
+                    
                     loginUser(userData); // Store user data in global context
                     navigate(`/dashboard/${userData.data.username}`); // Redirect to customer dashboard
                 }
