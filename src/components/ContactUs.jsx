@@ -53,7 +53,7 @@ const ContactUS = () => {
           {({ isSubmitting }) => (
             <Form className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                <label htmlFor="name" className="block text-sm font-medium">Name</label>
                 <Field
                   type="text"
                   id="name"
@@ -64,7 +64,7 @@ const ContactUS = () => {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium">Email</label>
                 <Field
                   type="email"
                   id="email"
@@ -75,7 +75,7 @@ const ContactUS = () => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
+                <label htmlFor="phone" className="block text-sm font-medium">Phone</label>
                 <Field
                   type="text"
                   id="phone"
@@ -86,7 +86,7 @@ const ContactUS = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700">Subject</label>
+                <label htmlFor="subject" className="block text-sm font-medium">Subject</label>
                 <Field
                   type="text"
                   id="subject"
@@ -97,7 +97,7 @@ const ContactUS = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium">Message</label>
                 <Field
                   as="textarea"
                   id="message"

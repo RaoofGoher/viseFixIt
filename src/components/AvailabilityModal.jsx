@@ -93,11 +93,11 @@ const AvailabilityModal = () => {
       const { company_name, sp_profile, average_rating } = selectedProDetails.data.service_provider;
         
       providerInfo = (
-          <div>
-              <h2>Service Provider Information</h2>
-              <p><strong>Company Name:</strong> {company_name || 'N/A'}</p>
-              <p><strong>Base Price:</strong> ${sp_profile?.base_price}</p>
-              <p><strong>Average Rating:</strong> {average_rating} / 5</p>
+          <div className='border border-2 border-primaryColor px-2'>
+              <h2>Basic Order</h2>
+              <p>Company Name: {company_name || 'N/A'}</p>
+              <p>Base Price: ${sp_profile?.base_price}</p>
+              <p>Average Rating: {average_rating} / 5</p>
               <h3>Services Included:</h3>
               <ul>
                   {sp_profile?.services_included?.map((service, index) => (
@@ -116,7 +116,7 @@ const AvailabilityModal = () => {
     <>
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 mt-[320px]">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full ">
-        <h2 className="text-xl font-semibold mb-4">Manage Availability</h2>
+        <h2 className="text-xl font-semibold mb-4">Manage Order</h2>
         <div>{providerInfo}</div>
         <hr/>
         {/* Display subcategories with quantity controls and total price */}

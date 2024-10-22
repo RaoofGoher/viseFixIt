@@ -31,12 +31,12 @@ const FAQ = () => {
       <h2 className="text-4xl font-bold text-center m-6">Frequently <span className='text-primaryColor'> Asked </span> Questions</h2>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="border rounded-lg shadow-md">
+          <div key={index} className="border rounded-lg shadow-md hover:text-white">
             <button
               className="flex justify-between w-full p-4 text-left bg-lightColor1 hover:bg-primaryColor focus:outline-none"
               onClick={() => toggleOpen(index)}
             >
-              <span className="font-semibold">{faq.question}</span>
+              <span className="font-semibold ">{faq.question}</span>
               <svg
                 className={`w-5 h-5 transition-transform ${openIndex === index ? 'transform rotate-180' : ''
                   }`}

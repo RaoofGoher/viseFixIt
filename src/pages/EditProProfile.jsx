@@ -51,7 +51,7 @@ const EditProProfile = () => {
           const response = await axios.get(`${apiUrl}/categories/subcategories/${categoryId}/`);
           const fetchedSubcategories = response.data.data.subcategories; // Adjust based on actual response structure
           setSubcategories(fetchedSubcategories);
-          console.log('Subcategories:', fetchedSubcategories); // Log subcategories
+           // Log subcategories
         } catch (error) {
           console.error('Error fetching subcategories:', error);
         }
@@ -64,7 +64,7 @@ const EditProProfile = () => {
   // Log profile when it changes
   useEffect(() => {
     if (profile) {
-      console.log('Profile:', profile);
+      
     }
   }, [profile]);
 
@@ -120,10 +120,10 @@ const EditProProfile = () => {
   
       // 1. Send PATCH request for registerData
       const registerResponse = await axios.patch(`${apiUrl}/service_provider/update/user/${id}/`, registerData);
-      console.log("Register Data Updated", registerResponse);
+     
   
       if (registerResponse.data.status === 400) {
-        console.log(registerResponse.data.status)
+      
         if (registerResponse.data.reason.error === "Email is already taken, try another.") {
           setFieldError('email', "The email is already set. Try another one.");
           showToast('The email is already set. Try another one.', 'warning');
@@ -136,7 +136,7 @@ const EditProProfile = () => {
       }
       // 2. Try PATCH request for profileData
       const profileResponse = await axios.patch(`${apiUrl}/service_provider/update/profile/${id}/`, profileData);
-      console.log("Profile Data Updated", profileResponse);
+     
   
       // Check if PATCH for profileData was successful
       if (profileResponse.data.status === 200) {
@@ -144,7 +144,7 @@ const EditProProfile = () => {
       } else if (profileResponse.data.status === 404 && profileResponse.data.reason?.error === "SP Profile not found.") {
         // If PATCH fails due to profile not existing, send POST request
         const postResponse = await axios.post(`${apiUrl}/service_provider/create/profile/${id}/`, profileData);
-        console.log("Profile Created", postResponse);
+        
   
         // Handle email and phone number errors from the POST request
       

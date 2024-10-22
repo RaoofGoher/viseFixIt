@@ -8,7 +8,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const CustomerImageUpdate = ({ field, form, ...props }) => {
   const [uploading, setUploading] = useState(false);
   const [id, setId] = useState('');
-  const { user } = useGlobalContext();
+  const { user,updateProfilePicture } = useGlobalContext();
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -51,9 +51,9 @@ const CustomerImageUpdate = ({ field, form, ...props }) => {
           'Content-Type': 'multipart/form-data', // Specify content type
         },
       });
-
-      console.log(response.data); // Handle success response
+         // Handle success response
       showToast('Success! image uploaded.', 'success')
+      updateProfilePicture(response.data.data.profile_picture_url);
     } catch (error) {
       console.error("Error uploading image:", error);
       alert("Image upload failed! " + (error.response ? error.response.data.reason.error : ""));

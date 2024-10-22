@@ -21,7 +21,7 @@ export default {
       },
       screens: {
         'smartNavbar': {         // Define a custom max breakpoint
-          'max': '599px',           // Less than 600px
+          'max': '980px',           // Less than 600px
         },
         'smartNavbarLinks': {         // Define a custom max breakpoint
           'max': '400px',           // Less than 600px
