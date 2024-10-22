@@ -27,7 +27,7 @@ const Dashboard = () => {
         {/* Use the username from user.data for the profile link */}
         {user.data.username && (
           
-          <Link to={`/myprofilecustomer/${user.data.username}`} className="text-blue-500">
+          <Link to={`/dashboard/myprofilecustomer/${user.data.username}`} className="text-blue-500">
             View My Profile
           </Link>
         )}

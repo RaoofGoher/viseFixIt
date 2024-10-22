@@ -51,8 +51,8 @@ function App() {
           <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} /> */}
           <Route path="/search-results" element={<SearchResultsPage />} />
           <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
-          <Route path='*' element={<NotFoundPage />} />
           <Route path="/activate/:uid/:token" element={<EmailVerification />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Route>
         <Route path="/dashboard" element={<DashboardLayout />}>
         <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
@@ -61,7 +61,7 @@ function App() {
         <Route path="/dashboard/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}/>
         <Route path="/dashboard/myprofilecustomer/:customerName" element={<ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile>} />
         <Route path="/dashboard/myprofilecustomer/:customername/edit" element={<ProtectedMyCustomerProfile><EditCustomerProfile /></ProtectedMyCustomerProfile>}/>
-          
+        <Route path='*' element={<NotFoundPage />} />
        </Route>
 
       </>
