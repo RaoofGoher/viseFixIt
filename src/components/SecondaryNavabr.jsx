@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SecondaryNavbar = () => {
@@ -49,9 +49,18 @@ const SecondaryNavbar = () => {
     }
   };
 
+  const activeLinkStyle = { 
+    
+    backgroundColor:"#282829",
+    paddingTop:'100px',
+    paddingBottom:'100px',
+    paddingLeft:"10px",
+    paddingRight:"10px",
+  };
+  
   return (
     <>
-      <nav className="bg-primaryColor p-2 w-[94vw] mx-auto mb-2 relative rounded">
+      <nav className="bg-primaryColor w-[94vw] mx-auto mb-2 relative rounded ">
         <button
           onClick={scrollLeft}
           className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-gray-200 transition"
@@ -65,13 +74,15 @@ const SecondaryNavbar = () => {
         >
           <ul className="flex space-x-4 list-none ml-6">
             {navItems.map((item) => (
-              <li key={item.id} className='w-[170px]'> {/* Assuming each item has a unique id */}
-                <Link
+              <li key={item.id} className='w-[170px]' > {/* Assuming each item has a unique id */}
+                <NavLink
+                to={`/category/${item.id}`}
                   onClick={() => handleCategoryClick(item)} // Handle click event
                   className={`text-black font-bold transition duration-200 text-white hover:text-secondaryColor`}
+                  style={({ isActive }) => (isActive ? activeLinkStyle : null)}
                 >
                   {item.name}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>

@@ -27,7 +27,7 @@ const DashboardLayout = () => {
                                 <NavLink to={proData ? `/dashboard/myprofilepro/${proData?.username}` : `/dashboard/myprofilecustomer/${user?.data?.username}`} className="block p-4 hover:bg-primaryColor" style={({ isActive }) => (isActive ? activeLinkStyle : null)}>Profile</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/settings" className="block p-4 hover:bg-primaryColor"style={({ isActive }) => (isActive ? activeLinkStyle : null)} >Settings</NavLink>
+                                <NavLink to="/dashboard/settings" className="block p-4 hover:bg-primaryColor" style={({ isActive }) => (isActive ? activeLinkStyle : null)} >Settings</NavLink>
                             </li>
                             {/* Add more links as needed */}
                         </ul>
