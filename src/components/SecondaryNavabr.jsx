@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SecondaryNavbar = () => {
@@ -71,20 +72,19 @@ const SecondaryNavbar = () => {
         </button>
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto space-x-4 items-center scrollbar-hide w-full"
+          className="flex overflow-x-auto space-x-4 p-4 items-center scrollbar-hide w-full"
           style={{ scrollbarWidth: 'none' }} // For Firefox
         >
-          <ul className="flex space-x-4 list-none">
+          <ul className="flex space-x-4 list-none ml-6">
             {navItems.map((item) => (
-              <li key={item.id}> {/* Assuming each item has a unique id */}
-                <button
-                  onClick={() => openModal(item)}
-                  className={`ml-4 w-[250px] p-4 text-black font-bold transition duration-200 ${
+              <li key={item.id} className='w-[170px]'> {/* Assuming each item has a unique id */}
+                <Link
+                  className={`text-black font-bold transition duration-200 ${
                     activeModal === item.name ? 'text-yellow-400' : 'text-white hover:text-secondaryColor'
                   }`}
                 >
                   {item.name}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
