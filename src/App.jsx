@@ -51,16 +51,17 @@ function App() {
           <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} /> */}
           <Route path="/search-results" element={<SearchResultsPage />} />
           <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
-          <Route path="/myprofilepro/:proname" element={<ProtecetdMyProProfile> <MyProfilePro /> </ProtecetdMyProProfile>} />
-          <Route path="/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}/>
-          <Route path="/myprofilecustomer/:customerName" element={<ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile>} />
-          <Route path="/myprofilecustomer/:customername/edit" element={<ProtectedMyCustomerProfile><EditCustomerProfile /></ProtectedMyCustomerProfile>}/>
           <Route path='*' element={<NotFoundPage />} />
           <Route path="/activate/:uid/:token" element={<EmailVerification />} />
         </Route>
         <Route path="/dashboard" element={<DashboardLayout />}>
         <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} />
+        <Route path="/dashboard/myprofilepro/:proname" element={<ProtecetdMyProProfile> <MyProfilePro /> </ProtecetdMyProProfile>} />
+        <Route path="/dashboard/myprofilepro/:proname/edit" element={<ProtecetdMyProProfile><EditProProfile /></ProtecetdMyProProfile>}/>
+        <Route path="/dashboard/myprofilecustomer/:customerName" element={<ProtectedMyCustomerProfile> <MyProfileCustomer /> </ProtectedMyCustomerProfile>} />
+        <Route path="/dashboard/myprofilecustomer/:customername/edit" element={<ProtectedMyCustomerProfile><EditCustomerProfile /></ProtectedMyCustomerProfile>}/>
+          
        </Route>
 
       </>
