@@ -37,8 +37,6 @@ const Home = () => {
 
   return (
     <div>
-              <SecondaryNavbar/>
-
        <div className='flex justify-center items-center'>
         {isHeroLoading ? <Loader /> : <SimpleSlider/>}
       </div>

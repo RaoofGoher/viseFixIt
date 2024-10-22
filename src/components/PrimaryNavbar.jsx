@@ -7,6 +7,7 @@ import { useProContext } from '../context/ProContext';
 import { Link } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
 import { useMediaQuery } from 'react-responsive';
+import SecondaryNavbar from './SecondaryNavabr';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -221,6 +222,7 @@ const signUpHandler = () => {
       {/* Modals */}
       {isRegistrationModalOpen && <RegistrationModal />}
       {isServiceModalOpen && <ServicesModal />}
+      <SecondaryNavbar/>
     </div>
   );
 };
