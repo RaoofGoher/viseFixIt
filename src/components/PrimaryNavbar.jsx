@@ -7,6 +7,7 @@ import { useProContext } from '../context/ProContext';
 import { Link } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
 import { useMediaQuery } from 'react-responsive';
+import SecondaryNavbar from './SecondaryNavabr';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -97,7 +98,7 @@ const signUpHandler = () => {
                         Logout
                       </h1>
                     </Link>
-                    <Link to={`/myprofilepro/${proData?.username}`}>
+                    <Link to={`/dashboard/myprofilepro/${proData?.username}`}>
                       {!proData?.profile_picture_url || proData.profile_picture_url === 'null' ? (
                         <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
                       ) : (
@@ -121,7 +122,7 @@ const signUpHandler = () => {
                         Logout
                       </h1>
                     </Link>
-                    <Link to={`/myprofilecustomer/${user?.data?.username}`}>
+                    <Link to={`/dashboard/myprofilecustomer/${user?.data?.username}`}>
                       {!user?.data?.profile_picture_url || user?.data?.profile_picture_url === 'null' ? (
                         <FaUserCircle className="w-8 h-8 cursor-pointer text-primaryColor mt-4" />
                       ) : (
@@ -221,6 +222,7 @@ const signUpHandler = () => {
       {/* Modals */}
       {isRegistrationModalOpen && <RegistrationModal />}
       {isServiceModalOpen && <ServicesModal />}
+      <SecondaryNavbar/>
     </div>
   );
 };

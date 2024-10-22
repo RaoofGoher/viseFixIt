@@ -37,7 +37,7 @@ const ProDashboard = () => {
         <div className="flex justify-between bg-gray-100 p-3 rounded-lg">
           <span className="font-semibold capitalize">My Profile</span>
           <Link 
-            to={`/myprofilepro/${proData.username}`} 
+            to={`/dashboard/myprofilepro/${proData.username}`} 
             className="text-blue-500 hover:underline"
           >
             View Profile

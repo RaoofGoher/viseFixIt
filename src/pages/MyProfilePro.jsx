@@ -109,7 +109,7 @@ const MyProfilePro = () => {
       {/* Edit Button */}
       <div className="text-center mt-8">
         <button 
-          onClick={() => navigate(`/myprofilepro/${profile.username}/edit`)}
+          onClick={() => navigate(`/dashboard/myprofilepro/${profile.username}/edit`)}
           className="w-full md:w-1/2 bg-lightColor1 text-black font-bold py-2 px-4 rounded hover:bg-lightColor2 transition duration-300"
         >
           Edit Profile

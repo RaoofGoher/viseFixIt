@@ -47,7 +47,7 @@ const MyProfileCustomer = () => {
   if (!profile) return <div className="text-center">Loading...</div>;
 
   const handleEditClick = () => {
-    navigate(`/myprofilecustomer/${profile.username}/edit`);
+    navigate(`/dashboard/myprofilecustomer/${profile.username}/edit`);
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SecondaryNavbar = () => {
@@ -49,38 +49,49 @@ const SecondaryNavbar = () => {
     }
   };
 
+  const activeLinkStyle = { 
+    
+    backgroundColor:"#282829",
+    paddingTop:'30px',
+    paddingBottom:'30px',
+    paddingLeft:"10px",
+    paddingRight:"10px",
+  };
+  
   return (
     <>
-      <nav className="bg-primaryColor p-2 w-[94vw] mx-auto mb-2 relative rounded">
+      <nav className="bg-primaryColor w-[94vw] mx-auto mb-2 relative rounded">
         <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-gray-200 transition"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
         >
-          <FaChevronLeft className='text-secondaryColor font-bold text-2xl' />
+          <FaChevronLeft className='text-white font-bold text-2xl' />
         </button>
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto space-x-4 p-4 items-center scrollbar-hide w-full"
+          className="flex overflow-x-auto space-x-4 p-4 items-center w-full h-[80px]"
           style={{ scrollbarWidth: 'none' }} // For Firefox
         >
           <ul className="flex space-x-4 list-none ml-6">
             {navItems.map((item) => (
-              <li key={item.id} className='w-[170px]'> {/* Assuming each item has a unique id */}
-                <Link
+              <li key={item.id} className='w-[170px]' > {/* Assuming each item has a unique id */}
+                <NavLink
+                to={`/category/${item.id}`}
                   onClick={() => handleCategoryClick(item)} // Handle click event
-                  className={`text-black font-bold transition duration-200 text-white hover:text-secondaryColor`}
+                  className={`text-black font-bold transition duration-200 text-white hover:text-white`}
+                  style={({ isActive }) => (isActive ? activeLinkStyle : null)}
                 >
                   {item.name}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
         </div>
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full  hover:bg-gray-200 transition"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full  hover:bg-secondaryColor transition"
         >
-          <FaChevronRight className='text-secondaryColor font-bold text-2xl' />
+          <FaChevronRight className='text-white font-bold text-2xl' />
         </button>
       </nav>
     </>
