@@ -8,11 +8,6 @@ const DashboardLayout = () => {
 
     const { proData } = useProContext();   
     const {user} = useGlobalContext();
-    
-    // `/myprofilepro/${proData?.username}`
-    // `/myprofilecustomer/${user?.data?.username}`
-
-// {proData ? `/myprofilepro/${proData?.username}` : `/myprofilecustomer/${user?.data?.username}`}
 
     const activeLinkStyle = { 
         backgroundColor:"#F58634"
@@ -26,7 +21,7 @@ const DashboardLayout = () => {
                     <nav>
                         <ul>
                             <li>
-                                <NavLink to="/dashboard/home" className="block p-4 hover:bg-primaryColor"  style={({ isActive }) => (isActive ? activeLinkStyle : null)}>Home</NavLink>
+                                <NavLink to={proData ? `/dashboard/prodashboard/${proData?.username}` :`/dashboard/${user?.data?.username}`} className="block p-4 hover:bg-primaryColor"  style={({ isActive }) => (isActive ? activeLinkStyle : null)}>Home</NavLink>
                             </li>
                             <li>
                                 <NavLink to={proData ? `/dashboard/myprofilepro/${proData?.username}` : `/dashboard/myprofilecustomer/${user?.data?.username}`} className="block p-4 hover:bg-primaryColor" style={({ isActive }) => (isActive ? activeLinkStyle : null)}>Profile</NavLink>
