@@ -35,6 +35,7 @@ import { ToastProvider } from './context/ToastContext';
 import EditCustomerProfile from './pages/EditCustomerProfile';
 import EmailVerification from './pages/EmailVerification';
 import {AvailabilityProvider} from'./context/AvailabilityContext'
+import DashboardLayout from './layouts/DashboardLayout';
 import '@fontsource/lato';
 function App() {
   const router = createBrowserRouter(
@@ -46,8 +47,8 @@ function App() {
           <Route path='/login' element={<LoginComponent />} />
           <Route path='/prosignup' element={<SignupForm />} />
           <Route path="/customersignup" element={<CustomerForm />} />
-          <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} />
+          {/* <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} /> */}
           <Route path="/search-results" element={<SearchResultsPage />} />
           <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
           <Route path="/myprofilepro/:proname" element={<ProtecetdMyProProfile> <MyProfilePro /> </ProtecetdMyProProfile>} />
@@ -57,6 +58,10 @@ function App() {
           <Route path='*' element={<NotFoundPage />} />
           <Route path="/activate/:uid/:token" element={<EmailVerification />} />
         </Route>
+        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} />
+       </Route>
 
       </>
     )
