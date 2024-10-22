@@ -74,9 +74,9 @@ const signUpHandler = () => {
 
             {!isAuthenticated && !isProAuthenticated ? (
               <>
-                <h1 className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" onClick={openRegistrationModal}>
+                <Link className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" to="/customersignup">
                   Sign Up
-                </h1>
+                </Link>
                 <Link to={'/login'}>
                   <h1 className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4">
                     Log In
