@@ -93,19 +93,23 @@ const AvailabilityModal = () => {
       const { company_name, sp_profile, average_rating } = selectedProDetails.data.service_provider;
         
       providerInfo = (
-          <div className='border border-2 border-primaryColor px-2'>
-              <h2>Basic Order</h2>
-              <p>Company Name: {company_name || 'N/A'}</p>
-              <p>Base Price: ${sp_profile?.base_price}</p>
-              <p>Average Rating: {average_rating} / 5</p>
-              <h3>Services Included:</h3>
-              <ul>
-                  {sp_profile?.services_included?.map((service, index) => (
-                      <li key={index}>{service}</li>
-                  ))}
-              </ul>
-          </div>
+        <div className='border border-2 border-primaryColor px-2'>
+          <h2 className='text-center'><strong>Basic Order</strong></h2>
+          <ul className="list-disc list-inside custom-bullet">
+            <li className="">Company Name: {company_name || 'N/A'}</li>
+            <li className="">Base Price: ${sp_profile?.base_price}</li>
+            <li className="">Average Rating: {average_rating} / 5</li>
+          </ul>
+      
+          <h3>Services Included:</h3>
+          <ul className="list-disc list-inside custom-bullet">
+            {sp_profile?.services_included?.map((service, index) => (
+              <li key={index}>{service}</li>
+            ))}
+          </ul>
+        </div>
       );
+      
   } else {
       providerInfo = <p>Loading...</p>;
   }
@@ -114,14 +118,21 @@ const AvailabilityModal = () => {
 
   return isModalOpen ? (
     <>
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 mt-[320px]">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full ">
-        <h2 className="text-xl font-semibold mb-4">Manage Order</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 mt-[120px]">
+
+      <div className="bg-white p-6 rounded-lg shadow-lg border border-1  border-secondaryColor h-[700px] overflow-y-auto">
+
+        <h2 className="text-xl font-semibold mb-4 flex justify-between align-center"><span>Manage Order</span>  <button
+            onClick={closeModal}
+            className="bg-primaryColor h-[40px] text-white py-2 px-2 rounded-md hover:bg-gray-600"
+          >
+            X
+          </button></h2>
         <div>{providerInfo}</div>
         <hr/>
         {/* Display subcategories with quantity controls and total price */}
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2">Extra Services</h3>
+        <div className="mt-6 mb-2">
+          <h3 className="text-md font-semibold mb-2 ">Extra Services</h3>
           <div className="space-y-4">
             {selectedServices.map((sub, index) => (
               <div key={index} className="flex justify-between items-center">
@@ -132,7 +143,7 @@ const AvailabilityModal = () => {
                   {/* Minus Button */}
                   <button
                     onClick={() => handleDecrease(index)}
-                    className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600"
+                    className="bg-[#f79e5c] text-white px-2 py-1 rounded-md hover:bg-red-600"
                   >
                     -
                   </button>
@@ -143,7 +154,7 @@ const AvailabilityModal = () => {
                   {/* Plus Button */}
                   <button
                     onClick={() => handleIncrease(index)}
-                    className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
+                    className="bg-[#f69248] text-white px-2 py-1 rounded-md hover:bg-green-600"
                   >
                     +
                   </button>
@@ -172,7 +183,7 @@ const AvailabilityModal = () => {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className={`ml-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`ml-4 bg-primaryColor text-white py-2 px-4 rounded-md hover:bg-green-600 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {loading ? 'Submitting...' : 'Submit'}
           </button>
