@@ -20,8 +20,8 @@ const SearchComponent = () => {
   
   const {setZipProSearch}   = useProContext();
 
-  const isMobile = useMediaQuery({
-    query: '(max-width: 644px)'
+  const isSearchCollapsing2 = useMediaQuery({
+    query: '(max-width: 740px)'
   })
 
   const fetchCategories = async () => {
@@ -83,14 +83,14 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="flex smartHero:flex-col smartHero:items-start items-center space-x-8 h-[30px]">
-      <div className="relative flex-grow my-2" style={{ width: isMobile ? '100%' : '65%' }}>
+    <div className={`flex smartHero:flex-col smartHero:items-start items-center space-x-8 ${isSearchCollapsing2 ? "h-[150px]":"h-[30px]"} `}>
+      <div className="relative flex-grow my-2">
         <input
           type="text"
           value={problem}
           onChange={handleProblemChange}
           placeholder="Search a Service"
-          className="border p-2 rounded w-full focus:border-primaryColor focus:outline-none"
+          className="border p-2 rounded focus:border-primaryColor focus:outline-none w-[270px]"
         />
         {showDropdown && (
           <ul className="absolute z-10 w-full border bg-white rounded shadow-md max-h-48 overflow-y-auto">
@@ -106,14 +106,14 @@ const SearchComponent = () => {
           </ul>
         )}
       </div>
-      <div className="flex-grow relative my-2" style={{ width: isMobile ? '100%' : '35%' , marginLeft: isMobile ? '-1px':"" }}>
+      <div className="flex-grow relative my-2">
         <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
           type="text"
           value={zipcode}
           onChange={(e) => setZipcode(e.target.value)}
           placeholder="Zipcode"
-          className="border p-2 rounded pl-10 w-full focus:border-primaryColor focus:outline-none"
+          className="border p-2 rounded pl-10 w-[170px] focus:border-primaryColor focus:outline-none"
         />
       </div>
       <button
