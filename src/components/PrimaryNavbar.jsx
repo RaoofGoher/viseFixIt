@@ -37,7 +37,7 @@ const signUpHandler = () => {
 }
   return (
     <div className="relative">
-      <div className="flex items-center justify-between text-black px-10">
+      <div className="flex pr-8 items-center justify-between text-black">
         {/* Logo */}
         <Link to={'/'}>
           <img
@@ -56,7 +56,7 @@ const signUpHandler = () => {
 
         {/* Main navigation links for larger screens */}
         {!isMedium && (
-          <div className="navbar flex items-center space-x-6">
+          <div className="navbar flex items-center space-x-4">
             <div className="flex items-center">
               <span className="text-secondaryColor text-lg font-bold">Call Us: </span>
               <span className="text-primaryColor text-lg font-bold">(123) 456-7890</span>

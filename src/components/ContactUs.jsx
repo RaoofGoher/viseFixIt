@@ -33,8 +33,8 @@ const ContactUS = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center p-4 md:p-4 border border-4 border-lightColor1 mt-24 bg-lightColor1 mb-4">
-      <div className=" p-2 flex justify-center items-center flex-5">
+    <div className="flex flex-col md:flex-row items-center jutify-between p-8 md:p-4 border border-4 border-lightColor1 mt-24 bg-lightColor1 mb-4">
+      <div className="p-2 flex justify-center items-center flex-3">
         <img
           src={logo2}
           alt="Contact Us"

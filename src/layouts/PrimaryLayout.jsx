@@ -20,7 +20,7 @@ const PrimaryLayout = () => {
 
 
   return (
-    <div className='px-8 bg-[#ffffff]'>
+    <div className='bg-[#ffffff]'>
       {isNavbarLoading ? <Loader /> : <PrimaryNavbar />}
      
         <Outlet/>

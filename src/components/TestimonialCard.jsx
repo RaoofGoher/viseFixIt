@@ -1,7 +1,7 @@
 
 const TestimonialCard = ({ testimonial }) => {
   return (
-    <div className="bg-lightColor1 border-4 border-primaryColor p-4 rounded-lg shadow-lg m-2 h-[400px] ">
+    <div className="bg-lightColor1 border-4 border-primaryColor p-4 rounded-lg shadow-lg mx-2 h-[400px] ">
       <div className="bg-cover bg-center h-64 w-full"
         style={{ backgroundImage: `url(${testimonial.image})` }}>
 

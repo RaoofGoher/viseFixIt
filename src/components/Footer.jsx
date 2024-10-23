@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-primaryColor text-white py-6">
-      <div className={`max-w-6xl mx-4 flex ${isMobile ? "flex-col" : ""} justify-between items-center`}>
+      <div className={`px-10 flex ${isMobile ? "flex-col" : ""} justify-between items-center`}>
         <div className='border-[16px] border-lightColor1'>
         <img src={logo2} alt="Logo" className="h-20" />
         </div>
