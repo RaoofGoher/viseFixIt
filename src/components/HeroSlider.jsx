@@ -9,6 +9,7 @@ import HeroImage1 from '../assets/h1.jpg'
 import HeroImage2 from '../assets/h2.jpg'
 import HeroImage3 from '../assets/h3.jpg'
 import { useMediaQuery } from 'react-responsive'
+import HeroIcons from './heroIcons';
 
 const SimpleSlider = () => {
 
@@ -40,15 +41,20 @@ const SimpleSlider = () => {
           Pros In Your Area.
         </h1>
       </div>
+      <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[320px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>
+        <HeroIcons /> 
+      </div>
+
       <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[210px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>
         <Stack>
           <SearchComponent buttonText={'Search'} labelText={"Zip Code"} />
 
         </Stack>
-      </div>
-
+        
+      </div>    
       {/* Slider Component */}
       <Slider {...settings}>
+      
         <div className={`bg-heroColor ${isHeroCollapsing ? "h-52" : "h-[400px]"} flex items-center justify-center`}>
           <img src={HeroImage} className="border border-2 border-heroColor" />
         </div>
