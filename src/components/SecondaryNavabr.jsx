@@ -60,10 +60,10 @@ const SecondaryNavbar = () => {
   
   return (
     <>
-      <nav className="bg-primaryColor w-[94vw] mx-auto mb-2 relative rounded">
+      <nav className="bg-primaryColor mx-auto px-6 mb-2 relative rounded">
         <button
           onClick={scrollLeft}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
         >
           <FaChevronLeft className='text-white font-bold text-2xl' />
         </button>
@@ -89,7 +89,7 @@ const SecondaryNavbar = () => {
         </div>
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full  hover:bg-secondaryColor transition"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full  hover:bg-secondaryColor transition"
         >
           <FaChevronRight className='text-white font-bold text-2xl' />
         </button>

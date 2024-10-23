@@ -31,7 +31,7 @@ const SimpleSlider = () => {
   };
 
   return (
-    <div className="relative w-[94vw] mb-[50px] ">
+    <div className="relative w-[99vw] mb-[50px] ">
 
       {/* Overlay content positioned on top of the slider */}
       <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[50px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>

@@ -75,14 +75,14 @@ const TestimonialSlider = () => {
 
   };
 
-  return (<>
+  return (<div className="w-[98vw] px-4">
     <div className="text-center text-6xl font-bold m-8" style={{ fontSize: 'clamp(1rem, 2vw + 1rem, 2rem)' }} >Testimonials</div>
     <Slider {...settings}>
       {testimonials.map((testimonial) => (
         <TestimonialCard key={testimonial.id} testimonial={testimonial} />
       ))}
     </Slider>
-  </>
+  </div>
   );
 };
 export default TestimonialSlider;

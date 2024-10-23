@@ -33,8 +33,8 @@ const ContactUS = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center p-4 md:p-4 border border-4 border-lightColor1 mt-24 bg-lightColor1 mb-4">
-      <div className=" p-2 flex justify-center items-center flex-5">
+    <div className="flex px-8 py-8 flex-col md:flex-row items-center justify-between border border-4 border-lightColor1 mt-24 bg-lightColor1 mb-4">
+      <div className="">
         <img
           src={logo2}
           alt="Contact Us"
@@ -42,16 +42,17 @@ const ContactUS = () => {
         />
       </div>
       
-      <div className="flex-1">
-        <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
+      <div className="flex-1 ">
+        <h2 className="text-4xl font-bold mb-4 text-center">Contact Us</h2>
 
         <Formik
           initialValues={{ name: '', email: '', phone: '', subject: '', message: '' }}
           validationSchema={ContactSchema}
           onSubmit={handleSubmit}
+          className= "flex justify-end"
         >
           {({ isSubmitting }) => (
-            <Form className="space-y-4">
+            <Form className="space-y-4 pl-16">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium">Name</label>
                 <Field
