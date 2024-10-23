@@ -9,7 +9,7 @@ import HeroImage1 from '../assets/h1.jpg'
 import HeroImage2 from '../assets/h2.jpg'
 import HeroImage3 from '../assets/h3.jpg'
 import { useMediaQuery } from 'react-responsive'
-import HeroIcons from './heroIcons';
+import HeroIcons from './HeroIcons';
 
 const SimpleSlider = () => {
 
