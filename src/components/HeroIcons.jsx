@@ -1,9 +1,14 @@
 import React from 'react';
 import { landscapingIcon, ElectricalIcon, HandyPersonIcon, PlumbingIcon, RemodelingIcon, RoofingIcon } from '../data/HeroIcons';
+import { useMediaQuery } from 'react-responsive'
 
 function HeroIcons() {
+  const isIconCollapsing = useMediaQuery({
+    query: '(max-width: 1000px)'
+  })
+
   return (
-    <div className="flex w-[50vw] justify-between text-white">
+    <div className={`flex ${isIconCollapsing ? "w-[90vw]" : "w-[50vw]"}  justify-between text-white`}>
       {/* Each icon and title wrapped in a flex column */}
       <div className="flex flex-col items-center">
         <img src={landscapingIcon} alt="Landscaping" className="w-18 h-12 hover:scale-110 transition-transform" />

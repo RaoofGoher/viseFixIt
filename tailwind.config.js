@@ -27,7 +27,7 @@ export default {
           'max': '400px',           // Less than 600px
         },
         'smartHero': {
-          'max': '645px',
+          'max': '740px',
         },
         'changingText': {
           'max': '810px',
