@@ -32,6 +32,9 @@ const SimpleSlider = () => {
   const isTextCollapsing1 = useMediaQuery({
     query: '(max-width: 385px)'
   })
+  const isSeacrhComponentsCollapsing1 = useMediaQuery({
+    query: '(max-width: 360px)'
+  })
   const settings = {
     dots: false,
     arrows: false,
