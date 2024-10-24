@@ -8,7 +8,7 @@ import { useProContext } from '../context/ProContext';
 import { useNavigate } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
 import { useToast } from '../context/ToastContext';
-
+import { useMediaQuery } from 'react-responsive';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 // Validation schema using Yup
@@ -26,6 +26,15 @@ const LoginComponent = () => {
     const { handleProLogin, profileSearchLocation,setProfileSearchLocation } = useProContext(); // Access pro context
     const navigate = useNavigate(); // For navigation
     const { showToast } = useToast();
+
+    const isMedium = useMediaQuery({
+        query: '(max-width: 925px)',
+      });
+    const isMedium2 = useMediaQuery({
+        query: '(max-width: 420px)',
+      });
+
+
     const handleLogin = async (values) => {
         try {
             const response = await axios.post(`${apiUrl}/service_provider/login/`, values);
@@ -77,8 +86,8 @@ const LoginComponent = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 mb-2">
-            <div className="max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden flex">
+        <div className={`min-h-screen flex items-center justify-center bg-gray-100 mb-2`}>
+            <div className={`max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden flex ${isMedium ? "m-8":""}  ${isMedium ? "flex-col" :""} items-center justify-center`}>
                 {/* Image Section */}
                 <div className="w-1/2">
                     <img
@@ -89,7 +98,7 @@ const LoginComponent = () => {
                 </div>
 
                 {/* Form Section */}
-                <div className="w-1/2 p-8">
+                <div className={`${isMedium2 ? "" : "w-1/2"} ${isMedium ? "py-4" : "p-8"}`}>
                     <h2 className="text-3xl font-bold text-gray-800 mb-6">Log In</h2>
                     <Formik
                         initialValues={{

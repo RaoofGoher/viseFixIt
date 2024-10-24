@@ -26,6 +26,9 @@ const SearchComponent = () => {
   const isSearchCollapsing3 = useMediaQuery({
     query: '(min-width: 740px)'
   })
+  const isSearchCollapsing4 = useMediaQuery({
+    query: '(max-width: 360px)'
+  })
 
   const fetchCategories = async () => {
     try {
@@ -93,7 +96,7 @@ const SearchComponent = () => {
           value={problem}
           onChange={handleProblemChange}
           placeholder="Search a Service"
-          className="border p-2 rounded focus:border-primaryColor focus:outline-none w-[270px]"
+          className={`border p-2 rounded focus:border-primaryColor focus:outline-none ${isSearchCollapsing4 ? "w-[170px]" : "w-[270px]"} `}
         />
         {showDropdown && (
           <ul className="absolute z-10 w-full border bg-white rounded shadow-md max-h-48 overflow-y-auto">
