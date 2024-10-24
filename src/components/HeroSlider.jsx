@@ -51,7 +51,7 @@ const SimpleSlider = () => {
         <h1 className={` ${isTextCollapsing1 ? "text-2xl" : "text-5xl"}  font-bold text-center text-white`}>
           Find Top-rated Certified
           <br />
-          Pros In Your Area.
+          Pros In Your Area
         </h1>
       </div>
       <div className={`absolute  ${isHeroCollapsing2 ? "top-[370px]" : "top-[320px]"} ${isIconCollapsing ? "top-[400px]" : ""} left-1/2 transform z-10 -translate-x-1/2`}>
