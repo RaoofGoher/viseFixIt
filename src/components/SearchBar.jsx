@@ -106,7 +106,7 @@ const SearchComponent = () => {
           </ul>
         )}
       </div>
-      <div className="flex-grow relative my-2">
+      <div className="flex-grow relative my-2" style={{ marginLeft: isSearchCollapsing2 ? "0" : "0" }}>
         <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
           type="text"
@@ -117,6 +117,7 @@ const SearchComponent = () => {
         />
       </div>
       <button
+      style={{ marginLeft: isSearchCollapsing2 ? "0" : "0" }}
         onClick={handleSearch}
         className="border-2 bg-primaryColor text-white p-2 rounded hover:bg-lightColor1 hover:border-2 hover:border-primaryColor hover:text-primaryColor"
       >
