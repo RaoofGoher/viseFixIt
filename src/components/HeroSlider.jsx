@@ -29,6 +29,9 @@ const SimpleSlider = () => {
   const isIconCollapsing = useMediaQuery({
     query: '(max-width: 740px)'
   })
+  const isTextCollapsing1 = useMediaQuery({
+    query: '(max-width: 385px)'
+  })
   const settings = {
     dots: false,
     arrows: false,
@@ -45,7 +48,7 @@ const SimpleSlider = () => {
 
       {/* Overlay content positioned on top of the slider */}
       <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[50px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>
-        <h1 className="text-5xl font-bold text-center text-white">
+        <h1 className={` ${isTextCollapsing1 ? "text-2xl" : "text-5xl"}  font-bold text-center text-white`}>
           Find Top-rated Certified
           <br />
           Pros In Your Area.

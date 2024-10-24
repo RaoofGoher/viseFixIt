@@ -30,7 +30,7 @@ function HeroIcons() {
           alt="Landscaping"
           className={`w-18 h-12 hover:scale-110 transition-transform`}
         />
-        <span className="text-md mt-1">Landscaping</span>
+        <span className="text-md mt-1 text-white">Landscaping</span>
       </div>
 
       <div
@@ -43,7 +43,7 @@ function HeroIcons() {
           alt="Electrical"
           className="w-18 h-12 hover:scale-110 transition-transform"
         />
-        <span className="text-md mt-1">Electrical</span>
+        <span className="text-md mt-1 text-white">Electrical</span>
       </div>
 
       <div
@@ -56,7 +56,7 @@ function HeroIcons() {
           alt="Handy Person"
           className="w-18 h-12 hover:scale-110 transition-transform"
         />
-        <span className="text-md mt-1">Handy Person</span>
+        <span className="text-md mt-1 text-white">Handy Person</span>
       </div>
 
       <div
@@ -69,7 +69,7 @@ function HeroIcons() {
           alt="Plumbing"
           className="w-18 h-12 hover:scale-110 transition-transform"
         />
-        <span className="text-md mt-1">Plumbing</span>
+        <span className="text-md mt-1 text-white">Plumbing</span>
       </div>
 
       <div
@@ -82,7 +82,7 @@ function HeroIcons() {
           alt="Remodeling"
           className="w-18 h-12 hover:scale-110 transition-transform"
         />
-        <span className="text-md mt-1">Remodeling</span>
+        <span className="text-md mt-1 text-white">Remodeling</span>
       </div>
 
       <div
@@ -95,7 +95,7 @@ function HeroIcons() {
           alt="Roofing"
           className="w-18 h-12 hover:scale-110 transition-transform"
         />
-        <span className="text-md mt-1">Roofing</span>
+        <span className="text-md mt-1 text-white">Roofing</span>
       </div>
     </div>
   );
