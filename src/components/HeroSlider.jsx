@@ -19,9 +19,18 @@ const SimpleSlider = () => {
   const isHeroCollapsing2 = useMediaQuery({
     query: '(max-width: 645px)'
   })
+  const isHeroCollapsing3 = useMediaQuery({
+    query: '(max-width: 385px)'
+  })
+  const isHeroImageStretching = useMediaQuery({
+    query: '(max-width: 800px)'
+  })
 
   const isIconCollapsing = useMediaQuery({
     query: '(max-width: 740px)'
+  })
+  const isTextCollapsing1 = useMediaQuery({
+    query: '(max-width: 385px)'
   })
   const settings = {
     dots: false,
@@ -39,10 +48,10 @@ const SimpleSlider = () => {
 
       {/* Overlay content positioned on top of the slider */}
       <div className={`absolute  ${isHeroCollapsing2 ? "top-[70px]" : "top-[50px]"} left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>
-        <h1 className="text-5xl font-bold text-center text-white">
+        <h1 className={` ${isTextCollapsing1 ? "text-2xl" : "text-5xl"}  font-bold text-center text-white`}>
           Find Top-rated Certified
           <br />
-          Pros In Your Area.
+          Pros In Your Area
         </h1>
       </div>
       <div className={`absolute  ${isHeroCollapsing2 ? "top-[370px]" : "top-[320px]"} ${isIconCollapsing ? "top-[400px]" : ""} left-1/2 transform z-10 -translate-x-1/2`}>
@@ -51,7 +60,7 @@ const SimpleSlider = () => {
 
       <div className={`absolute  ${isHeroCollapsing ? "top-[170px]" : "top-[210px]"}   left-1/2 transform z-10 -translate-x-1/2 ${isHeroCollapsing ? "w-[80vw]" : ""}`}>
         <Stack>
-          <SearchComponent buttonText={'Search'} labelText={"Zip Code"} />
+          <SearchComponent buttonText={'Search'} labelText={"Zip Code"}/>
 
         </Stack>
         
@@ -59,17 +68,17 @@ const SimpleSlider = () => {
       {/* Slider Component */}
       <Slider {...settings}>
       
-        <div className={`bg-heroColor ${isHeroCollapsing ? "h-[500px]" : "h-[500px]"} flex items-center justify-center`}>
-          <img src={HeroImage} className="h-[500px] w-full" />
+        <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
+          <img src={HeroImage} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
         </div>
-        <div className={`bg-heroColor ${isHeroCollapsing ? "h-[500px]" : "h-[500px]"} flex items-center justify-center`}>
-          <img src={HeroImage1} className="h-[500px] w-full" />
+        <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
+          <img src={HeroImage1} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
         </div>
-        <div className={`bg-heroColor ${isHeroCollapsing ? "h-[500px]" : "h-[500px]"} flex items-center justify-center`}>
-          <img src={HeroImage2} className="h-[500px] w-full" />
+        <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
+          <img src={HeroImage2} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
         </div>
-        <div className={`bg-heroColor ${isHeroCollapsing ? "h-[500px]" : "h-[500px]"} flex items-center justify-center`}>
-          <img src={HeroImage3} className="h-[500px] w-full" />
+        <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
+          <img src={HeroImage3} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
         </div>
       </Slider>
     </div>
