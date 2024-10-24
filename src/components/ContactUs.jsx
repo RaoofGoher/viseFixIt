@@ -24,6 +24,9 @@ const ContactUS = () => {
   const isSmall2 = useMediaQuery({
     query: '(max-width: 526px)',
   });
+  const isSmall3 = useMediaQuery({
+    query: '(max-width: 375px)',
+  });
   const isSmall = useMediaQuery({
     query: '(max-width: 530px)',
   });
@@ -68,7 +71,7 @@ const ContactUS = () => {
           className= "flex justify-end"
         >
           {({ isSubmitting }) => (
-            <Form className={`space-y-4 ${isMedium ? "w-[350px]" : "w-[500px]" } ${isSmall2 ? "w-[150px]":""}  text-secondaryColor`}>
+            <Form className={`space-y-4 ${isMedium ? "w-[350px]" : "w-[500px]" } ${isSmall2 ? "w-[150px]":""} ${isSmall3 ? "w-[90vw]" : ""}  text-secondaryColor`}>
               <div  >
                 <label htmlFor="name" className="block text-md font-bold w-[100px]">Name</label>
                 <Field
