@@ -23,6 +23,9 @@ const SearchComponent = () => {
   const isSearchCollapsing2 = useMediaQuery({
     query: '(max-width: 740px)'
   })
+  const isSearchCollapsing3 = useMediaQuery({
+    query: '(min-width: 740px)'
+  })
 
   const fetchCategories = async () => {
     try {
@@ -84,7 +87,7 @@ const SearchComponent = () => {
 
   return (
     <div className={`flex smartHero:flex-col smartHero:items-start items-center space-x-8 ${isSearchCollapsing2 ? "h-[150px]":"h-[30px]"} `}>
-      <div className="relative flex-grow my-2">
+      <div className={`relative flex-grow my-2 ${isSearchCollapsing3 ? "mx-2" : ""} `}>
         <input
           type="text"
           value={problem}
@@ -106,7 +109,7 @@ const SearchComponent = () => {
           </ul>
         )}
       </div>
-      <div className="flex-grow relative my-2" style={{ marginLeft: isSearchCollapsing2 ? "0" : "0" }}>
+      <div className={`flex-grow relative my-2 `} style={{ marginLeft: isSearchCollapsing2 ? "0" : "0" }}>
         <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
           type="text"
@@ -117,9 +120,9 @@ const SearchComponent = () => {
         />
       </div>
       <button
-      style={{ marginLeft: isSearchCollapsing2 ? "0" : "0" }}
+      style={{ marginLeft: isSearchCollapsing2 ? "0" : "10px" }}
         onClick={handleSearch}
-        className="border-2 bg-primaryColor text-white p-2 rounded hover:bg-lightColor1 hover:border-2 hover:border-primaryColor hover:text-primaryColor"
+        className={`border-2 bg-primaryColor text-white p-2 rounded hover:bg-lightColor1 hover:border-2 hover:border-primaryColor hover:text-primaryColor`}
       >
         Search
       </button>
