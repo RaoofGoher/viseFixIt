@@ -56,7 +56,7 @@ function HeroIcons() {
           alt="Handy Person"
           className="w-18 h-12 hover:scale-110 transition-transform"
         />
-        <span className="text-md mt-1 text-white">Handy Person</span>
+        <span className="text-md mt-1 text-white">Handyman</span>
       </div>
 
       <div
