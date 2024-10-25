@@ -78,7 +78,7 @@ const ContactUS = () => {
                   type="text"
                   id="name"
                   name="name"
-                  className={` mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border border-2 border-primaryColor rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  className={` mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border border-2 border-primaryColor rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
                 />
                 <ErrorMessage name="name" component="div" className="text-red-600 text-sm" />
               </div>
@@ -89,7 +89,7 @@ const ContactUS = () => {
                   type="email"
                   id="email"
                   name="email"
-                  className={`mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border-2 border-primaryColor rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 `}
+                  className={`mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border-2 border-primaryColor rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 `}
                 />
                 <ErrorMessage name="email" component="div" className="text-red-600 text-sm" />
               </div>
@@ -100,7 +100,7 @@ const ContactUS = () => {
                   type="text"
                   id="phone"
                   name="phone"
-                  className={`mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border-2 border-primaryColor rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  className={`mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border-2 border-primaryColor rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
                 />
                 <ErrorMessage name="phone" component="div" className="text-red-600 text-sm" />
               </div>
@@ -111,7 +111,7 @@ const ContactUS = () => {
                   type="text"
                   id="subject"
                   name="subject"
-                  className={`mt-1 block ${isSmall2 ? "" : "w-full" }  px-3 py-2 border-2 border-primaryColor rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  className={`mt-1 block ${isSmall2 ? "" : "w-full" }  px-3 py-2 border-2 border-primaryColor rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
                 />
                 <ErrorMessage name="subject" component="div" className="text-red-600 text-sm" />
               </div>
@@ -123,14 +123,14 @@ const ContactUS = () => {
                   id="message"
                   name="message"
                   rows="4"
-                  className={`mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border-2 border-primaryColor rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  className={`mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border-2 border-primaryColor rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
                 />
                 <ErrorMessage name="message" component="div" className="text-red-600 text-sm" />
               </div>
 
               <button
                 type="submit"
-                className={`${isSmall2 ? "w-[80vw]" : "w-full" } py-2 px-4 bg-primaryColor text-white font-semibold rounded-full shadow-sm hover:bg-lightColor2 hover:text-secondaryColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+                className={`${isSmall2 ? "w-[80vw]" : "w-full" } py-2 px-4 bg-primaryColor text-white font-semibold rounded-md shadow-sm hover:bg-lightColor2 hover:text-secondaryColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
