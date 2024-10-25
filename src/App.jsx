@@ -38,6 +38,7 @@ import {AvailabilityProvider} from'./context/AvailabilityContext'
 import DashboardLayout from './layouts/DashboardLayout';
 import '@fontsource/lato';
 import RequestAceptPage from './pages/RequestAceptPage';
+import RequestRejectPage from './pages/RequestRejectPage';
 
 function App() {
   const router = createBrowserRouter(
@@ -55,6 +56,7 @@ function App() {
           <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
           <Route path="/activate/:uid/:token" element={<EmailVerification />} />
           <Route path="/accepted/:id" element={<RequestAceptPage />} />
+          <Route path="/rejected/:id" element={<RequestRejectPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Route>
         <Route path="/dashboard" element={<DashboardLayout />}>

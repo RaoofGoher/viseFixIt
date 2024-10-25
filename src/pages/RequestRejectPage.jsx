@@ -1,23 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FaThumbsUp } from 'react-icons/fa'
+import { FaThumbsDown } from 'react-icons/fa'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useToast } from '../context/ToastContext';
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const RequestAceptPage = () => {
+const RequestRejectPage = () => {
     const { id } = useParams();
     const [status, setStatus] = useState('Verifying...');
     const { showToast } = useToast();
     useEffect(() => {
-        const requestAccept = async () => {
+        const requestReject = async () => {
           try {
-            const response = await axios.get(`${apiUrl}/service-request/${id}/accept/`);
+            const response = await axios.get(`${apiUrl}/service-request/${id}/reject/`);
             if (response.status === 200) {
-              setStatus('Your request has been accepted successfully!');
-              showToast('request accepted successfully!','success');
+              setStatus('Your request has been rejected!');
+              showToast('request rejected!','error');
              
             } else {
               setStatus('request rejeted.');
@@ -28,7 +28,7 @@ const RequestAceptPage = () => {
           }
         };
     
-        requestAccept();
+        requestReject();
       }, [id]);
 
 
@@ -36,8 +36,8 @@ const RequestAceptPage = () => {
   return (
     <div className='flex flex-col  items-center justify-center h-[30vw]'>
      
-     <FaThumbsUp className='text-primaryColor text-8xl mb-4' />
-     <h1 className='text-6xl font-bold mb-4'>Your request is Accepted</h1>
+     <FaThumbsDown className='text-red-500 text-8xl mb-4' />
+     <h1 className='text-6xl font-bold mb-4'>Your request is Rejected</h1>
 
      <Link
         to='/'
@@ -50,4 +50,4 @@ const RequestAceptPage = () => {
   )
 }
 
-export default RequestAceptPage
+export default RequestRejectPage
