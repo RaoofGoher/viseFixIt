@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useToast } from '../context/ToastContext';
 import { FaCheck } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const EmailVerification = () => {
   const { uid, token } = useParams();
@@ -14,7 +15,7 @@ const EmailVerification = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await axios.get(`https://api.thefixit4u.com/activate/${uid}/${token}/`);
+        const response = await axios.get(`${apiUrl}/${uid}/${token}/`);
         if (response.status === 200) {
           setStatus('Your email has been verified successfully!');
           showToast('Email verified successfully!','success');
