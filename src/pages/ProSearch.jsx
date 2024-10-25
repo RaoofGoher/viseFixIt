@@ -14,40 +14,40 @@ const SearchResultsPage = () => {
     const { categoryIDfromNav } = useGlobalContext();
     const [searchType, setSearchType] = useState([]); // Use empty array for searchType
     const isMobile = useMediaQuery({ query: '(max-width: 525px)' });
- 
+
     useEffect(() => {
-      console.log("hello world", zipProSearch, categoryIDfromNav);
-      
-      // Reset searchType before fetching new data
-      if (zipProSearch === null) {
-          // Fetch data from the API
-          axios.get(`https://api.thefixit4u.com/get_all_pro_by_category/${categoryIDfromNav}/`)
-              .then(response => {
-                  if (response.data) {
-                      setSearchType(response.data.service_providers);
-                  } else {
-                      console.error("Unexpected API response structure:", response.data);
-                      // Optionally reset searchType here if response is unexpected
-                      setSearchType([]); // Reset to empty array or null
-                  }
-              })
-              .catch(error => {
-                  console.error("Error fetching data:", error);
-                  // Reset searchType on error
-                  setSearchType([]); // Reset to empty array or null
-              });
-      } else if (zipProSearch?.length !== 0) {
-          // If `zipProSearch` is defined, use it as `searchType`
-          setSearchType(zipProSearch);
-      }
-  }, [zipProSearch, categoryIDfromNav]);
-  
-  
+        console.log("hello world", zipProSearch, categoryIDfromNav);
+
+        // Reset searchType before fetching new data
+        if (zipProSearch === null) {
+            // Fetch data from the API
+            axios.get(`https://api.thefixit4u.com/get_all_pro_by_category/${categoryIDfromNav}/`)
+                .then(response => {
+                    if (response.data) {
+                        setSearchType(response.data.service_providers);
+                    } else {
+                        console.error("Unexpected API response structure:", response.data);
+                        // Optionally reset searchType here if response is unexpected
+                        setSearchType([]); // Reset to empty array or null
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    // Reset searchType on error
+                    setSearchType([]); // Reset to empty array or null
+                });
+        } else if (zipProSearch?.length !== 0) {
+            // If `zipProSearch` is defined, use it as `searchType`
+            setSearchType(zipProSearch);
+        }
+    }, [zipProSearch, categoryIDfromNav]);
+
+
     useEffect(() => {
         // Update profileSearchLocation every time the route changes
         setProfileSearchLocation(location.pathname);
     }, [location, setProfileSearchLocation]); // Add setProfileSearchLocation as a dependency
-   console.log("proSeacrhhhhh", searchType)
+   
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4 text-primaryColor">Search Results</h2>
@@ -66,9 +66,9 @@ const SearchResultsPage = () => {
                                     {/* Image Section */}
                                     <div className="relative w-16 h-16 mr-4">
                                         {profilePictureURL ? (
-                                            <img 
+                                            <img
                                                 src={profilePictureURL}
-                                                alt={`${provider.username}'s profile`} 
+                                                alt={`${provider.username}'s profile`}
                                                 className="w-full h-full rounded-full border border-2 border-primaryColor object-cover"
                                             />
                                         ) : (
