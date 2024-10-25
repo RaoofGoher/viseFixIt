@@ -18,7 +18,7 @@ const SearchResultsPage = () => {
     useEffect(() => {
         // Check if `zipProSearch` is undefined
         console.log("hello world" ,zipProSearch , categoryIDfromNav)
-        if (zipProSearch.length === 0) {
+        if (zipProSearch === null) {
             // Fetch data from the API
             axios.get(`https://api.thefixit4u.com/get_all_pro_by_category/${categoryIDfromNav}/`)
                 .then(response => {
@@ -32,25 +32,25 @@ const SearchResultsPage = () => {
                 .catch(error => {
                     console.error("Error fetching data:", error);
                 });
-        } else {
+        } else if (zipProSearch?.length != 0) {
             // If `zipProSearch` is defined, use it as `searchType`
             setSearchType(zipProSearch);
         }
-    }, [zipProSearch]);
+    }, [zipProSearch,categoryIDfromNav]);
   
     useEffect(() => {
         // Update profileSearchLocation every time the route changes
         setProfileSearchLocation(location.pathname);
     }, [location, setProfileSearchLocation]); // Add setProfileSearchLocation as a dependency
-   
+   console.log("proSeacrh", searchType)
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4 text-primaryColor">Search Results</h2>
-            {searchType.length === 0 ? (
+            {searchType?.length === 0 ? (
                 <p className="text-gray-600">No service providers found.</p>
             ) : (
                 <ul className="space-y-4">
-                    {searchType.map(provider => {
+                    {searchType?.map(provider => {
                         const profilePictureURL = provider.profile_picture
                             ? `${apiUrl}${provider.profile_picture}`
                             : null;

@@ -2,12 +2,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { useGlobalContext } from '../context/GlobalContext';
+import { useProContext } from '../context/ProContext';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SecondaryNavbar = () => {
   const [navItems, setNavItems] = useState([]); // State to hold categories
   const scrollRef = useRef(null); // Reference to the scrollable container
   const { setCategoryIDfromNav } = useGlobalContext();
+  const {zipProSearch, setZipProSearch } = useProContext();
   const navigate = useNavigate();
   const location = useLocation(); // Get the current location
 
@@ -27,9 +29,19 @@ const SecondaryNavbar = () => {
   }, []);
 
   // Function to handle category click
+  useEffect(() => {
+    return () => {
+      setCategoryIDfromNav(null); // Reset user state when modal closes
+    };
+  }, [setCategoryIDfromNav]);
+
+
+
   const handleCategoryClick = (item) => {
     setCategoryIDfromNav(item.id); // Replace state with the clicked category
     console.log("category id", item);
+    setZipProSearch(null);
+    console.log("hello 2" ,zipProSearch)
   };
 
   // Function to scroll left
