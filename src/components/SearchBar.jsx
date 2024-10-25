@@ -43,6 +43,13 @@ const SearchComponent = () => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      setZipProSearch(null); // Reset user state when modal closes
+    };
+  }, [setZipProSearch]);
+
+
   const handleProblemChange = (e) => {
     const inputValue = e.target.value;
     setProblem(inputValue);
