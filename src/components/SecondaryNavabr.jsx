@@ -1,12 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, useLocation } from 'react-router-dom';
+import { useGlobalContext } from '../context/GlobalContext';
+import { useProContext } from '../context/ProContext';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SecondaryNavbar = () => {
   const [navItems, setNavItems] = useState([]); // State to hold categories
-  const [selectedCategory, setSelectedCategory] = useState(null); // State to store the clicked category
   const scrollRef = useRef(null); // Reference to the scrollable container
+  const { setCategoryIDfromNav } = useGlobalContext();
+  const {zipProSearch, setZipProSearch } = useProContext();
+  const navigate = useNavigate();
+  const location = useLocation(); // Get the current location
 
   // Function to fetch categories from the backend
   const fetchCategories = async () => {
@@ -24,16 +29,20 @@ const SecondaryNavbar = () => {
   }, []);
 
   // Function to handle category click
-  const handleCategoryClick = (item) => {
-    setSelectedCategory({ id: item.id, name: item.name }); // Replace state with the clicked category
-  };
-
-  // Log the updated selected category whenever it changes
   useEffect(() => {
-    if (selectedCategory) {
-      console.log("Selected Category:", selectedCategory);
-    }
-  }, [selectedCategory]);
+    return () => {
+      setCategoryIDfromNav(null); // Reset user state when modal closes
+    };
+  }, [setCategoryIDfromNav]);
+
+
+
+  const handleCategoryClick = (item) => {
+    setCategoryIDfromNav(item.id); // Replace state with the clicked category
+    console.log("category id", item);
+    setZipProSearch(null);
+    console.log("hello 2" ,zipProSearch)
+  };
 
   // Function to scroll left
   const scrollLeft = () => {
@@ -49,15 +58,14 @@ const SecondaryNavbar = () => {
     }
   };
 
-  const activeLinkStyle = { 
-    
-    backgroundColor:"#282829",
-    paddingTop:'30px',
-    paddingBottom:'30px',
-    paddingLeft:"10px",
-    paddingRight:"10px",
+  const activeLinkStyle = {
+    backgroundColor: "#282829",
+    paddingTop: '30px',
+    paddingBottom: '30px',
+    paddingLeft: "10px",
+    paddingRight: "10px",
   };
-  
+
   return (
     <>
       <nav className="bg-primaryColor mx-auto px-6 mb-2 relative rounded">
@@ -74,12 +82,12 @@ const SecondaryNavbar = () => {
         >
           <ul className="flex space-x-4 list-none ml-6">
             {navItems.map((item) => (
-              <li key={item.id} className='w-[170px]' > {/* Assuming each item has a unique id */}
+              <li key={item.id} className='w-[170px]'> {/* Assuming each item has a unique id */}
                 <NavLink
-                to={`/category/${item.id}`}
+                  to={`/search-results/${item.id}`} // Make sure each link is unique
                   onClick={() => handleCategoryClick(item)} // Handle click event
                   className={`text-black font-bold transition duration-200 text-white hover:text-white`}
-                  style={({ isActive }) => (isActive ? activeLinkStyle : null)}
+                  style={({ isActive }) => (isActive ? activeLinkStyle : null)} // Apply active style
                 >
                   {item.name}
                 </NavLink>
@@ -89,7 +97,7 @@ const SecondaryNavbar = () => {
         </div>
         <button
           onClick={scrollRight}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full  hover:bg-secondaryColor transition"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
         >
           <FaChevronRight className='text-white font-bold text-2xl' />
         </button>

@@ -39,9 +39,10 @@ const LoginComponent = () => {
         try {
             const response = await axios.post(`${apiUrl}/service_provider/login/`, values);
             const userData = response.data; // Assuming this includes the user data (like username)
-
+              console.log("location",profileSearchLocation)
             // Check if the user is a pro or customer
-            if (profileSearchLocation === "/search-results") {
+            const isSearchResults = /^\/search-results(\/\d+)?$/.test(profileSearchLocation);
+            if (isSearchResults) {
                 // Always navigate to search-profile
                 if (userData?.data?.isCustomer === false) { // Assuming isCustomer = false indicates a pro
                    

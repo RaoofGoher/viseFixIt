@@ -53,6 +53,7 @@ function App() {
           {/* <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/dashboard/prodashboard/:proname" element={<ProtectedPro><ProDashboard /></ProtectedPro>} /> */}
           <Route path="/search-results" element={<SearchResultsPage />} />
+          <Route path="/search-results/:id" element={<SearchResultsPage />} />
           <Route path="/profile/:id" element={<ProtectedProfileRoute> <ProfilePage /> </ProtectedProfileRoute>} />
           <Route path="/activate/:uid/:token" element={<EmailVerification />} />
           <Route path="/accepted/:id" element={<RequestAceptPage />} />

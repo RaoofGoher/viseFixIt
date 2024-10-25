@@ -17,7 +17,7 @@ export const GlobalProvider = ({ children }) => {
     const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [isServiceModalOpen, setServiceModalOpen] = useState(false);
     const [isCustomer, setIsCustomer] = useState(true);
-
+    const [categoryIDfromNav, setCategoryIDfromNav] = useState('');
 
     const updateProfilePicture = (newImageUrl) => {
         setUser((prevUser) => ({
@@ -88,7 +88,9 @@ export const GlobalProvider = ({ children }) => {
                 closeServiceModal,
                 isCustomer,
                 setIsCustomer,
-                updateProfilePicture
+                updateProfilePicture,
+                categoryIDfromNav,
+                setCategoryIDfromNav
             }}
         >
             {children}

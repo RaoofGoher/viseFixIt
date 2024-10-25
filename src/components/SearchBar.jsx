@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useProContext } from '../context/ProContext';
+import { useGlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive'
 import { useToast } from '../context/ToastContext';
@@ -19,6 +20,7 @@ const SearchComponent = () => {
   const { showToast } = useToast();
   
   const {setZipProSearch}   = useProContext();
+  const {categoryIDfromNav, setCategoryIDfromNav}   = useGlobalContext();
 
   const isSearchCollapsing2 = useMediaQuery({
     query: '(max-width: 740px)'
@@ -43,6 +45,9 @@ const SearchComponent = () => {
     fetchCategories();
   }, []);
 
+
+
+
   const handleProblemChange = (e) => {
     const inputValue = e.target.value;
     setProblem(inputValue);
@@ -65,6 +70,7 @@ const SearchComponent = () => {
   };
 
   const handleSearch = async () => {
+    setCategoryIDfromNav(null)
     if (!selectedCategory || !zipcode) {
       showToast('please enter category and zip code', 'warning')
       return;
