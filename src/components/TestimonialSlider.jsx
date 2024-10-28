@@ -1,12 +1,10 @@
 import Slider from "react-slick";
 import TestimonialCard from './TestimonialCard'
 import { useMediaQuery } from 'react-responsive'
-import Img3 from "../assets/p3.jpg"
 import Img4 from "../assets/p4.jpg"
 import Img5 from "../assets/p5.jpg"
 import Img6 from "../assets/p6.jpg"
 import Img7 from "../assets/p7.jpg"
-import Img8 from "../assets/p8.jpg"
 
 const TestimonialSlider = () => {
 
@@ -23,28 +21,28 @@ const TestimonialSlider = () => {
     {
       id: 1,
       name: "John Doe",
-      image: Img7,
+      image: Img4,
       rating: 5,
       review: "This service was amazing! Highly recommend."
     },
     {
       id: 2,
       name: "Jane Smith",
-      image: Img8,
+      image: Img5,
       rating: 4,
       review: "Very satisfied with the experience."
     },
     {
       id: 1,
       name: "John Doe",
-      image: Img3,
+      image: Img6,
       rating: 5,
       review: "This service was amazing! Highly recommend."
     },
     {
       id: 2,
       name: "Jane Smith",
-      image: Img4,
+      image: Img7,
       rating: 4,
       review: "Very satisfied with the experience."
     },
