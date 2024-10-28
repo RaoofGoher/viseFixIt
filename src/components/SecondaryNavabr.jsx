@@ -7,18 +7,19 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const SecondaryNavbar = () => {
   const [navItems, setNavItems] = useState([]); // State to hold categories
+  const [hasScrolledLeft, setHasScrolledLeft] = useState(false); // Track if there are items on the left
   const scrollRef = useRef(null); // Reference to the scrollable container
   const { setCategoryIDfromNav } = useGlobalContext();
-  const {zipProSearch, setZipProSearch } = useProContext();
+  const { zipProSearch, setZipProSearch } = useProContext();
   const navigate = useNavigate();
   const location = useLocation(); // Get the current location
 
-  // Function to fetch categories from the backend
+  // Fetch categories from the backend
   const fetchCategories = async () => {
     try {
       const response = await fetch(`${apiUrl}/categories/all`);
       const data = await response.json();
-      setNavItems(data.data.categories); // Assuming data is an array of category objects
+      setNavItems(data.data.categories);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
@@ -28,35 +29,45 @@ const SecondaryNavbar = () => {
     fetchCategories(); // Fetch categories on component mount
   }, []);
 
-  // Function to handle category click
   useEffect(() => {
     return () => {
-      setCategoryIDfromNav(null); // Reset user state when modal closes
+      setCategoryIDfromNav(null); // Reset category ID when modal closes
     };
   }, [setCategoryIDfromNav]);
 
-
-
   const handleCategoryClick = (item) => {
-    setCategoryIDfromNav(item.id); // Replace state with the clicked category
-    console.log("category id", item);
+    setCategoryIDfromNav(item.id);
     setZipProSearch(null);
-    console.log("hello 2" ,zipProSearch)
   };
 
-  // Function to scroll left
   const scrollLeft = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
     }
   };
 
-  // Function to scroll right
   const scrollRight = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
     }
   };
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      setHasScrolledLeft(scrollRef.current.scrollLeft > 0);
+    }
+  };
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.addEventListener('scroll', handleScroll);
+    }
+    return () => {
+      if (scrollRef.current) {
+        scrollRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
 
   const activeLinkStyle = {
     backgroundColor: "#282829",
@@ -67,42 +78,42 @@ const SecondaryNavbar = () => {
   };
 
   return (
-    <>
-      <nav className="bg-primaryColor mx-auto px-6 mb-2 relative rounded">
+    <nav className="bg-primaryColor mx-auto px-6 mb-2 relative rounded">
+      {hasScrolledLeft && (
         <button
           onClick={scrollLeft}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
         >
           <FaChevronLeft className='text-white font-bold text-2xl' />
         </button>
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto space-x-4 p-4 items-center w-full h-[80px]"
-          style={{ scrollbarWidth: 'none' }} // For Firefox
-        >
-          <ul className="flex space-x-4 list-none ml-6">
-            {navItems.map((item) => (
-              <li key={item.id} className='w-[170px]'> {/* Assuming each item has a unique id */}
-                <NavLink
-                  to={`/search-results/${item.id}`} // Make sure each link is unique
-                  onClick={() => handleCategoryClick(item)} // Handle click event
-                  className={`text-black font-bold transition duration-200 text-white hover:text-white`}
-                  style={({ isActive }) => (isActive ? activeLinkStyle : null)} // Apply active style
-                >
-                  {item.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <button
-          onClick={scrollRight}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
-        >
-          <FaChevronRight className='text-white font-bold text-2xl' />
-        </button>
-      </nav>
-    </>
+      )}
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-auto space-x-4 p-4 items-center w-full h-[80px]"
+        style={{ scrollbarWidth: 'none' }}
+      >
+        <ul className="flex space-x-4 list-none ml-6">
+          {navItems.map((item) => (
+            <li key={item.id} className='w-[170px]'>
+              <NavLink
+                to={`/search-results/${item.id}`}
+                onClick={() => handleCategoryClick(item)}
+                className={`text-black font-bold transition duration-200 text-white hover:text-white`}
+                style={({ isActive }) => (isActive ? activeLinkStyle : null)}
+              >
+                {item.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <button
+        onClick={scrollRight}
+        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
+      >
+        <FaChevronRight className='text-white font-bold text-2xl' />
+      </button>
+    </nav>
   );
 };
 

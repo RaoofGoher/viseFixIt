@@ -39,6 +39,18 @@ const defaultServices = [
   { title: 'Pest Control', description: 'Effective pest control services to keep your home safe.', icon: <FaBriefcase />, img: PestControl }
 ];
 
+const images = [Roofing, Cleaning, Interior, LandScaping, Plumbing, Painting];
+
+// Function to get a random image name
+function getRandomImageName() {
+  // Get a random index based on the length of the images array
+  const randomIndex = Math.floor(Math.random() * images.length);
+  
+  // Return the randomly selected image name
+  return images[randomIndex];
+}
+
+
 const ServicesGrid = () => {
   const [services, setServices] = useState(defaultServices);
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,12 +61,11 @@ const ServicesGrid = () => {
       try {
         const response = await axios.get('https://api.thefixit4u.com/categories/all');
         const apiCategories = response.data.data.categories;
-
         const updatedServices = apiCategories.map((category, index) => ({
           title: category.name,
           description: defaultServices[index]?.description || 'Service description not available',
           icon: defaultServices[index]?.icon || <FaTools />, 
-          img: defaultServices[index]?.img || Roofing
+          img: defaultServices[index]?.img || getRandomImageName()
         }));
 
         if (apiCategories.length < defaultServices.length) {

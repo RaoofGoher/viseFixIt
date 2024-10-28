@@ -13,9 +13,11 @@ const Footer = () => {
   return (
     <footer className="bg-primaryColor text-white py-6">
       <div className={`px-10 flex ${isMobile ? "flex-col" : ""} justify-between items-center`}>
+        <Link to="/">
         <div className='border-[16px] border-lightColor1'>
         <img src={logo2} alt="Logo" className="h-20" />
         </div>
+        </Link>
         <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2`}>
           <Link to="/" className="hover:text-lightColor1">Home</Link>
           <Link to="/about" className="hover:text-lightColor1">About Us</Link>
@@ -24,7 +26,7 @@ const Footer = () => {
           <Link to="/privacy" className="hover:text-lightColor1">Privacy Policy</Link>
         </nav>
         <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2`}>
-          <Link to="/careers" className="hover:text-lightColor1">Carrers</Link>
+          <Link to="/careers" className="hover:text-lightColor1">Careers</Link>
           <Link to="/about" className="hover:text-lightColor1">Support</Link>
           <Link to="/services" className="hover:text-lightColor1">Terms</Link>
           <Link to="/services" className="hover:text-lightColor1">Find a Pro</Link>
