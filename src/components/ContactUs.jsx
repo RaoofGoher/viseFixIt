@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import MainImage from '../assets/mainImg.png';
-import logo2 from '../assets/logo2.jpg';
+import logo2 from '../assets/logo2.png';
 import { useMediaQuery } from 'react-responsive';
 const apiUrl = import.meta.env.VITE_API_URL;
 

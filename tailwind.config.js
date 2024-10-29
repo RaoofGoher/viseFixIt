@@ -10,9 +10,9 @@ export default {
         sans: ['Lato', 'sans-serif'],
       },
       colors: {
-        'primaryColor': "#F58634",
-        'secondaryColor': '#282829',
-        'lightColor1': '#fee3d0', 
+        'primaryColor': "#93bcbc",
+        'secondaryColor': '#F58634',
+        'lightColor1': '#eadeea', 
         'lightColor2': '#96989A', 
         'heroColor':'#D1D5DB'
       },
@@ -58,3 +58,5 @@ export default {
 // 'lightgray': '#96989A',
 //  white:"#ffffff" 
 // 'heroColor':'#D1D5DB'
+
+// newColor:"#93bcbc"
