@@ -101,9 +101,9 @@ const ServicesGrid = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="px-[200px] py-[50px]">
       {/* Grid for services */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {currentServices.map((service, index) => (
           <ServiceCard
             key={index}

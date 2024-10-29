@@ -78,7 +78,7 @@ const SecondaryNavbar = () => {
   };
 
   return (
-    <nav className="bg-primaryColor mx-auto px-6 mb-2 relative rounded">
+    <nav className="bg-primaryColor mx-auto px-[160px] mb-2 relative rounded">
       {hasScrolledLeft && (
         <button
           onClick={scrollLeft}
