@@ -42,12 +42,6 @@ const Home = () => {
       </div>
       {isTextLoading ? <Loader /> : <ChangingText />}
       {isServicesLoading ? <Loader /> : <ServicesGrid />}
-      {isTestimonialLoading ? <Loader /> : <TestimonialSlider />}
-    
-      {isContactUsLoading ? <Loader /> : <ContactUS />}
-    
-        {/* <TeamSlider/> */}
-        <FAQ/>
         
     </div>
   )

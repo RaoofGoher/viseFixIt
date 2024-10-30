@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import logo2 from '../assets/logo2.jpg';
+import logo2 from '../assets/logo2.png';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useProContext } from '../context/ProContext';

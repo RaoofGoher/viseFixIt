@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo2 from '../assets/logo2.jpg';
+import Logo2 from '../assets/logo2.png';
 import { FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
 import ServicesModal from './Modal';
 import { useGlobalContext } from '../context/GlobalContext';
@@ -42,7 +42,7 @@ const signUpHandler = () => {
         <Link to={'/'}>
           <img
             src={Logo2}
-            className="w-[200px] h-[120px] rounded-md"
+            className="w-[200px] h-[90px] rounded-sm mb-2 ml-4"
             alt="Logo"
           />
         </Link>
