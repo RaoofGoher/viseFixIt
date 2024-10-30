@@ -1,7 +1,6 @@
-// ServicesGrid.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ServiceCard from './ServiceCard'; // Import ServiceCard component
+import ServiceCard from './ServiceCard';
 import {
   FaMapMarkerAlt,
   FaBriefcase,
@@ -14,6 +13,7 @@ import {
   FaUserShield
 } from 'react-icons/fa';
 
+// Import all images
 import Roofing from "../assets/Roofing.jpg";
 import Cleaning from "../assets/Cleaning.jpg";
 import Interior from "../assets/Interior Design.jpg";
@@ -24,56 +24,123 @@ import Painting from "../assets/Painting.jpg";
 import Flooring from "../assets/Flooring.jpg";
 import HVAC from "../assets/HVAC.jpg";
 import PestControl from "../assets/Pest Control.jpg";
+import Movers from "../assets/ServicesImages/Movers.jpg";
+import HandyMan from "../assets/ServicesImages/handyMan.jpg";
+import PetServices from "../assets/ServicesImages/petServices.jpg";
+import PersonalTraining from "../assets/ServicesImages/personalTrainings.jpg";
+import BeautyServices from "../assets/ServicesImages/beautyServices.png";
+import CateringServices from "../assets/ServicesImages/cateringServices.jpg";
+import HealthAndWellness from "../assets/ServicesImages/healthAndWellness.jpg";
+import EventPlanning from "../assets/ServicesImages/eventPlaner.jpg";
+import Photography from "../assets/ServicesImages/photoGraphyServices.jpg";
+import AutoServices from "../assets/ServicesImages/autoServices.jpg";
+import HomeServices from "../assets/ServicesImages/homeServices.jfif";
+import Accounting from "../assets/ServicesImages/accounting.jpg";
+import LegalServices from "../assets/ServicesImages/legalServices.jfif";
+import HomeSecurity from "../assets/ServicesImages/homeSecurity.jfif";
+import EntertainmentServices from "../assets/ServicesImages/entertainmentServices.jpg";
+import NetworkServices from "../assets/ServicesImages/networkServices.jfif";
+import ItServices from "../assets/ServicesImages/itServices.jfif";
+import { useMediaQuery } from 'react-responsive';
 
-// Sample array of service data
-const defaultServices = [
-  { title: 'Roofing', description: 'High-quality roofing services.', icon: <FaMapMarkerAlt />, img: Roofing },
-  { title: 'Cleaning', description: 'Professional cleaning for your home.', icon: <FaBriefcase />, img: Cleaning },
-  { title: 'Interior Design', description: 'Stylish interior design solutions.', icon: <FaHome />, img: Interior },
-  { title: 'Landscaping', description: 'Beautiful landscaping and garden services.', icon: <FaPaintBrush />, img: LandScaping },
-  { title: 'Plumbing', description: 'Expert plumbing services for all your needs.', icon: <FaTools />, img: Plumbing },
-  { title: 'Electrical', description: 'Safe and reliable electrical services.', icon: <FaCar />, img: Electrical },
-  { title: 'Painting', description: 'Professional painting services for homes and offices.', icon: <FaShoppingCart />, img: Painting },
-  { title: 'Flooring', description: 'High-quality flooring installation and maintenance.', icon: <FaNetworkWired />, img: Flooring },
-  { title: 'HVAC', description: 'Heating, ventilation, and air conditioning services.', icon: <FaUserShield />, img: HVAC },
-  { title: 'Pest Control', description: 'Effective pest control services to keep your home safe.', icon: <FaBriefcase />, img: PestControl }
-];
 
-const images = [Roofing, Cleaning, Interior, LandScaping, Plumbing, Painting];
+// Mappings for icons and descriptions
+const iconMapping = {
+  Cleaning: <FaBriefcase />,
+  Electrician: <FaTools />,
+  Plumbing: <FaTools />,
+  "Lawn Care": <FaCar />,
+  "Handyman Services": <FaShoppingCart />,
+  "Moving Services": <FaUserShield />,
+  "Pet Services": <FaMapMarkerAlt />,
+  "Personal Training": <FaBriefcase />,
+  "Beauty Services": <FaPaintBrush />,
+  "Catering Services": <FaShoppingCart />,
+  "Health and Wellness": <FaUserShield />,
+  "Event Planning": <FaMapMarkerAlt />,
+  "Photography": <FaBriefcase />,
+  "Auto Services": <FaTools />,
+  "Home Improvement": <FaTools />,
+  Accounting: <FaBriefcase />,
+  "Legal Services": <FaUserShield />,
+  "Home Security": <FaMapMarkerAlt />,
+  "Entertainment Services": <FaPaintBrush />,
+  "Network Services": <FaNetworkWired />,
+  "IT Services": <FaTools />
+};
 
-// Function to get a random image name
-function getRandomImageName() {
-  // Get a random index based on the length of the images array
-  const randomIndex = Math.floor(Math.random() * images.length);
-  
-  // Return the randomly selected image name
-  return images[randomIndex];
-}
+const descriptionMapping = {
+  Cleaning: 'Professional cleaning for your home.',
+  Electrician: 'Safe and reliable electrical services.',
+  Plumbing: 'Expert plumbing services for all your needs.',
+  "Lawn Care": 'Beautiful lawn care and maintenance services.',
+  "Handyman Services": 'Reliable handyman services for your home.',
+  "Moving Services": 'Efficient moving services to help you relocate.',
+  "Pet Services": 'Quality care for your pets.',
+  "Personal Training": 'Personalized fitness training to meet your goals.',
+  "Beauty Services": 'Professional beauty treatments and services.',
+  "Catering Services": 'Delicious catering for all occasions.',
+  "Health and Wellness": 'Promoting health and well-being.',
+  "Event Planning": 'Planning your perfect event.',
+  "Photography": 'Capture your special moments with professional photography.',
+  "Auto Services": 'Reliable automotive services.',
+  "Home Improvement": 'Quality home improvement services.',
+  Accounting: 'Expert accounting and financial services.',
+  "Legal Services": 'Professional legal advice and representation.',
+  "Home Security": 'Protect your home with security solutions.',
+  "Entertainment Services": 'Fun and engaging entertainment services.',
+  "Network Services": 'Reliable network services for your business.',
+  "IT Services": 'Comprehensive IT solutions and support.'
+};
 
+// Function to get the correct image based on the service name
+const getImage = (serviceName) => {
+  switch (serviceName.trim()) {
+    case 'Cleaning': return Cleaning;
+    case 'Electrician': return Electrical;
+    case 'Plumbing': return Plumbing;
+    case 'Lawn Care': return LandScaping;
+    case 'Handyman Services': return HandyMan; // Use appropriate image
+    case 'Moving Services': return Movers; // Use appropriate image
+    case 'Pet Services': return PetServices; // Use appropriate image
+    case 'Personal Training': return PersonalTraining; // Use appropriate image
+    case 'Beauty Services': return BeautyServices; // Use appropriate image
+    case 'Catering Services': return CateringServices; // Use appropriate image
+    case 'Health and Wellness': return HealthAndWellness; // Use appropriate image
+    case 'Event Planning': return EventPlanning; // Use appropriate image
+    case 'Photography': return Photography; // Use appropriate image
+    case 'Auto Services': return AutoServices; // Use appropriate image
+    case 'Home Improvement': return HomeServices; // Use appropriate image
+    case 'Accounting': return Accounting; // Use appropriate image
+    case 'Legal Services': return LegalServices; // Use appropriate image
+    case 'Home Security': return HomeSecurity; // Use appropriate image
+    case 'Entertainment Services': return EntertainmentServices; // Use appropriate image
+    case 'Network Services': return NetworkServices; // Use appropriate image
+    case 'IT Services': return ItServices ; // Use appropriate image
+    default: return null; // or a default image
+  }
+};
 
 const ServicesGrid = () => {
-  const [services, setServices] = useState(defaultServices);
+  const [services, setServices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const servicesPerPage = 8; // Number of services to show per page
+  const servicesPerPage = 9;
+  const isMedium = useMediaQuery({ query: '(max-width: 750px)' });
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get('https://api.thefixit4u.com/categories/all');
         const apiCategories = response.data.data.categories;
-        const updatedServices = apiCategories.map((category, index) => ({
-          title: category.name,
-          description: defaultServices[index]?.description || 'Service description not available',
-          icon: defaultServices[index]?.icon || <FaTools />, 
-          img: defaultServices[index]?.img || getRandomImageName()
+          console.log("apicategories",apiCategories)
+        const updatedServices = apiCategories.map(category => ({
+          title: category.name.trim(), // Trim any extra spaces
+          description: descriptionMapping[category.name.trim()] || 'Service description not available',
+          icon: iconMapping[category.name.trim()] || <FaTools />,
+          img: getImage(category.name) || 'Nothiung description'
         }));
 
-        if (apiCategories.length < defaultServices.length) {
-          const remainingServices = defaultServices.slice(apiCategories.length);
-          setServices([...updatedServices, ...remainingServices]);
-        } else {
-          setServices(updatedServices);
-        }
+        setServices(updatedServices);
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
@@ -82,12 +149,11 @@ const ServicesGrid = () => {
     fetchCategories();
   }, []);
 
-  // Pagination logic: slice the services array based on the current page
+  // Pagination logic
   const indexOfLastService = currentPage * servicesPerPage;
   const indexOfFirstService = indexOfLastService - servicesPerPage;
   const currentServices = services.slice(indexOfFirstService, indexOfLastService);
 
-  // Handle next and previous page
   const nextPage = () => {
     if (currentPage < Math.ceil(services.length / servicesPerPage)) {
       setCurrentPage(prevPage => prevPage + 1);
@@ -100,12 +166,13 @@ const ServicesGrid = () => {
     }
   };
 
+  console.log ("services",currentServices)
   return (
-    <div className="px-[200px] py-[50px]">
-      {/* Grid for services */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className={`${isMedium ? "px-[40px]" : "px-[200px]"} py-[50px]`}>
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {currentServices.map((service, index) => (
           <ServiceCard
+            id={service.id}
             key={index}
             title={service.title}
             description={service.description}
@@ -114,8 +181,6 @@ const ServicesGrid = () => {
           />
         ))}
       </div>
-
-      {/* Pagination buttons */}
       <div className="flex justify-center mt-6 text-white">
         <button
           onClick={prevPage}

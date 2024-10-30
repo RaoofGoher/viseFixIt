@@ -16,8 +16,6 @@ const SearchResultsPage = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 525px)' });
 
     useEffect(() => {
-        console.log("hello world", zipProSearch, categoryIDfromNav);
-
         // Reset searchType before fetching new data
         if (zipProSearch === null) {
             // Fetch data from the API
