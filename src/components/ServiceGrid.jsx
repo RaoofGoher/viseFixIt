@@ -134,6 +134,8 @@ const ServicesGrid = () => {
         const apiCategories = response.data.data.categories;
           console.log("apicategories",apiCategories)
         const updatedServices = apiCategories.map(category => ({
+          id: category.id,
+          name: category.name.trim(), // Trim any extra spaces
           title: category.name.trim(), // Trim any extra spaces
           description: descriptionMapping[category.name.trim()] || 'Service description not available',
           icon: iconMapping[category.name.trim()] || <FaTools />,

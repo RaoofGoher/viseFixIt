@@ -20,7 +20,7 @@ const SearchComponent = () => {
   const { showToast } = useToast();
   
   const {setZipProSearch}   = useProContext();
-  const {categoryIDfromNav, setCategoryIDfromNav}   = useGlobalContext();
+  const {setCategoryIdExplorer, setCategoryIDfromNav}   = useGlobalContext();
 
   const isSearchCollapsing2 = useMediaQuery({
     query: '(max-width: 740px)'
@@ -71,6 +71,7 @@ const SearchComponent = () => {
 
   const handleSearch = async () => {
     setCategoryIDfromNav(null)
+    setCategoryIdExplorer(null)
     if (!selectedCategory || !zipcode) {
       showToast('please enter category and zip code', 'warning')
       return;

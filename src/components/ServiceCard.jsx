@@ -1,13 +1,17 @@
 import React from 'react';
 import ExploreButton from './ExploreButton';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/GlobalContext';
 
 const ServiceCard = ({ id, title, description, icon, image }) => {
+  const {setCategoryIdExplorer, setCategoryIDfromNav}   = useGlobalContext();
   const navigate = useNavigate();
 
   const handleExploreClick = () => {
-    navigate(`/search-results/${id}`);
-alert(id)  };
+    navigate(`/search-results/${id}`); // Navigate to the search results page with the category ID as a query parameter
+    setCategoryIDfromNav(null)
+    setCategoryIdExplorer(id)
+ };
 
   return (
     <div className="relative p-4 bg-black border-4 border-primaryColor rounded-lg hover:border-primaryColor hover:bg-gray-200 hover:text-black overflow-hidden group">
