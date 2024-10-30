@@ -32,7 +32,7 @@ import BeautyServices from "../assets/servicesImages/beautyServices.png";
 import CateringServices from "../assets/servicesImages/cateringServices.jpg";
 import HealthAndWellness from "../assets/servicesImages/healthAndWellness.jpg";
 import EventPlanning from "../assets/servicesImages/eventPlaner.jpg";
-import Photography from "../assets/servicesImages/photoGraphyServices.jpg";
+import Photography from "../assets/servicesImages/photographyServices.jpg";
 import AutoServices from "../assets/servicesImages/autoServices.jpg";
 import HomeServices from "../assets/servicesImages/homeServices.jfif";
 import Accounting from "../assets/servicesImages/accounting.jpg";
