@@ -24,7 +24,7 @@ import Painting from "../assets/Painting.jpg";
 import Flooring from "../assets/Flooring.jpg";
 import HVAC from "../assets/HVAC.jpg";
 import PestControl from "../assets/Pest Control.jpg";
-import Movers from "../assets/servicesImages/Movers.jpg";
+import Movers from "../assets/servicesImages/movers.jpg";
 import HandyMan from "../assets/servicesImages/handyMan.jpg";
 import PetServices from "../assets/servicesImages/petServices.jpg";
 import PersonalTraining from "../assets/servicesImages/personalTrainings.jpg";
