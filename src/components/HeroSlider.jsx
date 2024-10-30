@@ -4,10 +4,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SearchComponent from './SearchBar';
 import Stack from './Stack'
-import HeroImage from '../assets/HI.jpg';
-import HeroImage1 from '../assets/H2.jpg';
-import HeroImage2 from '../assets/H3.jpg';
-import HeroImage3 from '../assets/H4.jpg';
+import HeroImage from '../assets/h1.jpg';
+import HeroImage1 from '../assets/h2.jpg';
+import HeroImage2 from '../assets/h3.jpg';
+import HeroImage3 from '../assets/h4.jpg';
 import { useMediaQuery } from 'react-responsive'
 import HeroIcons from './HeroIcons';
 
