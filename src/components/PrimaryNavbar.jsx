@@ -37,12 +37,12 @@ const signUpHandler = () => {
 }
   return (
     <div className="relative">
-      <div className="flex pr-8 items-center justify-between text-black">
+      <div className="flex px-8 py-1 items-center justify-between text-black border-2">
         {/* Logo */}
         <Link to={'/'}>
           <img
             src={Logo2}
-            className="w-[200px] h-[90px] rounded-sm mb-2 ml-4"
+            className="w-[200px] h-[30px] rounded-sm mb-2 ml-4"
             alt="Logo"
           />
         </Link>
@@ -58,8 +58,8 @@ const signUpHandler = () => {
         {!isMedium && (
           <div className="navbar flex items-center space-x-4">
             <div className="flex items-center">
-              <span className="text-secondaryColor text-lg font-bold">Call Us: </span>
-              <span className="text-primaryColor text-lg font-bold">(123) 456-7890</span>
+              {/* <span className="text-secondaryColor text-lg font-bold">Call Us: </span>
+              <span className="text-primaryColor text-lg font-bold">(123) 456-7890</span> */}
               <Link to={'/'} className='ml-2 bg-primaryColor p-2 rounded border border-primaryColor text-white hover:bg-white hover:text-black'>
                 Home
               </Link>
@@ -67,21 +67,22 @@ const signUpHandler = () => {
 
             {!isAuthenticated && !isProAuthenticated ? (
               <Link to="/prosignup">
-                <h1 className="cursor-pointer hover:text-white hover:bg-secondaryColor border border-primaryColor py-3 px-4 rounded-sm">
-                  Join our Pro Network
+                <h1 className="cursor-pointer hover:text-white hover:bg-secondaryColor py-3 px-4 rounded-sm">
+                  Join as a pro
                 </h1>
               </Link>
             ) : null}
 
             {!isAuthenticated && !isProAuthenticated ? (
               <>
-                <Link className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4" to="/customersignup">
-                  Sign Up
-                </Link>
+                
                 <Link to={'/login'}>
-                  <h1 className="cursor-pointer hover:text-primaryColor border-b-2 border-primaryColor py-4">
+                  <h1 className="cursor-pointer hover:text-primaryColor py-3">
                     Log In
                   </h1>
+                </Link>
+                <Link className="cursor-pointer hover:text-primaryColor border-2 border-primaryColor py-3 px-3" to="/customersignup">
+                  Sign Up
                 </Link>
               </>
             ) : (

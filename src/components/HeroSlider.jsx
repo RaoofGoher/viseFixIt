@@ -4,10 +4,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SearchComponent from './SearchBar';
 import Stack from './Stack'
-import HeroImage from '../assets/viseFixitHero.jpg'
-import HeroImage1 from '../assets/h1.jpg'
-import HeroImage2 from '../assets/h2.jpg'
-import HeroImage3 from '../assets/h3.jpg'
+import HeroImage1 from '../assets/h1.jpg';
+import HeroImage2 from '../assets/h2.jpg';
+import HeroImage3 from '../assets/h3.jpg';
+import HeroImage4 from '../assets/h44.jpg';
 import { useMediaQuery } from 'react-responsive'
 import HeroIcons from './HeroIcons';
 
@@ -72,9 +72,6 @@ const SimpleSlider = () => {
       <Slider {...settings}>
       
         <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
-          <img src={HeroImage} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
-        </div>
-        <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
           <img src={HeroImage1} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
         </div>
         <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
@@ -82,6 +79,9 @@ const SimpleSlider = () => {
         </div>
         <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
           <img src={HeroImage3} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
+        </div>
+        <div className={`bg-heroColor  ${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} flex items-center justify-center`}>
+          <img src={HeroImage4} className={`${isHeroImageStretching ? "h-[200px]" : "h-[500px]"} w-full`} />
         </div>
       </Slider>
     </div>

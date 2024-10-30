@@ -1,23 +1,40 @@
 import React from 'react';
 import ExploreButton from './ExploreButton';
+import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/GlobalContext';
+import { useProContext } from '../context/ProContext';
 
-const ServiceCard = ({ title, description, icon, image }) => {
+const ServiceCard = ({ id, title, description, icon, image }) => {
+  const {setCategoryIdExplorer, setCategoryIDfromNav}   = useGlobalContext();
+  const {setZipProSearch}   = useProContext();
+
+  const navigate = useNavigate();
+
+  const handleExploreClick = () => {
+    navigate(`/search-results/${id}`); // Navigate to the search results page with the category ID as a query parameter
+    setCategoryIDfromNav(null)
+    setCategoryIdExplorer(id)
+    setZipProSearch(null) // Reset the zip code when the explore button is clicked
+ };
+
   return (
     <div className="relative p-4 bg-black border-4 border-primaryColor rounded-lg hover:border-primaryColor hover:bg-gray-200 hover:text-black overflow-hidden group">
-      {/* Image that is visible by default */}
       <img
         src={image} // Your image URL
         alt={title}
         className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-100 group-hover:opacity-0 opacity-70"
       />
-
-      {/* Content that appears on hover */}
       <div className="relative z-10 opacity-0 translate-x-4 service-card-content">
         <h3 className="text-2xl font-bold mb-2 flex justify-between">
           {title} {icon}
         </h3>
         <p className="mb-8">{description}</p>
-        <ExploreButton />
+        <button
+          className="bg-primaryColor text-white px-4 py-2 rounded hover:bg-lightColor1 transition duration-300 hover:text-black"
+          onClick={handleExploreClick}
+        >
+          Explore More
+        </button>
       </div>
     </div>
   );
