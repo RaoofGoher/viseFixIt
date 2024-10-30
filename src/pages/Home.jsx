@@ -10,6 +10,8 @@ import TeamSlider from "../components/TeamSlider1"
 import SimpleSlider from '../components/HeroSlider';
 import SecondaryNavbar from '../components/SecondaryNavabr';
 import HowItWorks from '../components/HowItWorks';
+import BecomeAProSection from '../components/BecomeAPro';
+import WhyChooseUs from '../components/WHyChooseUs';
 
 
 const Loader = () => {
@@ -23,7 +25,8 @@ const Home = () => {
     const [isTextLoading, setIsTextLoading] = useState(true);
     const [isServicesLoading, setIsServicesLoading] = useState(true);
     const [isHowItWorksLoading, setIsHowItWorksLoading] = useState(true);
-    const [isContactUsLoading, setIsContactUsLoading] = useState(true);
+    const [isBecomeAProLoading, setIsBecomeAProLoading] = useState(true);
+    const [isWhyChooseUsLoading, setIsWhyChooseUsLoading] = useState(true);
   
   
     useEffect(() => {
@@ -33,6 +36,8 @@ const Home = () => {
       setTimeout(() => setIsServicesLoading(false), 1800);
       setTimeout(() => setIsHowItWorksLoading(false), 2000);
       setTimeout(() => setIsContactUsLoading(false), 2000);
+      setTimeout(() => setIsBecomeAProLoading(false), 2000);
+      setTimeout(() => setIsWhyChooseUsLoading(false), 2000);
     
     }, []);
 
@@ -44,6 +49,8 @@ const Home = () => {
       {isTextLoading ? <Loader /> : <ChangingText />}
       {isServicesLoading ? <Loader /> : <ServicesGrid />}
       {isHowItWorksLoading ? <Loader/> :<HowItWorks/>}
+      {isBecomeAProLoading ? <Loader/> :<BecomeAProSection/>}
+      {isWhyChooseUsLoading ? <Loader/> :<WhyChooseUs/>}
         
     </div>
   )
