@@ -3,6 +3,8 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { useGlobalContext } from '../context/GlobalContext';
 import { useProContext } from '../context/ProContext';
+import { useMediaQuery } from 'react-responsive';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SecondaryNavbar = () => {
@@ -13,7 +15,7 @@ const SecondaryNavbar = () => {
   const { setZipProSearch, setCategoryIdExplorer } = useProContext();
   const navigate = useNavigate();
   const location = useLocation(); // Get the current location
-
+  const isMedium = useMediaQuery({ query: '(max-width: 440px)' });
   // Fetch categories from the backend
   const fetchCategories = async () => {
     try {
@@ -42,13 +44,13 @@ const SecondaryNavbar = () => {
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: -150, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: 150, behavior: 'smooth' });
     }
   };
 
@@ -78,11 +80,11 @@ const SecondaryNavbar = () => {
   };
 
   return (
-    <nav className="bg-primaryColor mx-auto px-[160px] mb-2 relative rounded">
+    <nav className={`bg-primaryColor mx-auto ${isMedium ? "px-[20px]" : "px-[160px]"}  mb-2 relative rounded`}>
       {hasScrolledLeft && (
         <button
           onClick={scrollLeft}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
+          className={`absolute ${isMedium ? "left-0" : "left-6"}  top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition`}
         >
           <FaChevronLeft className='text-white font-bold text-2xl' />
         </button>
@@ -109,7 +111,7 @@ const SecondaryNavbar = () => {
       </div>
       <button
         onClick={scrollRight}
-        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition"
+        className={`absolute  ${isMedium ? "right-2" : "right-6"}  top-1/2 transform -translate-y-1/2 bg-primaryColor p-2 rounded-full hover:bg-secondaryColor transition`}
       >
         <FaChevronRight className='text-white font-bold text-2xl' />
       </button>

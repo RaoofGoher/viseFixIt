@@ -132,7 +132,6 @@ const ServicesGrid = () => {
       try {
         const response = await axios.get('https://api.thefixit4u.com/categories/all');
         const apiCategories = response.data.data.categories;
-          console.log("apicategories",apiCategories)
         const updatedServices = apiCategories.map(category => ({
           id: category.id,
           name: category.name.trim(), // Trim any extra spaces
@@ -168,7 +167,7 @@ const ServicesGrid = () => {
     }
   };
 
-  console.log ("services",currentServices)
+  
   return (
     <div className={`${isMedium ? "px-[40px]" : "px-[200px]"} py-[50px]`}>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
