@@ -2,15 +2,19 @@ import React from 'react';
 import ExploreButton from './ExploreButton';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/GlobalContext';
+import { useProContext } from '../context/ProContext';
 
 const ServiceCard = ({ id, title, description, icon, image }) => {
   const {setCategoryIdExplorer, setCategoryIDfromNav}   = useGlobalContext();
+  const {setZipProSearch}   = useProContext();
+
   const navigate = useNavigate();
 
   const handleExploreClick = () => {
     navigate(`/search-results/${id}`); // Navigate to the search results page with the category ID as a query parameter
     setCategoryIDfromNav(null)
     setCategoryIdExplorer(id)
+    setZipProSearch(null) // Reset the zip code when the explore button is clicked
  };
 
   return (

@@ -10,7 +10,7 @@ const SecondaryNavbar = () => {
   const [hasScrolledLeft, setHasScrolledLeft] = useState(false); // Track if there are items on the left
   const scrollRef = useRef(null); // Reference to the scrollable container
   const { setCategoryIDfromNav } = useGlobalContext();
-  const { zipProSearch, setZipProSearch } = useProContext();
+  const { setZipProSearch, setCategoryIdExplorer } = useProContext();
   const navigate = useNavigate();
   const location = useLocation(); // Get the current location
 
