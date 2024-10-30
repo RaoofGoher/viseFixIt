@@ -7,7 +7,7 @@ import Stack from './Stack'
 import HeroImage1 from '../assets/h1.jpg';
 import HeroImage2 from '../assets/h2.jpg';
 import HeroImage3 from '../assets/h3.jpg';
-import HeroImage4 from '../assets/h4.jpg';
+import HeroImage4 from '../assets/h44.jpg';
 import { useMediaQuery } from 'react-responsive'
 import HeroIcons from './HeroIcons';
 
