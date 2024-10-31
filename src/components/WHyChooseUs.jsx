@@ -25,11 +25,11 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Right Column - Image */}
-        <div className="relative w-full flex justify-center">
+        <div className={`relative ${isMedium ? "w-[250px]" : "w-full"}  flex justify-center`}>
           <img
             src={Phone}
             alt="XYZ Company Services"
-            className={`${isMedium ? "w-[250px]" : "w-[auto]"} w-auto absolute bottom-[-205px]`}
+            className={`${isMedium ? "w-[150px]" : "w-[auto]"} w-auto absolute bottom-[-205px]`}
           />
         </div>
       </div>
