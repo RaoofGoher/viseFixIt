@@ -96,7 +96,7 @@ const SecondaryNavbar = () => {
       >
         <ul className="flex space-x-4 list-none ml-6">
           {navItems.map((item) => (
-            <li key={item.id} className='w-[170px]'>
+            <li key={item.id} className='w-[190px]'>
               <NavLink
                 to={`/search-results/${item.id}`}
                 onClick={() => handleCategoryClick(item)}
