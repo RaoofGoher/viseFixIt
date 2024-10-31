@@ -1,5 +1,5 @@
 import React from 'react';
-import ChooseUSbackground from "../assets/icons/whyUs.jpg";
+import ChooseUSbackground from "../assets/icons/whyUS.jpg";
 import Phone from "../assets/icons/phoneImage.png";
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
