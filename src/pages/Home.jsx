@@ -12,6 +12,7 @@ import SecondaryNavbar from '../components/SecondaryNavabr';
 import HowItWorks from '../components/HowItWorks';
 import BecomeAProSection from '../components/BecomeAPro';
 import WhyChooseUs from '../components/WHyChooseUs';
+import FindYourPro from '../components/FindYourPro';
 
 
 const Loader = () => {
@@ -27,6 +28,7 @@ const Home = () => {
     const [isHowItWorksLoading, setIsHowItWorksLoading] = useState(true);
     const [isBecomeAProLoading, setIsBecomeAProLoading] = useState(true);
     const [isWhyChooseUsLoading, setIsWhyChooseUsLoading] = useState(true);
+    const [isFindYourProLoading, setIsFindYourProLoading] = useState(true);
   
   
     useEffect(() => {
@@ -38,6 +40,7 @@ const Home = () => {
       setTimeout(() => setIsContactUsLoading(false), 2000);
       setTimeout(() => setIsBecomeAProLoading(false), 2000);
       setTimeout(() => setIsWhyChooseUsLoading(false), 2000);
+      setTimeout(() => setIsFindYourProLoading(false), 2000);
     
     }, []);
 
@@ -51,6 +54,7 @@ const Home = () => {
       {isHowItWorksLoading ? <Loader/> :<HowItWorks/>}
       {isBecomeAProLoading ? <Loader/> :<BecomeAProSection/>}
       {isWhyChooseUsLoading ? <Loader/> :<WhyChooseUs/>}
+      {isFindYourProLoading ? <Loader/> :<FindYourPro/>}
         
     </div>
   )

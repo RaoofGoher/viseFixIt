@@ -131,7 +131,7 @@ const ServiceProviderForm = () => {
         >
             {({ values, setFieldValue }) => (
                 <Form className="max-w-md mx-auto p-4 border rounded shadow-lg bg-white my-6">
-                    <h2 className="text-lg font-bold mb-4 text-primaryColor bg-lightColor1 py-6 px-2">Pro Registration</h2>
+                    <h2 className="text-lg font-bold mb-4 text-primaryColor py-6 px-2">Pro Registration</h2>
 
                     {/* First Name and Last Name in two columns */}
                     <div className="mb-4 flex space-x-4">
