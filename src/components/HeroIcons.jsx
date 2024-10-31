@@ -28,7 +28,7 @@ function HeroIcons() {
         <img
           src={landscapingIcon}
           alt="Landscaping"
-          className={`w-18 h-12 hover:scale-110 transition-transform`}
+          className={`w-18 h-12 hover:scale-110 transition-transform hover:bg-secondaryColor hover:rounded-lg`}
         />
         <span className="text-md mt-1 text-white">Landscaping</span>
       </div>
@@ -41,7 +41,7 @@ function HeroIcons() {
         <img
           src={ElectricalIcon}
           alt="Electrical"
-          className="w-18 h-12 hover:scale-110 transition-transform"
+          className="w-18 h-12 hover:scale-110 transition-transform hover:bg-secondaryColor hover:rounded-lg"
         />
         <span className="text-md mt-1 text-white">Electrical</span>
       </div>
@@ -54,7 +54,7 @@ function HeroIcons() {
         <img
           src={HandyPersonIcon}
           alt="Handy Person"
-          className="w-18 h-12 hover:scale-110 transition-transform"
+          className="w-18 h-12 hover:scale-110 transition-transform hover:bg-secondaryColor hover:rounded-lg"
         />
         <span className="text-md mt-1 text-white">Handyman</span>
       </div>
@@ -67,7 +67,7 @@ function HeroIcons() {
         <img
           src={PlumbingIcon}
           alt="Plumbing"
-          className="w-18 h-12 hover:scale-110 transition-transform"
+          className="w-18 h-12 hover:scale-110 transition-transform hover:bg-secondaryColor hover:rounded-lg"
         />
         <span className="text-md mt-1 text-white">Plumbing</span>
       </div>
@@ -80,7 +80,7 @@ function HeroIcons() {
         <img
           src={RemodelingIcon}
           alt="Remodeling"
-          className="w-18 h-12 hover:scale-110 transition-transform"
+          className="w-18 h-12 hover:scale-110 transition-transform hover:bg-secondaryColor hover:rounded-lg"
         />
         <span className="text-md mt-1 text-white">Remodeling</span>
       </div>
@@ -93,7 +93,7 @@ function HeroIcons() {
         <img
           src={RoofingIcon}
           alt="Roofing"
-          className="w-18 h-12 hover:scale-110 transition-transform"
+          className="w-18 h-12 hover:scale-110 transition-transform hover:bg-secondaryColor hover:rounded-lg"
         />
         <span className="text-md mt-1 text-white">Roofing</span>
       </div>

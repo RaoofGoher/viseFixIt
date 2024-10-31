@@ -1,30 +1,37 @@
 import React from 'react';
+import ChooseUSbackground from "../assets/icons/whyUs.jpg";
+import Phone from "../assets/icons/phoneImage.png";
+import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 const WhyChooseUs = () => {
-  return (
-    <div className="flex flex-col md:flex-row items-center justify-between bg-gray-50 p-8 rounded-lg shadow-md">
-      {/* Left Column - Text Content */}
-      <div className="w-full md:w-1/2 text-left">
-        <h2 className="text-2xl font-bold text-primaryColor mb-2">Why XYZ Company Has the Best Rates</h2>
-        <p className="text-gray-700 mb-4">
-          At XYZ Company, we prioritize quality service at unbeatable prices. Our transparent pricing model ensures you get the best value for your money without hidden fees.
-        </p>
-        <h3 className="text-xl font-semibold text-primaryColor mb-1">Why Choose Us:</h3>
-        <ul className="list-disc list-inside text-gray-700">
-          <li>Competitive rates that cater to all budgets.</li>
-          <li>Exceptional customer service and support.</li>
-          <li>Trusted professionals with proven expertise.</li>
-          <li>Flexible scheduling to meet your needs.</li>
-        </ul>
-      </div>
+  const isMedium = useMediaQuery({
+    query: '(max-width: 769px)',
+  });
 
-      {/* Right Column - Image */}
-      <div className="w-full md:w-1/2 flex justify-center mt-4 md:mt-0">
-        <img
-          src="path/to/your/image.jpg" // Replace with your image path
-          alt="XYZ Company Services"
-          className="w-full h-auto rounded-lg shadow-lg"
-        />
+  return (
+    <div
+      style={{ backgroundImage: `url(${ChooseUSbackground})` }}
+      className={`bg-no-repeat bg-bottom bg-cover flex justify-center items-center ${isMedium ? "h-[600px]" : "h-[400px]"} my-[150px]`}
+    >
+      <div className="flex flex-col md:flex-row items-center justify-between bg-transparent px-4 md:p-8 w-[90vw] lg:w-[80vw] max-w-screen-xl">
+        {/* Left Column - Text Content */}
+        <div className={`w-full md:w-1/2 text-left ${isMedium ? "mt-[-50px]" : ""} mb-4 md:mb-0`}>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Why <span className='text-secondaryColor'>Fixit4U</span> is the Best</h2>
+          <p className="text-gray-700 mb-4">
+            At Fixit4U Company, we prioritize quality service at unbeatable prices. Our transparent pricing model ensures you get the best value for your money without hidden fees.
+          </p>
+      <Link to="/customersignup">  <button className='bg-[#373737] text-secondaryColor px-6 py-4 rounded-lg'>Become a Customer</button> </Link>
+        </div>
+
+        {/* Right Column - Image */}
+        <div className="relative w-full flex justify-center">
+          <img
+            src={Phone}
+            alt="XYZ Company Services"
+            className={`${isMedium ? "w-[250px]" : "w-[auto]"} w-auto absolute bottom-[-205px]`}
+          />
+        </div>
       </div>
     </div>
   );

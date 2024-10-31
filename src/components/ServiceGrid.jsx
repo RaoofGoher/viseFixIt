@@ -186,14 +186,14 @@ const ServicesGrid = () => {
         <button
           onClick={prevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 mr-2 bg-primaryColor rounded-md ${currentPage === 1 && 'opacity-50 cursor-not-allowed'}`}
+          className={`px-4 py-2 mr-2 bg-secondaryColor rounded-md ${currentPage === 1 && 'opacity-50 cursor-not-allowed'}`}
         >
           Previous
         </button>
         <button
           onClick={nextPage}
           disabled={currentPage >= Math.ceil(services.length / servicesPerPage)}
-          className={`px-4 py-2 bg-primaryColor rounded-md ${currentPage >= Math.ceil(services.length / servicesPerPage) && 'opacity-50 cursor-not-allowed'}`}
+          className={`px-4 py-2 bg-secondaryColor rounded-md ${currentPage >= Math.ceil(services.length / servicesPerPage) && 'opacity-50 cursor-not-allowed'}`}
         >
           Next
         </button>
