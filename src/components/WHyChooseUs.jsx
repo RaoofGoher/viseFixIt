@@ -21,14 +21,14 @@ const WhyChooseUs = () => {
           <p className="text-gray-700 mb-4">
             At Fixit4U Company, we prioritize quality service at unbeatable prices. Our transparent pricing model ensures you get the best value for your money without hidden fees.
           </p>
-      <Link to="/customersignup">  <button className='bg-[#373737] text-secondaryColor px-6 py-4 rounded-lg'>Become a Customer</button> </Link>
+      <Link to="/customersignup">  <button className='bg-[#373737] text-primaryColor px-6 py-4 rounded-lg'>Become a Customer</button> </Link>
         </div>
 
         {/* Right Column - Image */}
         <div className={`relative ${isMedium ? "w-[250px]" : "w-full"}  flex justify-center`}>
           <img
             src={Phone}
-            alt="XYZ Company Services"
+            alt="Company Services"
             className={`${isMedium ? "w-[150px]" : "w-[auto]"} w-auto absolute bottom-[-205px]`}
           />
         </div>
