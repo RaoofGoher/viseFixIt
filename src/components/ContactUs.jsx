@@ -52,7 +52,7 @@ const ContactUS = () => {
   };
 
   return (
-    <div className= {`flex px-8 py-8 ${isOverlaping ? "flex-col" : "flex-row"} items-center justify-between border border-4 border-lightColor1 mt-24 bg-lightColor1 mb-4`}>
+    <div className= {`flex px-8 py-8 ${isOverlaping ? "flex-col" : "flex-row"} items-center justify-between  border-4 border-lightColor1 mt-24 bg-lightColor1 mb-4`}>
       <div className="flex-4 mb-8">
         <img
           src={logo2}
@@ -78,7 +78,7 @@ const ContactUS = () => {
                   type="text"
                   id="name"
                   name="name"
-                  className={` mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2 border border-2 border-primaryColor rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  className={` mt-1 block ${isSmall2 ? "" : "w-full" } px-3 py-2  border-2 border-primaryColor rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
                 />
                 <ErrorMessage name="name" component="div" className="text-red-600 text-sm" />
               </div>

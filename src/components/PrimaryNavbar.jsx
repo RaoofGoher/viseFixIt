@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import RegistrationModal from '../components/RegistrationModal';
 import { useMediaQuery } from 'react-responsive';
 import SecondaryNavbar from './SecondaryNavabr';
+import logo from "../assets/logo2.png"
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -36,7 +37,7 @@ const signUpHandler = () => {
   toggleMenu();
 }
   return (
-    <div className="relative">
+    <div className="relative ">
       <div className="flex px-8 py-1 items-center justify-between text-black border-2">
         {/* Logo */}
         <Link to={'/'}>
@@ -144,11 +145,16 @@ const signUpHandler = () => {
 
       {/* Drawer menu for small screens */}
       {isMedium && isMenuOpen && (
-        <div className="fixed top-0 right-0 z-50 w-64 h-full bg-gray-100 shadow-lg transition-transform transform translate-x-0">
+        <div className={`fixed top-0 right-0 z-50 w-64 h-full bg-gray-100 shadow-lg transition-transform transform duration-1000 delay-700 ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
           <button onClick={toggleMenu} className="absolute top-4 right-4 text-2xl">
             <FaTimes />
           </button>
           <div className="flex flex-col items-start p-4 space-y-4">
+            <div className='mb-2'>
+              <Link onClick={toggleMenu} to={'/'}>
+              <img src={logo} alt="" className='mt-6 w-[150px]' />
+              </Link>
+            </div>
             <Link onClick={toggleMenu} to={'/'} className="bg-primaryColor p-2 rounded border border-primaryColor text-white hover:bg-white hover:text-black">
               Home
             </Link>
@@ -162,6 +168,11 @@ const signUpHandler = () => {
                     Log In
                   </h1>
                 </Link>
+                <Link onClick={toggleMenu} to="/prosignup">
+                <h1 className="cursor-pointer hover:text-white hover:bg-secondaryColor py-3 px-4 rounded-sm">
+                  Join as a pro
+                </h1>
+              </Link>
               </>
             ) : (
               <>

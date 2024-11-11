@@ -64,17 +64,17 @@ const SearchResultsPage = () => {
                             : null;
 
                         return (
-                            <li key={provider.service_provider_id} className="border rounded-lg px-4 py-6 shadow-md bg-white hover:shadow-lg transition-shadow">
+                            <li key={provider.service_provider_id} className="border rounded-lg px-4 py-6 shadow-md bg-white hover:shadow-gray-600  transition-shadow">
                                 <div className={`flex items-center ${isMobile ? "flex-col" : ""}`}>
                                     <div className="relative w-16 h-16 mr-4">
                                         {profilePictureURL ? (
                                             <img
                                                 src={profilePictureURL}
                                                 alt={`${provider.username}'s profile`}
-                                                className="w-full h-full rounded-full border border-2 border-primaryColor object-cover"
+                                                className="w-full h-full rounded-full border-2 border-primaryColor object-cover"
                                             />
                                         ) : (
-                                            <div className="absolute inset-0 flex items-center justify-center bg-white rounded-full border border-2 border-primaryColor">
+                                            <div className="absolute inset-0 flex items-center justify-center bg-white rounded-full  border-2 border-primaryColor">
                                                 <FaUserCircle className="w-full h-full text-gray-400" />
                                             </div>
                                         )}
