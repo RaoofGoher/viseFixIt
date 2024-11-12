@@ -4,12 +4,15 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', 
   theme: {
     extend: {
       fontFamily: {
         sans: ['Lato', 'sans-serif'],
       },
       colors: {
+        dark: '#1a202c',
+        light: '#f7fafc',
         'primaryColor': "#93bcbc",
         'secondaryColor': '#F58634',
         'lightColor1': '#eadeea', 

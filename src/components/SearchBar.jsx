@@ -14,28 +14,28 @@ const SearchComponent = () => {
   const [zipcode, setZipcode] = useState('');
   const [categories, setCategories] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null); // Store selected category
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
   const { showToast } = useToast();
   
-  const {setZipProSearch}   = useProContext();
-  const {setCategoryIdExplorer, setCategoryIDfromNav}   = useGlobalContext();
+  const {setZipProSearch} = useProContext();
+  const {setCategoryIdExplorer, setCategoryIDfromNav} = useGlobalContext();
 
   const isSearchCollapsing2 = useMediaQuery({
     query: '(max-width: 740px)'
-  })
+  });
   const isSearchCollapsing3 = useMediaQuery({
     query: '(min-width: 740px)'
-  })
+  });
   const isSearchCollapsing4 = useMediaQuery({
     query: '(max-width: 360px)'
-  })
+  });
 
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`${apiUrl}/categories/all`);
-      setCategories(response.data.data.categories); // Assuming the categories are in response.data.data.categories
+      setCategories(response.data.data.categories);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
@@ -44,9 +44,6 @@ const SearchComponent = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
-
-
-
 
   const handleProblemChange = (e) => {
     const inputValue = e.target.value;
@@ -65,33 +62,39 @@ const SearchComponent = () => {
 
   const handleCategoryClick = (category) => {
     setProblem(category.name);
-    setSelectedCategory(category); // Store selected category
-    setShowDropdown(false); // Close dropdown on selection
+    setSelectedCategory(category);
+    setShowDropdown(false);
   };
 
   const handleSearch = async () => {
-    setCategoryIDfromNav(null)
-    setCategoryIdExplorer(null)
+    setCategoryIDfromNav(null);
+    setCategoryIdExplorer(null);
     if (!selectedCategory || !zipcode) {
-      showToast('please enter category and zip code', 'warning')
+      showToast('please enter category and zip code', 'warning');
       return;
     }
     try {
       const response = await axios.post(`${apiUrl}/service_provider/search/`, {
-        zip_code:zipcode,
+        zip_code: zipcode,
         category_id: selectedCategory.id,
       });
       const serviceProviders = response.data.service_providers;
-      
-     setZipProSearch(serviceProviders)
-     navigate('/search-results');
+
+      setZipProSearch(serviceProviders);
+      navigate('/search-results');
       if (serviceProviders.length > 0) {
-        
+        console.log('Service providers found.');
       } else {
         console.log('No service providers found for this category and zipcode.');
       }
     } catch (error) {
-      showToast('please enter valid category and valid zip code', 'warning')
+      showToast('please enter valid category and valid zip code', 'warning');
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
     }
   };
 
@@ -102,6 +105,7 @@ const SearchComponent = () => {
           type="text"
           value={problem}
           onChange={handleProblemChange}
+          onKeyDown={handleKeyDown} // Add this
           placeholder="Search a Service"
           className={`border p-2 rounded focus:border-primaryColor focus:outline-none ${isSearchCollapsing4 ? "w-[170px]" : "w-[270px]"} `}
         />
@@ -125,12 +129,13 @@ const SearchComponent = () => {
           type="text"
           value={zipcode}
           onChange={(e) => setZipcode(e.target.value)}
+          onKeyDown={handleKeyDown} // Add this
           placeholder="Zipcode"
           className="border p-2 rounded pl-10 w-[170px] focus:border-primaryColor focus:outline-none"
         />
       </div>
       <button
-      style={{ marginLeft: isSearchCollapsing2 ? "0" : "10px" }}
+        style={{ marginLeft: isSearchCollapsing2 ? "0" : "10px" }}
         onClick={handleSearch}
         className={`border-2 bg-primaryColor text-white p-2 rounded hover:bg-lightColor1 hover:border-2 hover:border-primaryColor hover:text-primaryColor`}
       >

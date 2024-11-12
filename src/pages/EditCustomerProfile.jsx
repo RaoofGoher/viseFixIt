@@ -101,7 +101,7 @@ const EditCustomerProfile = () => {
             <Field
               type="text"
               name="username"
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
             <ErrorMessage name="username" component="div" className="text-red-500 text-sm" />
           </div>
@@ -114,7 +114,7 @@ const EditCustomerProfile = () => {
             <Field
               type="email"
               name="email"
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
             <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
           </div>
@@ -127,7 +127,7 @@ const EditCustomerProfile = () => {
             <Field
               type="text"
               name="phone_number"
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
             <ErrorMessage name="phone_number" component="div" className="text-red-500 text-sm" />
           </div>
@@ -140,7 +140,7 @@ const EditCustomerProfile = () => {
             <Field
               type="text"
               name="address"
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
             <ErrorMessage name="address" component="div" className="text-red-500 text-sm" />
           </div>
@@ -153,7 +153,7 @@ const EditCustomerProfile = () => {
             <Field
               type="text"
               name="zip_code"
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
             <ErrorMessage name="zip_code" component="div" className="text-red-500 text-sm" />
           </div>
