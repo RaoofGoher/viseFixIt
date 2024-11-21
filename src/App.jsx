@@ -39,6 +39,9 @@ import DashboardLayout from './layouts/DashboardLayout';
 import '@fontsource/lato';
 import RequestAceptPage from './pages/RequestAceptPage';
 import RequestRejectPage from './pages/RequestRejectPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import Support from '../src/pages/Support';
+import CallUs from "../src/components/CallUs";
 
 function App() {
   const router = createBrowserRouter(
@@ -59,6 +62,10 @@ function App() {
           <Route path="/accepted/:id" element={<RequestAceptPage />} />
           <Route path="/rejected/:id" element={<RequestRejectPage />} />
           <Route path='*' element={<NotFoundPage />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicyPage/>}/>
+          <Route path='/support' element={<Support/>}  />
+          <Route path="/form" element={<CallUs buttonText="Call Us" buttonLink="/form" />} />
+
         </Route>
         <Route path="/dashboard" element={<DashboardLayout />}>
         <Route path="/dashboard/:username" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
