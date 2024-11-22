@@ -78,19 +78,19 @@ const Footer = () => {
             {/* Collapsible list items */}
             {isCustomerOpen && (
               <div className={`flex flex-col ${isCustomerOpen ? "" : "items-center"} space-y-2`}>
-                <Link to="/" className="hover:text-primaryColor">How to use FIXIT4U</Link>
-                <Link to="/about" className="hover:text-primaryColor">Sign up</Link>
-                <Link to="/services" className="hover:text-primaryColor">Get the app</Link>
-                <Link to="/services" className="hover:text-primaryColor">Services near me</Link>
+                <Link to="/customer" className="hover:text-primaryColor">How to use FIXIT4U</Link>
+                <Link to="/prosignup" className="hover:text-primaryColor">Sign up</Link>
+                <Link to="*" className="hover:text-primaryColor">Get the app</Link>
+                <Link to="/customer" className="hover:text-primaryColor">Services near me</Link>
               </div>
             )}
           </nav>
         ) : (<nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2  px-4`}>
           <h3 className='text-gray-900 font-bold'>Customer</h3>
-          <Link to="/careers" className="hover:text-primaryColor">How to use FIXIT4U</Link>
-          <Link to="/about" className="hover:text-primaryColor">Sign up </Link>
-          <Link to="/services" className="hover:text-primaryColor">Get the app</Link>
-          <Link to="/services" className="hover:text-primaryColor">Services near me</Link>
+          <Link to="/customer" className="hover:text-primaryColor">How to use FIXIT4U</Link>
+          <Link to="/customersignup" className="hover:text-primaryColor">Sign up </Link>
+          <Link to="*" className="hover:text-primaryColor">Get the app</Link>
+          <Link to="/customer" className="hover:text-primaryColor">Services near me</Link>
 
         </nav>)}
 
@@ -107,7 +107,7 @@ const Footer = () => {
           {isProsOpen && (
             <div className={`flex flex-col ${isProsOpen ? "" : "items-center"} space-y-2`}>
               <Link to="/" className="hover:text-primaryColor">Fixit4U for pros</Link>
-              <Link to="/about" className="hover:text-primaryColor">Sign up</Link>
+              <Link to="/prosignup" className="hover:text-primaryColor">Sign up</Link>
               <Link to="/services" className="hover:text-primaryColor">Community</Link>
               <Link to="/services" className="hover:text-primaryColor">Pro reviews</Link>
             </div>
@@ -117,7 +117,7 @@ const Footer = () => {
           <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2  px-4`}>
             <h3 className='text-gray-900 font-bold'>Pros</h3>
             <Link to="/careers" className="hover:text-primaryColor">Fixit4U for pros</Link>
-            <Link to="/about" className="hover:text-primaryColor">Sign up</Link>
+            <Link to="/prosignup" className="hover:text-primaryColor">Sign up</Link>
             <Link to="/services" className="hover:text-primaryColor">Community</Link>
             <Link to="/services" className="hover:text-primaryColor">Pro reviews</Link>
 
