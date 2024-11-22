@@ -7,6 +7,7 @@ export default {
       animation: {
         slideDown: "slideDown 3s ease-in-out infinite",
         slideUp: "slideUp 0.5s ease-out forwards",
+        move: "move 2s infinite", // Add the move animation here
       },
       keyframes: {
         slideUp: {
@@ -16,6 +17,11 @@ export default {
         slideDown: {
           "0%": { transform: "translateY(0)", opacity: "1" },
           "100%": { transform: "translateY(-100%)", opacity: "0" },
+        },
+        move: {
+          // Define the move keyframes
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(20px)" },
         },
       },
       fontFamily: {

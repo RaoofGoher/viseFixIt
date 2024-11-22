@@ -1,45 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import image from "../assets/background2.jpg";
+import image from "../assets/phone.png";
 
 const ContactUsForm = () => {
-  const [animate, setAnimate] = useState(false);
-  const formRef = useRef(null);
-
-  // IntersectionObserver callback function
-  const handleIntersection = (entries) => {
-    const [entry] = entries;
-    if (entry.isIntersecting) {
-      setAnimate(true); // Trigger animation when element comes into view
-    }
-  };
-
-  useEffect(() => {
-    // Set up IntersectionObserver
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.5, // Trigger animation when 50% of the component is visible
-    });
-
-    if (formRef.current) {
-      observer.observe(formRef.current);
-    }
-
-    return () => {
-      if (formRef.current) {
-        observer.unobserve(formRef.current);
-      }
-    };
-  }, []);
-
-  // Initial Form Values
   const initialValues = {
     name: "",
     email: "",
     message: "",
   };
 
-  // Validation Schema
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(2, "Name must be at least 2 characters")
@@ -52,51 +22,26 @@ const ContactUsForm = () => {
       .required("Message is required"),
   });
 
-  // Form Submission Handler
   const onSubmit = (values, { resetForm }) => {
     console.log("Form Data: ", values);
     alert("Message sent successfully!");
     resetForm();
   };
 
-  // Inline CSS for slide-up animation
-  const slideUpAnimation = {
-    animation: animate ? "slideUp 1s ease-out forwards" : "", // Only apply animation when animate state is true
-  };
-
-  // Keyframes for the animation
-  const keyframes = `
-    @keyframes slideUp {
-      0% {
-        transform: translateY(100%); /* Start below the screen */
-        opacity: 0; /* Fully transparent */
-      }
-      100% {
-        transform: translateY(0); /* End at its normal position */
-        opacity: 1; /* Fully visible */
-      }
-    }
-  `;
-
   return (
-    <div
-      className="relative flex justify-center items-center min-h-screen"
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* Inline style for keyframes */}
-      <style>{keyframes}</style>
-
-      <div
-        ref={formRef}
-        className="absolute right-24 w-full max-w-md bg-transparent p-6"
-        style={slideUpAnimation} // Apply slide-up animation here
-      >
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+    <div className=" group flex flex-col-reverse lg:flex-row justify-between items-center lg:mx-20 min-h-screen p-6 lg:p-0">
+      {/* Responsive Image */}
+      <div className="hidden lg:block w-1/2 ">
+        <img
+          src={image}
+          alt="phone"
+          className="  group-hover:animate-pulse   -rotate-45 group-hover:opacity-100 opacity-0 bg-transparent object-cover translate-x-0 group-hover:translate-x-20 transform transition-all duration-700 filter grayscale brightness-90 drop-shadow-2xl shadow-black contrast-125 group-hover:sepia"
+        />
+      </div>
+      
+      {/* Form Section */}
+      <div className=" rounded-md  drop-shadow-2xl lg:w-1/2 w-full duration-300 group-hover:translate-x-0 -translate-x-96  opacity-100   bg-primaryColor   p-6">
+        <h2 className="text-3xl font-bold text-center mb-6 text-white ">
           Contact Us
         </h2>
         <Formik
@@ -105,10 +50,13 @@ const ContactUsForm = () => {
           onSubmit={onSubmit}
         >
           {({ isSubmitting }) => (
-            <Form className="space-y-4">
+            <Form className="space-y-4 animate-slideInUp">
               {/* Name Field */}
               <div>
-                <label htmlFor="name" className="block text-gray-700 font-medium">
+                <label
+                  htmlFor="name"
+                  className="block text-white font-bold"
+                >
                   Name
                 </label>
                 <Field
@@ -116,7 +64,7 @@ const ContactUsForm = () => {
                   id="name"
                   name="name"
                   placeholder="Enter your name"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
                 />
                 <ErrorMessage
                   name="name"
@@ -127,7 +75,10 @@ const ContactUsForm = () => {
 
               {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-gray-700 font-medium">
+                <label
+                  htmlFor="email"
+                  className="block text-white font-bold"
+                >
                   Email
                 </label>
                 <Field
@@ -135,7 +86,7 @@ const ContactUsForm = () => {
                   id="email"
                   name="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
                 />
                 <ErrorMessage
                   name="email"
@@ -146,7 +97,10 @@ const ContactUsForm = () => {
 
               {/* Message Field */}
               <div>
-                <label htmlFor="message" className="block text-gray-700 font-medium">
+                <label
+                  htmlFor="message"
+                  className="block text-white font-bold"
+                >
                   Message
                 </label>
                 <Field
@@ -155,7 +109,7 @@ const ContactUsForm = () => {
                   name="message"
                   rows="4"
                   placeholder="Enter your message"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
                 />
                 <ErrorMessage
                   name="message"
@@ -168,7 +122,7 @@ const ContactUsForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                className="w-full py-2 px-4  bg-secondaryColor text-white font-semibold rounded-md hover:bg-lightColor2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-300"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>

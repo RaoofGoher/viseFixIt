@@ -42,6 +42,7 @@ import RequestRejectPage from './pages/RequestRejectPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import Support from '../src/pages/Support';
 import CallUs from "../src/components/CallUs";
+import Customer from './pages/Customer';
 
 function App() {
   const router = createBrowserRouter(
@@ -65,6 +66,7 @@ function App() {
           <Route path="/privacypolicy" element={<PrivacyPolicyPage/>}/>
           <Route path='/support' element={<Support/>}  />
           <Route path="/form" element={<CallUs buttonText="Call Us" buttonLink="/form" />} />
+          <Route path='/customer' element={<Customer/>} />
 
         </Route>
         <Route path="/dashboard" element={<DashboardLayout />}>
