@@ -140,8 +140,8 @@ const Footer = () => {
             <div className={`flex flex-col ${isSupportOpen ? "" : "items-center"} space-y-2`}>
               <Link to="/" className="hover:text-primaryColor">Help</Link>
               <Link to="/about" className="hover:text-primaryColor">Safty</Link>
-              <Link to="/services" className="hover:text-primaryColor">Terms of Use</Link>
-              <Link to="/services" className="hover:text-primaryColor">Privacy policy</Link>
+              <Link to="/termofuse" className="hover:text-primaryColor">Terms of Use</Link>
+              <Link to="/privacypolicy" className="hover:text-primaryColor">Privacy policy</Link>
             </div>
           )}
         </nav>) : (
@@ -149,10 +149,10 @@ const Footer = () => {
 
           <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2 `}>
             <h2 className='text-gray-900 font-bold'>Support</h2>
-            <Link to="/careers" className="hover:text-primaryColor">Help</Link>
-            <Link to="/about" className="hover:text-primaryColor">Safty</Link>
-            <Link to="/services" className="hover:text-primaryColor">Terms of Use</Link>
-            <Link to="/services" className="hover:text-primaryColor">Privacy policy</Link>
+            <Link to="/support" className="hover:text-primaryColor">Help</Link>
+            <Link to="/support" className="hover:text-primaryColor">Safty</Link>
+            <Link to="/support" className="hover:text-primaryColor">Terms of Use</Link>
+            <Link to="/privacypolicy" className="hover:text-primaryColor">Privacy policy</Link>
 
           </nav>
 
