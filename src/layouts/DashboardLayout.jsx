@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+// import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Outlet, NavLink } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import { useProContext } from "../context/ProContext";
@@ -19,6 +21,9 @@ const DashboardLayout = () => {
   const { proData, isProAuthenticated, logoutPro } = useProContext();
   const { user, isAuthenticated, logoutUser } = useGlobalContext();
   const [isNavOpen, setIsNavOpen] = useState(false);
+
+  // menu Items Here
+  const menuItems = ["User One", "User Two", "User Three", "User Four"];
 
   const activeLinkStyle = {
     backgroundColor: "#93bcbc", // Sky Blue
@@ -45,7 +50,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="bg-lightColor min-h-screen flex flex-col">
+    <div className="bg-lightColor h-screen flex flex-col ">
       <div className="sm:flex">
         {/* Mobile Toggle Button */}
         <button
@@ -67,8 +72,8 @@ const DashboardLayout = () => {
         <aside
           className={`z-20 py-4 fixed sm:relative h-full top-0 left-0 rounded-md backdrop-blur-md bg-secondaryColor/40 text-white shadow-xl transform transition-transform duration-300 ${
             isNavOpen ? "translate-x-0" : "-translate-x-full"
-          } sm:translate-x-0 sm:block`}
-          style={{ width: "250px" }}
+          } sm:translate-x-0 sm:block overflow-y-auto scroll-smooth scrollbar-hidden `}
+          style={{ width: "290px" }}
         >
           {/* Close button when sidebar is open */}
           <button
@@ -79,7 +84,7 @@ const DashboardLayout = () => {
           </button>
 
           <div className="py-8 px-6 text-center border-b border-lightColor3 flex flex-col items-center">
-            <img src={image} alt="Logo" className="mb-6" />
+            <img src={image} alt="Logo" width={150} className="mb-6" />
             {/* Profile Section */}
             <div className="flex flex-row gap-4  items-center ">
               {isProAuthenticated ? (
@@ -103,7 +108,7 @@ const DashboardLayout = () => {
                     <FaUserCircle className="w-10 h-10 text-primaryColor mb-2" />
                   )}
 
-                  <p className="text-lg font-bold">{proData?.username}</p>
+                  <p className="text-lg text-gray-800 font-bold">{proData?.username}</p>
                 </>
               ) : isAuthenticated ? (
                 <>
@@ -127,7 +132,37 @@ const DashboardLayout = () => {
                     <FaUserCircle className="w-11 h-11 text-primaryColor mb-2" />
                   )}
 
-                  <p className="text-lg font-bold">{user?.data?.username}</p>
+                  <p className="text-lg text-gray-800 font-bold">{user?.data?.username}</p>
+                  {/* Notification Button */}
+                  <Menu as="div" className="relative inline-block text-left">
+                    <div>
+                      <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm  ">
+                        <FaBell className="text-xl text-gray-800 hover:text-secondaryColor" />
+                      </MenuButton>
+                      <span className="absolute top-0 right-0 flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondaryColor opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-secondaryColor"></span>
+                      </span>
+                    </div>
+
+                    <MenuItems
+                      transition
+                      className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white  transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                    >
+                      <div className="py-1">
+                        {menuItems.map((item, index) => (
+                          <MenuItem key={index}>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
+                            >
+                              {item}
+                            </a>
+                          </MenuItem>
+                        ))}
+                      </div>
+                    </MenuItems>
+                  </Menu>
                 </>
               ) : (
                 <FaUserCircle className="w-11 h-11 text-primaryColor mb-2" />
@@ -135,22 +170,16 @@ const DashboardLayout = () => {
             </div>
             <div>
               <div className="flex space-x-4">
-                {/* Notification Button */}
-                <button className="relative  text-white py-2 px-4  hover:text-secondaryColor transition duration-200">
-                  <FaBell className="text-xl" />
-                  {/* Notification Badge */}
-                  <span className="absolute top-1 right-1 flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-red-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                  </span>
-                </button>
-
                 {/* Review Button */}
-                <button className="  flex text-white py-2 px-4  hover:text-secondaryColor transition duration-200">
-                  <FaStar className="text-xl fill-yellow-500" />
-                  {/* Review Badge */}
-                  
-                  4.5
+                <button className="  flex flex-col justify-center items-center text-white py-2 px-4  hover:text-secondaryColor transition duration-200">
+                  <span className="text-2xl text-gray-800 font-bold"> 4.5</span>
+                  <div className="flex">
+                    <FaStar className="text-xl fill-yellow-500" />
+                    <FaStar className="text-xl fill-yellow-500" />
+                    <FaStar className="text-xl fill-yellow-500" />
+                    <FaStar className="text-xl fill-yellow-500" />
+                    <FaStar className="text-xl fill-yellow-500" />
+                  </div>
                 </button>
               </div>
             </div>
@@ -158,7 +187,7 @@ const DashboardLayout = () => {
 
           {/* Navigation Links */}
           <nav className="mt-6">
-            <ul className="space-y-4">
+            <ul className="space-y-4 text-gray-800">
               <li>
                 <NavLink
                   to="/"
@@ -185,7 +214,7 @@ const DashboardLayout = () => {
                   Dashboard
                 </NavLink>
               </li>
-              <li>
+              <li className="text-dark">
                 <NavLink
                   to={
                     proData
