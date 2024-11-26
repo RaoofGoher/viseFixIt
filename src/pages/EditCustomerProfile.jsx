@@ -7,7 +7,6 @@ import axios from 'axios';
 import { useToast } from '../context/ToastContext';
 import CustomerImageUpdate from '../components/CustomerImageUpdate';
 
-
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const EditCustomerProfile = () => {
@@ -16,6 +15,7 @@ const EditCustomerProfile = () => {
   const [id, setId] = useState('');
   const [profile, setProfile] = useState(null);
   const { showToast } = useToast();
+
   useEffect(() => {
     if (user && user.data.id) {
       setId(user.data.id);
@@ -44,23 +44,23 @@ const EditCustomerProfile = () => {
     zip_code: Yup.string().required('Zip code is required'),
   });
 
-  const handleSubmit = async (values,{setFieldError}) => {
+  const handleSubmit = async (values, { setFieldError }) => {
     try {
-       const response  = await axios.patch(`${apiUrl}/customer/update/${id}/`, values);
-       console.log("rrr",response)
-       if(response.data.status === 400 && response.data.reason.error === "Email is already taken, try another."){
-       setFieldError('email', "The email is already set. Try another one.");
-      showToast('The email is already set. Try another one.', 'warning')
-     }else if(response.data.status === 400 && response.data.reason.error === "Phone number is already taken, try another."){
-        showToast('phone number already exist', 'warning')
-        const errorMessages = response.data.reason.error;
-       setFieldError('phone_number', errorMessages);
-       
-     }else {
-      showToast('Success! Task completed.', 'success')
-      navigate(`/myprofilecustomer/${profile.username}`);
-    } 
-  }catch (error) {
+      const response = await axios.patch(`${apiUrl}/customer/update/${id}/`, values);
+      if (response.data.status === 400) {
+        const error = response.data.reason.error;
+        if (error === "Email is already taken, try another.") {
+          setFieldError('email', "The email is already set. Try another one.");
+          showToast('The email is already set. Try another one.', 'warning');
+        } else if (error === "Phone number is already taken, try another.") {
+          setFieldError('phone_number', "Phone number already exists. Try another one.");
+          showToast('Phone number already exists. Try another one.', 'warning');
+        }
+      } else {
+        showToast('Success! Profile updated successfully.', 'success');
+        navigate(`/myprofilecustomer/${profile.username}`);
+      }
+    } catch (error) {
       console.error('Error updating profile:', error);
     }
   };
@@ -83,87 +83,92 @@ const EditCustomerProfile = () => {
       onSubmit={handleSubmit}
     >
       {({ setFieldValue }) => (
-        <Form className="space-y-6 bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto my-6">
-          {/* Image Field */}
-          <div className="space-y-1">
-            <label className="block text-sm font-medium text-gray-700">Profile Picture</label>
-            <Field
-                  component={CustomerImageUpdate}
-                  
-                />
+        <Form className="max-w-4xl mx-auto p-6 bg-primaryColor rounded-lg shadow-md">
+          <h1 className="text-2xl font-bold mb-6 text-gray-800">Edit Customer Profile</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Profile Picture */}
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Profile Picture
+              </label>
+              <Field component={CustomerImageUpdate}  />
+            </div>
+
+            {/* Username */}
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                Username
+              </label>
+              <Field
+                type="text"
+                name="username"
+                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+              <ErrorMessage name="username" component="div" className="text-red-500 text-sm" />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <Field
+                type="email"
+                name="email"
+                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+              <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+            </div>
+
+            {/* Phone Number */}
+            <div>
+              <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700">
+                Phone Number
+              </label>
+              <Field
+                type="text"
+                name="phone_number"
+                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+              <ErrorMessage name="phone_number" component="div" className="text-red-500 text-sm" />
+            </div>
+
+            {/* Address */}
+            <div>
+              <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                Address
+              </label>
+              <Field
+                type="text"
+                name="address"
+                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+              <ErrorMessage name="address" component="div" className="text-red-500 text-sm" />
+            </div>
+
+            {/* Zip Code */}
+            <div>
+              <label htmlFor="zip_code" className="block text-sm font-medium text-gray-700">
+                Zip Code
+              </label>
+              <Field
+                type="text"
+                name="zip_code"
+                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+              <ErrorMessage name="zip_code" component="div" className="text-red-500 text-sm" />
+            </div>
           </div>
 
-          {/* Username Field */}
-          <div className="space-y-1">
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-              Username
-            </label>
-            <Field
-              type="text"
-              name="username"
-              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            />
-            <ErrorMessage name="username" component="div" className="text-red-500 text-sm" />
+          {/* Submit Button */}
+          <div className="mt-6">
+            <button
+              type="submit"
+              className="w-full bg-secondaryColor text-white py-2 px-4 rounded-md hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-secondaryColor focus:ring-offset-2"
+            >
+              Update Profile
+            </button>
           </div>
-
-          {/* Email Field */}
-          <div className="space-y-1">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <Field
-              type="email"
-              name="email"
-              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            />
-            <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
-          </div>
-
-          {/* Phone Number Field */}
-          <div className="space-y-1">
-            <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700">
-              Phone Number
-            </label>
-            <Field
-              type="text"
-              name="phone_number"
-              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            />
-            <ErrorMessage name="phone_number" component="div" className="text-red-500 text-sm" />
-          </div>
-
-          {/* Address Field */}
-          <div className="space-y-1">
-            <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-              Address
-            </label>
-            <Field
-              type="text"
-              name="address"
-              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            />
-            <ErrorMessage name="address" component="div" className="text-red-500 text-sm" />
-          </div>
-
-          {/* Zip Code Field */}
-          <div className="space-y-1">
-            <label htmlFor="zip_code" className="block text-sm font-medium text-gray-700">
-              Zip Code
-            </label>
-            <Field
-              type="text"
-              name="zip_code"
-              className="mt-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            />
-            <ErrorMessage name="zip_code" component="div" className="text-red-500 text-sm" />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
-            Update Profile
-          </button>
         </Form>
       )}
     </Formik>
