@@ -138,7 +138,7 @@ const AdminDashboardLayout = ({ children }) => {
                   Dashboard
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   to="/admin/dashboard/settings"
                   className="flex items-center p-4 hover:bg-primaryColor rounded-lg transition-all duration-200 hover:text-lightColor2"
@@ -148,7 +148,7 @@ const AdminDashboardLayout = ({ children }) => {
                   <FaUserCircle className="mr-3 text-xl" />
                   Settings
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <button
                   onClick={handleLogout}

@@ -43,6 +43,7 @@ import Customer from "./pages/Customer";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserDetailPage from "./pages/UserDetailPage";
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
+import PartnersWithUs from "./pages/PartnersWithUs";
 
 function App() {
   const router = createBrowserRouter(
@@ -75,11 +76,26 @@ function App() {
             element={<CallUs buttonText="Call Us" buttonLink="/form" />}
           />
           <Route path="/customer" element={<Customer />} />
+          <Route path="/patners" element={<PartnersWithUs/>} />
         </Route>
 
-      {/* Admin Dashboard Routes */}
-      <Route path="/admin/dashboard" element={<AdminDashboardLayout><AdminDashboard /></AdminDashboardLayout>} />
-        <Route path="/admin/dashboard/user/:username" element={<AdminDashboardLayout><UserDetailPage /></AdminDashboardLayout>} />
+        {/* Admin Dashboard Routes */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminDashboardLayout>
+              <AdminDashboard />
+            </AdminDashboardLayout>
+          }
+        />
+        <Route
+          path="/admin/dashboard/user/:username"
+          element={
+            <AdminDashboardLayout>
+              <UserDetailPage />
+            </AdminDashboardLayout>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
