@@ -34,6 +34,7 @@ export default {
         secondaryColor: "#F58634",
         lightColor1: "#eadeea",
         lightColor2: "#96989A",
+        lightColor3: "#E6E6E6",
         heroColor: "#D1D5DB",
       },
       boxShadow: {

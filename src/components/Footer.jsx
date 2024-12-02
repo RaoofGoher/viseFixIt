@@ -42,7 +42,7 @@ const Footer = () => {
             {isOpen && (
               <div className={`flex flex-col ${isOpen ? "" : "items-center"}  space-y-2`}>
                 <Link to="/" className="hover:text-primaryColor">About</Link>
-                <Link to="/about" className="hover:text-primaryColor">Partner with us</Link>
+                <Link to="/patners" className="hover:text-primaryColor">Partner with us</Link>
                 <Link to="/services" className="hover:text-primaryColor">Careers</Link>
                 <div className="flex justify-evenly ml-[-10px]">
                   <FaFacebook className="hover:text-secondaryColor cursor-pointer" />
@@ -58,7 +58,7 @@ const Footer = () => {
           <nav className={`flex flex-col items-${isMobile ? "center" : "end"} space-y-2 px-4  `}>
             <h3 className='text-gray-900 font-bold'>Fixt4U</h3>
             <Link to="/" className="hover:text-primaryColor">About</Link>
-            <Link to="/about" className="hover:text-primaryColor">Partner with us</Link>
+            <Link to="/patners" className="hover:text-primaryColor">Partner with us</Link>
             <Link to="/services" className="hover:text-primaryColor">Careers</Link>
             <div to="/contact"><span className='flex justify-evenly ml-[-10px]'><FaFacebook className='hover:text-secondaryColor cursor-pointer' /> <FaInstagram className='hover:text-secondaryColor cursor-pointer' /> <FaWhatsapp className='hover:text-secondaryColor cursor-pointer' /><FaTwitter className='hover:text-secondaryColor cursor-pointer' /></span></div>
           </nav>
