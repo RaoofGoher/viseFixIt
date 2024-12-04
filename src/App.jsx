@@ -44,6 +44,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import UserDetailPage from "./pages/UserDetailPage";
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 import PartnersWithUs from "./pages/PartnersWithUs";
+import CareerPage from "./pages/CareerPage";
+import CommunityPage from "./pages/CommunityPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -76,7 +78,9 @@ function App() {
             element={<CallUs buttonText="Call Us" buttonLink="/form" />}
           />
           <Route path="/customer" element={<Customer />} />
-          <Route path="/patners" element={<PartnersWithUs/>} />
+          <Route path="/patners" element={<PartnersWithUs />} />
+          <Route path="/career" element={<CareerPage />} />
+          <Route path="/Community" element={<CommunityPage/>}/>
         </Route>
 
         {/* Admin Dashboard Routes */}

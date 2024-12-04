@@ -43,7 +43,7 @@ const Footer = () => {
               <div className={`flex flex-col ${isOpen ? "" : "items-center"}  space-y-2`}>
                 <Link to="/" className="hover:text-primaryColor">About</Link>
                 <Link to="/patners" className="hover:text-primaryColor">Partner with us</Link>
-                <Link to="/services" className="hover:text-primaryColor">Careers</Link>
+                <Link to="/career" className="hover:text-primaryColor">Careers</Link>
                 <div className="flex justify-evenly ml-[-10px]">
                   <FaFacebook className="hover:text-secondaryColor cursor-pointer" />
                   <FaInstagram className="hover:text-secondaryColor cursor-pointer" />
@@ -59,7 +59,7 @@ const Footer = () => {
             <h3 className='text-gray-900 font-bold'>Fixt4U</h3>
             <Link to="/" className="hover:text-primaryColor">About</Link>
             <Link to="/patners" className="hover:text-primaryColor">Partner with us</Link>
-            <Link to="/services" className="hover:text-primaryColor">Careers</Link>
+            <Link to="/career" className="hover:text-primaryColor">Careers</Link>
             <div to="/contact"><span className='flex justify-evenly ml-[-10px]'><FaFacebook className='hover:text-secondaryColor cursor-pointer' /> <FaInstagram className='hover:text-secondaryColor cursor-pointer' /> <FaWhatsapp className='hover:text-secondaryColor cursor-pointer' /><FaTwitter className='hover:text-secondaryColor cursor-pointer' /></span></div>
           </nav>
 
@@ -108,7 +108,7 @@ const Footer = () => {
             <div className={`flex flex-col ${isProsOpen ? "" : "items-center"} space-y-2`}>
               <Link to="/" className="hover:text-primaryColor">Fixit4U for pros</Link>
               <Link to="/prosignup" className="hover:text-primaryColor">Sign up</Link>
-              <Link to="/services" className="hover:text-primaryColor">Community</Link>
+              <Link to="/Community" className="hover:text-primaryColor">Community</Link>
               <Link to="/services" className="hover:text-primaryColor">Pro reviews</Link>
             </div>
           )}
@@ -118,7 +118,7 @@ const Footer = () => {
             <h3 className='text-gray-900 font-bold'>Pros</h3>
             <Link to="/careers" className="hover:text-primaryColor">Fixit4U for pros</Link>
             <Link to="/prosignup" className="hover:text-primaryColor">Sign up</Link>
-            <Link to="/services" className="hover:text-primaryColor">Community</Link>
+            <Link to="/Community" className="hover:text-primaryColor">Community</Link>
             <Link to="/services" className="hover:text-primaryColor">Pro reviews</Link>
 
           </nav>

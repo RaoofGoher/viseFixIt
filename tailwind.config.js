@@ -36,6 +36,7 @@ export default {
         lightColor2: "#96989A",
         lightColor3: "#E6E6E6",
         heroColor: "#D1D5DB",
+        "secondaryColor-dark": "#E15A0D",
       },
       boxShadow: {
         "custom-green": "0 4px 105px #EECEB9", // Adjust color and values
