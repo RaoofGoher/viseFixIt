@@ -23,8 +23,8 @@ function HowItWorks() {
 
   return (
     <div>
-       <section className="py-12 bg-primaryColor my-[150px]">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <section className="py-12 bg-primaryColor ">
+            <div className=" px-8 lg:px-16 text-center">
                 <h2 className="text-3xl font-bold text-gray-800 mb-8">How It Works</h2>
                 <div className="grid gap-8 md:grid-cols-3">
                     {steps.map((step, index) => (

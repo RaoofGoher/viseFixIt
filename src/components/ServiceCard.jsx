@@ -18,11 +18,11 @@ const ServiceCard = ({ id, title, description, icon, image }) => {
  };
 
   return (
-    <div className="relative p-4 bg-black border-4 border-primaryColor rounded-lg hover:border-primaryColor hover:bg-gray-200 hover:text-black overflow-hidden group">
+    <div className="relative p-6 bg-black border-4 border-primaryColor rounded-lg hover:border-primaryColor hover:bg-gray-200 hover:text-black overflow-hidden group">
       <img
         src={image} // Your image URL
         alt={title}
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-100 group-hover:opacity-0 opacity-70"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out  group-hover:opacity-0 opacity-70"
       />
       <div className="relative z-10 opacity-0 translate-x-4 service-card-content">
         <h3 className="text-2xl font-bold mb-2 flex justify-between">
@@ -30,7 +30,7 @@ const ServiceCard = ({ id, title, description, icon, image }) => {
         </h3>
         <p className="mb-8">{description}</p>
         <button
-          className="bg-primaryColor text-white px-4 py-2 rounded hover:bg-lightColor1 transition duration-300 hover:text-black"
+          className="bg-primaryColor text-white px-4 py-2 rounded hover:bg-lightColor1 hover:border border-primaryColor transition duration-300 hover:text-black"
           onClick={handleExploreClick}
         >
           Explore More

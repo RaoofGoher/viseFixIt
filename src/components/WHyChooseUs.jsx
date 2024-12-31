@@ -12,7 +12,7 @@ const WhyChooseUs = () => {
   return (
     <div
       style={{ backgroundImage: `url(${ChooseUSbackground})` }}
-      className={`bg-no-repeat bg-bottom bg-cover flex justify-center items-center ${isMedium ? "h-[600px]" : "h-[400px]"} my-[150px]`}
+      className={`bg-no-repeat bg-bottom bg-cover flex justify-center items-center ${isMedium ? "h-[600px]" : "h-[400px]"} my-8`}
     >
       <div className="flex flex-col md:flex-row items-center justify-between bg-transparent px-4 md:p-8 w-[90vw] lg:w-[80vw] max-w-screen-xl">
         {/* Left Column - Text Content */}

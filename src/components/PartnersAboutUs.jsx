@@ -5,7 +5,7 @@ const PartnersAboutUs = () => {
     return (
         <section className="bg-lightColor3 text-center py-5 px-12 sm:px-20">
           <div>
-            <h1 className="text-4xl font-bold  mb-5 mt-4">
+            <h1 className="text-4xl font-bold  mb-5 mt-4 text-primaryColor">
               About <span className="text-secondaryColor">Us</span>
             </h1>
           </div>
