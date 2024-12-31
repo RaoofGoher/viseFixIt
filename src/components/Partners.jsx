@@ -32,14 +32,14 @@ const Partners = () => {
     <section className=" mx-10 sm:mx-20 my-8">
       {/* Section Header */}
       <div className="text-start mb-6">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold text-primaryColor">
           Partner with <span className="text-secondaryColor">FixIt 4U</span>
         </h1>
       </div>
 
       {/* Description Section */}
       <div className="mb-8 flex">
-        <p className="text-justify text-base sm:text-lg leading-none">
+        <p className="text-justify text-base sm:text-lg leading-none text-dark">
           We partner with all kinds of businesses that serve homeowners and
           professionals. Whether you want to boost your customer’s experience,
           earn more from your existing audience, or explore fresh ways to

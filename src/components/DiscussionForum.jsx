@@ -67,9 +67,9 @@ const DiscussionForum = () => {
   ];
 
   return (
-    <section className="py-16 px-6 bg-lightColor3 text-secondaryColor-dark">
+    <section className="py-16 px-6 bg-white text-secondaryColor-dark">
       <h2 className="text-4xl font-semibold mb-8 text-center text-primaryColor">
-        Discussion Forum
+        Discussion <span className="text-secondaryColor"> Forum</span>
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -91,7 +91,7 @@ const DiscussionForum = () => {
             </div>
 
             <div className="mt-4">
-              <button className="w-full bg-primaryColor  text-white py-2 px-6 rounded-md hover:bg-secondaryColor  transition-all duration-300">
+              <button className="w-full bg-primaryColor   text-white py-2 px-6 rounded-md hover:bg-white hover:text-secondaryColor hover:border-secondaryColor hover:border  transition-all duration-300">
                 Join Discussion 
               </button>
             </div>

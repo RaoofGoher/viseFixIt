@@ -61,17 +61,17 @@ const CareerPage = () => {
   return (
     <>
       <ScrollToTop />
-      <div className=" text-secondaryColor-dark bg-lightColor3">
+      <div className="  bg-white">
         {/* Hero Section */}
         <header className="py-16 px-4 text-center">
-          <h1 className="text-5xl font-extrabold">Join Our <span className="text-primaryColor">Team</span></h1>
-          <p className="mt-4 text-lg max-w-3xl mx-auto text-primaryColor">
+          <h1 className="text-5xl font-extrabold text-primaryColor">Join  <span className="text-secondaryColor">Our</span> Team</h1>
+          <p className="mt-4 text-lg max-w-3xl mx-auto text-dark">
             Build a career that makes a difference. Explore our open roles below and become part of our skilled handyman team, offering exceptional services to customers.
           </p>
         </header>
 
         {/* Job Listings and Details Section */}
-        <section className="py-16 px-6">
+        <section className="py-16 px-6 text-secondaryColor">
           <h2 className="text-4xl font-semibold mb-8 text-center">Open Positions</h2>
           <JobSection jobs={jobs} selectedJob={selectedJob} setSelectedJob={setSelectedJob} />
         </section>

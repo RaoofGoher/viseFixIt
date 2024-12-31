@@ -67,9 +67,9 @@ const CommunityEvents = () => {
   ];
 
   return (
-    <section className="py-16 px-6 bg-lightColor3 text-secondaryColor-dark">
+    <section className="py-16 px-6 bg-white ">
       <h2 className="text-4xl font-semibold mb-8 text-center text-primaryColor">
-        Upcoming Events
+        Upcoming <span className="text-secondaryColor">Events</span> 
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -95,7 +95,7 @@ const CommunityEvents = () => {
             <p className="mt-4 text-gray-600">{event.description}</p>
 
             <div className="mt-4 text-center">
-              <button className="bg-primaryColor text-white py-2 px-6 rounded-md hover:bg-primaryColor-dark transition-all duration-300">
+              <button className="bg-primaryColor hover:bg-white hover:text-secondaryColor hover:border hover:border-secondaryColor  text-white py-2 px-6 rounded-md hover:bg-primaryColor-dark transition-all duration-300">
                 RSVP
               </button>
             </div>

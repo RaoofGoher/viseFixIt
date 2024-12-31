@@ -27,7 +27,7 @@ const JobSection = ({ jobs, selectedJob, setSelectedJob }) => {
         {jobs.map((job) => (
           <div
             key={job.id}
-            className={`cursor-pointer ${job.id === selectedJob ? "bg-lightColor1" : ""}`}
+            className={`cursor-pointer ${job.id === selectedJob ? "" : ""}`}
             onClick={() => handleJobClick(job.id)} // Handle click for small screens (modal) and large screens (toggle details)
           >
             <h3 className="text-xl font-semibold">{job.title}</h3>
@@ -38,8 +38,8 @@ const JobSection = ({ jobs, selectedJob, setSelectedJob }) => {
               <FaClock className="mr-2" />
               <span>{job.type}</span>
             </div>
-            <hr className="my-4 border-secoundaryColor" />
-            <button className="w-full mt-4 py-2 text-lg font-semibold bg-primaryColor hover:bg-secondaryColor rounded text-white">
+            <hr className="my-4  " />
+            <button className="w-full mt-4 py-2 text-lg font-semibold bg-primaryColor hover:bg-white rounded text-white hover:text-secondaryColor hover:border hover:border-secondaryColor  transition duration-300 ease-in-out">
               View Detail
             </button>
           </div>
@@ -63,13 +63,13 @@ const JobSection = ({ jobs, selectedJob, setSelectedJob }) => {
                 <span>{job.type}</span>
               </div>
               <p className="mt-6 text-dark">{job.description}</p>
-              <button className="w-full mt-6 py-2 text-lg font-semibold bg-primaryColor hover:bg-secondaryColor rounded text-white">
+              <button className="w-full mt-6 py-2 text-lg font-semibold bg-primaryColor hover:bg-white text-white hover:text-secondaryColor hover:border hover:border-secondaryColor rounded">
                 Apply Now
               </button>
             </div>
           ))
         ) : (
-          <div className="text-center text-gray-400">Click on a job to view details</div>
+          <div className="text-center text-dark">Click on a job to view details</div>
         )}
       </div>
 

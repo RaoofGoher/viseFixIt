@@ -70,3 +70,17 @@
   color: #f97316; /* Orange color for the bullet */
 }
 
+.slidingText {
+  display: inline-block;
+  white-space: nowrap;
+  animation: slideLeftToRight 5s linear infinite;
+}
+
+@keyframes slideLeftToRight {
+  0% {
+    transform: translateX(-0%); /* Start from off-screen left */
+  }
+  100% {
+    transform: translateX(0%); /* Move to off-screen right */
+  }
+}

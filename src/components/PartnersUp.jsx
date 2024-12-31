@@ -33,7 +33,7 @@ const PartnersUp = () => {
     <section className="px-12 sm:px-20 my-8">
       {/* Section Header */}
       <div className="flex justify-center items-center p-8 text-2xl sm:text-4xl font-bold">
-        <h1>
+        <h1 className="text-primaryColor">
           Let's <span className="text-secondaryColor">Partner</span> Up.
         </h1>
       </div>

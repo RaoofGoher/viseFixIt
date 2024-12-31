@@ -89,9 +89,9 @@ const CommunityPostFeeds = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-lightColor3 text-secondaryColor-dark">
+    <section className="py-16 px-6 bg-white ">
       <h2 className="text-4xl font-semibold mb-8 text-center text-primaryColor">
-        Community Posts & DIY Tips
+        Community Posts <span className="text-secondaryColor"> & </span> DIY Tips
       </h2>
 
       {/* Post Submission Area */}
@@ -113,7 +113,7 @@ const CommunityPostFeeds = () => {
 
         <button
           onClick={handlePostSubmit}
-          className="bg-primaryColor text-white py-2 px-4 rounded"
+          className="bg-primaryColor hover:bg-white hover:text-secondaryColor hover:border hover:border-secondaryColor text-white py-2 px-4 rounded"
         >
           Post
         </button>
@@ -124,7 +124,7 @@ const CommunityPostFeeds = () => {
         {posts.map((post) => (
           <div
             key={post.id}
-            className="border border-gray-600 p-6 bg-white rounded-lg shadow-lg"
+            className="border  p-6 bg-white rounded-lg shadow-lg"
           >
             <div className="flex items-center">
               {/* User Info */}

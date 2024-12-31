@@ -16,7 +16,7 @@ const CallUs = ({ buttonText, buttonLink, isExternal }) => {
       }}
     >
       <div className="w-full max-w-full md:max-w-4xl p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center gap-4">
-        <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold flex flex-col animate-slideDown">
+        <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold flex flex-col ">
           Feel Free <span className="text-secondaryColor font-bold">To</span> Contact Us
         </h1>
         <span className="text-sm sm:text-base md:text-lg lg:text-xl">
